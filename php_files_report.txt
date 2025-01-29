@@ -1,0 +1,957 @@
+#package-unifier.php
+
+[<?php
+/**
+ * Plugin Name: Package Unifier
+ * Description: A WordPress plugin to unify plugin dependencies into a single global vendor directory.
+ * Version: 1.0.0
+ * Requires PHP: 8.0
+ * Requires at least: 5.6
+ * Author: André Cesar Souza de Menezes
+ * Author URI: mailto:andre.cs.menezes@gmail.com
+ * Tags: dependencies, vendor, composer, WordPress
+ * Text Domain: package-unifier
+ * Domain Path: /languages
+ * Documentation: https://acsmti.com/wordpress/plugins/package-unifier
+ * Download Link: https://wordpress.org/plugins/package-unifier
+ */
+
+declare(strict_types=1);
+
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Autoload dependencies using Composer.
+require_once __DIR__ . '/vendor/autoload.php';
+
+use PackageUnifier\Shared\Config;
+use PackageUnifier\Infrastructure\WordPress\PluginActivator;
+
+/**
+ * Verify PHP version compatibility.
+ *
+ * This plugin requires PHP 8.0 or higher. If the current PHP version is lower,
+ * deactivate the plugin and display an admin notice.
+ */
+if (version_compare(PHP_VERSION, Config::REQUIRED_PHP_VERSION, '<')) {
+    deactivate_plugins(Config::BASENAME);
+    wp_die(
+        sprintf(
+        /* translators: %s: Current PHP version */
+            __('%s %s requires PHP %s or higher. Your current version is %s.', Config::TEXT_DOMAIN),
+            Config::PLUGIN_NAME,
+            Config::VERSION,
+            Config::REQUIRED_PHP_VERSION,
+            PHP_VERSION
+        ),
+        __('Plugin Activation Error', Config::TEXT_DOMAIN),
+        ['back_link' => true]
+    );
+}
+
+/**
+ * Verify the existence of the Composer autoload file.
+ *
+ * This ensures that all required dependencies are available. If the autoload
+ * file is missing, the plugin cannot function and will be deactivated.
+ */
+if (!file_exists(Config::ROOT_DIR . 'vendor/autoload.php')) {
+    deactivate_plugins(Config::BASENAME);
+    wp_die(
+        __('Autoload file not found. Please install the dependencies via Composer before activating the plugin.', Config::TEXT_DOMAIN),
+        __('Plugin Activation Error', Config::TEXT_DOMAIN),
+        ['back_link' => true]
+    );
+}
+
+/**
+ * Register plugin activation and deactivation hooks.
+ *
+ * - Activation Hook: Prepares the environment by creating necessary directories.
+ * - Deactivation Hook: Placeholder for future cleanup logic.
+ */
+register_activation_hook(Config::BASENAME, [PluginActivator::class, 'activate']);
+register_deactivation_hook(Config::BASENAME, [PluginActivator::class, 'deactivate']);
+
+/**
+ * Initialize the plugin.
+ *
+ * This method sets up all required WordPress hooks and actions needed
+ * for the plugin's operation. Delegates hook registration to the
+ * `PluginActivator` class for better separation of concerns.
+ */
+PluginActivator::init();
+]
+
+--------------------------------
+
+#src/Application/AutoloaderUpdater.php
+
+[<?php
+
+namespace PackageUnifier\Application;
+
+use RuntimeException;
+
+/**
+ * Handles the update of Composer's autoloader to reflect consolidated dependencies.
+ *
+ * This class ensures that the autoloader in the global `vendor` directory is
+ * regenerated whenever new dependencies are added or moved from individual plugins.
+ *
+ * @package PackageUnifier\Application
+ * @since 1.0.0
+ */
+class AutoloaderUpdater {
+    /**
+     * The path to the global vendor directory.
+     *
+     * This property stores the absolute path to the `vendor` directory,
+     * where Composer's autoloader is consolidated.
+     *
+     * @since 1.0.0
+     * @var string $globalVendorDir The absolute path to the global vendor directory.
+     */
+    private string $globalVendorDir;
+
+    /**
+     * Initializes the AutoloaderUpdater with the global vendor directory path.
+     *
+     * @since 1.0.0
+     *
+     * @param string $globalVendorDir The path to the global vendor directory.
+     */
+    public function __construct(string $globalVendorDir) {
+        $this->globalVendorDir = $globalVendorDir;
+    }
+
+    /**
+     * Updates the Composer autoloader by running the `composer dump-autoload` command.
+     *
+     * This method regenerates the Composer autoloader in the global `vendor`
+     * directory, ensuring that all consolidated dependencies are properly indexed
+     * and available for use by plugins.
+     *
+     * @since 1.0.0
+     *
+     * @uses exec() To run the `composer dump-autoload` command.
+     * @link https://getcomposer.org/doc/03-cli.md#dump-autoload Documentation for Composer's `dump-autoload`.
+     *
+     * @throws RuntimeException If the Composer command fails.
+     *
+     * @return void
+     */
+    public function updateAutoloader(): void {
+        $cmd = sprintf('composer dump-autoload --working-dir=%s', escapeshellarg($this->globalVendorDir));
+        exec($cmd, $output, $returnVar);
+
+        if ($returnVar !== 0) {
+            throw new RuntimeException('Failed to update the Composer autoloader.');
+        }
+    }
+}
+]
+
+--------------------------------
+
+#src/Application/DependencyInstaller.php
+
+[<?php
+
+namespace PackageUnifier\Application;
+
+use RuntimeException;
+
+/**
+ * Handles the installation of Composer dependencies.
+ *
+ * This class facilitates the installation of dependencies for plugins by
+ * utilizing the Composer CLI. It ensures that all necessary packages are
+ * consolidated in the global vendor directory, improving consistency
+ * and reducing redundancy across plugins.
+ *
+ * @package PackageUnifier\Application
+ * @since 1.0.0
+ */
+class DependencyInstaller {
+    /**
+     * The path to the global vendor directory.
+     *
+     * This property stores the absolute path to the global `vendor` directory,
+     * where all dependencies are consolidated.
+     *
+     * @since 1.0.0
+     *
+     * @var string $globalVendorDir The absolute path to the global vendor directory.
+     */
+    private string $globalVendorDir;
+
+    /**
+     * Initializes the DependencyInstaller with the global vendor directory path.
+     *
+     * @param string $globalVendorDir The path to the global vendor directory.
+     * @since 1.0.0
+     */
+    public function __construct(string $globalVendorDir) {
+        $this->globalVendorDir = $globalVendorDir;
+    }
+
+    /**
+     * Installs dependencies from a given `composer.json` file.
+     *
+     * This method uses Composer's `require` command to install the dependencies
+     * specified in the provided `composer.json` file. It ensures that all required
+     * packages are properly installed in the global vendor directory.
+     *
+     * @since 1.0.0
+     *
+     * @param string $composerJsonPath The absolute path to the `composer.json` file to be processed.
+     * @uses exec() To run the Composer CLI command.
+     * @link https://getcomposer.org/doc/03-cli.md#require Documentation for Composer's `require` command.
+     *
+     * @throws RuntimeException If the Composer command fails.
+     *
+     * @return void
+     */
+    public function installFromComposerFile(string $composerJsonPath): void {
+        $cmd = sprintf(
+            'composer require --working-dir=%s %s',
+            escapeshellarg($this->globalVendorDir),
+            escapeshellarg($composerJsonPath)
+        );
+        exec($cmd, $output, $returnVar);
+
+        if ($returnVar !== 0) {
+            throw new RuntimeException(
+                sprintf('Failed to install dependencies from %s.', $composerJsonPath)
+            );
+        }
+    }
+}
+]
+
+--------------------------------
+
+#src/Application/VendorScanner.php
+
+[<?php
+
+namespace PackageUnifier\Application;
+
+use PackageUnifier\Domain\Plugin;
+use PackageUnifier\Infrastructure\ComposerService;
+
+/**
+ * Scans all plugins for vendor folders and consolidates dependencies.
+ *
+ * This class is responsible for scanning all installed plugins in the WordPress
+ * `wp-content/plugins` directory. It detects vendor folders, analyzes their
+ * dependencies, and consolidates them into a global `vendor` directory at the root
+ * of the WordPress installation.
+ *
+ * @package PackageUnifier\Application
+ * @since 1.0.0
+ */
+class VendorScanner {
+    /**
+     * Initiates the scanning process for all plugins.
+     *
+     * This method iterates over all plugins in the WordPress plugins directory,
+     * checks for the presence of a `vendor` folder, and processes its dependencies
+     * using the `ComposerService`.
+     *
+     * @since 1.0.0
+     *
+     * @uses self::listPlugins() To retrieve the list of plugin directories.
+     * @uses self::processPlugin() To process individual plugins for dependencies.
+     * @link https://www.php.net/manual/en/function.glob.php For listing directories.
+     *
+     * @return void
+     */
+    public function scan(): void {
+        $plugins = $this->listPlugins();
+
+        foreach ($plugins as $pluginPath) {
+            $plugin = new Plugin($pluginPath);
+            if ($plugin->hasVendor()) {
+                $this->processPlugin($plugin);
+            }
+        }
+    }
+
+    /**
+     * Lists all active plugins in the WordPress plugins directory.
+     *
+     * This method retrieves all directories in the `wp-content/plugins` folder
+     * using PHP's `glob` function. It ensures only valid plugin directories are
+     * included in the results.
+     *
+     * @since 1.0.0
+     *
+     * @global string $WP_CONTENT_DIR The absolute path to the `wp-content` directory.
+     * @uses glob() To list directories.
+     * @link https://www.php.net/manual/en/function.glob.php Documentation for `glob`.
+     *
+     * @return array<string> A list of plugin directory paths.
+     */
+    private function listPlugins(): array {
+        return glob(WP_CONTENT_DIR . '/plugins/*', GLOB_ONLYDIR) ?? [];
+    }
+
+    /**
+     * Processes each plugin for dependencies.
+     *
+     * This method analyzes a plugin's `vendor` folder and determines whether it
+     * contains a `composer.json` file. If present, it delegates dependency management
+     * to the `ComposerService` to install or update packages in the global vendor
+     * directory. Otherwise, it moves the existing `vendor` packages to the global
+     * directory.
+     *
+     * @since 1.0.0
+     *
+     * @uses Plugin::hasComposerJson() To check for a `composer.json` file.
+     * @uses Plugin::getComposerJsonPath() To retrieve the path of `composer.json`.
+     * @uses Plugin::getVendorPath() To retrieve the path of the plugin's vendor folder.
+     * @uses ComposerService::installDependencies() To install dependencies from `composer.json`.
+     * @uses ComposerService::movePackages() To move packages to the global vendor directory.
+     *
+     * @param Plugin $plugin The plugin instance being processed.
+     *
+     * @return void
+     */
+    private function processPlugin(Plugin $plugin): void {
+        $composerService = new ComposerService();
+
+        if ($plugin->hasComposerJson()) {
+            $composerService->installDependencies($plugin->getComposerJsonPath());
+        } else {
+            $composerService->movePackages($plugin->getVendorPath());
+        }
+    }
+}
+]
+
+--------------------------------
+
+#src/Domain/Plugin.php
+
+[<?php
+
+namespace PackageUnifier\Domain;
+
+/**
+ * Represents a WordPress plugin and its dependencies.
+ *
+ * This class provides utility methods to check for the existence of specific
+ * dependency-related files and directories in a WordPress plugin's folder. It
+ * is used to facilitate the detection and processing of vendor folders and
+ * `composer.json` files.
+ *
+ * @package PackageUnifier\Domain
+ * @since 1.0.0
+ */
+class Plugin {
+    /**
+     * Absolute path to the plugin directory.
+     *
+     * This property holds the full path to the directory where the plugin's files are located.
+     *
+     * @since 1.0.0
+     * @var string $path The absolute path to the plugin directory.
+     */
+    private string $path;
+
+    /**
+     * Initializes the Plugin instance with the provided path.
+     *
+     * @param string $path The absolute path to the plugin's directory.
+     * @since 1.0.0
+     */
+    public function __construct(string $path) {
+        $this->path = $path;
+    }
+
+    /**
+     * Checks if the plugin contains a `vendor` directory.
+     *
+     * This method verifies if the `vendor` directory exists within the plugin's
+     * directory, indicating the presence of dependency files.
+     *
+     * @since 1.0.0
+     *
+     * @uses self::getVendorPath() To retrieve the vendor path.
+     * @link https://www.php.net/manual/en/function.is-dir.php Documentation for `is_dir`.
+     *
+     * @return bool True if the `vendor` directory exists, false otherwise.
+     */
+    public function hasVendor(): bool {
+        return is_dir($this->getVendorPath());
+    }
+
+    /**
+     * Checks if the plugin contains a `composer.json` file in its vendor directory.
+     *
+     * This method determines whether the plugin explicitly defines its
+     * dependencies using Composer by checking for a `composer.json` file.
+     *
+     * @since 1.0.0
+     *
+     * @uses self::getComposerJsonPath() To retrieve the path to the `composer.json` file.
+     * @link https://www.php.net/manual/en/function.file-exists.php Documentation for `file_exists`.
+     *
+     * @return bool True if the `composer.json` file exists, false otherwise.
+     */
+    public function hasComposerJson(): bool {
+        return file_exists($this->getComposerJsonPath());
+    }
+
+    /**
+     * Retrieves the path to the `vendor` directory within the plugin.
+     *
+     * This method constructs and returns the absolute path to the plugin's
+     * `vendor` directory. The directory contains the Composer dependencies
+     * for the plugin, if available.
+     *
+     * @since 1.0.0
+     *
+     * @return string The absolute path to the `vendor` directory.
+     */
+    public function getVendorPath(): string {
+        return $this->path . '/vendor';
+    }
+
+    /**
+     * Retrieves the path to the `composer.json` file within the plugin's vendor directory.
+     *
+     * This method constructs and returns the absolute path to the `composer.json` file
+     * located in the plugin's `vendor` directory. The file defines the plugin's
+     * Composer dependencies.
+     *
+     * @since 1.0.0
+     *
+     * @return string The absolute path to the `composer.json` file.
+     */
+    public function getComposerJsonPath(): string {
+        return $this->path . '/vendor/composer.json';
+    }
+}
+]
+
+--------------------------------
+
+#src/Domain/VendorPackage.php
+
+[<?php
+
+namespace PackageUnifier\Domain;
+
+/**
+ * Represents a Composer package and its version.
+ *
+ * This class encapsulates the name and version of a Composer package,
+ * providing utility methods to retrieve this information. It serves as
+ * a simple data structure for representing package metadata.
+ *
+ * @package PackageUnifier\Domain
+ * @since 1.0.0
+ */
+class VendorPackage {
+    /**
+     * The name of the Composer package.
+     *
+     * This property stores the fully qualified name of the Composer package,
+     * including the vendor and package name. For example: "vendor/package-name".
+     *
+     * @since 1.0.0
+     * @var string $name The name of the Composer package.
+     */
+    private string $name;
+
+    /**
+     * The version of the Composer package.
+     *
+     * This property stores the specific version of the package being used.
+     * For example: "1.2.3".
+     *
+     * @since 1.0.0
+     * @var string $version The version of the Composer package.
+     */
+    private string $version;
+
+    /**
+     * Initializes the VendorPackage instance with the package name and version.
+     *
+     * @param string $name The name of the Composer package.
+     * @param string $version The version of the Composer package.
+     * @since 1.0.0
+     */
+    public function __construct(string $name, string $version) {
+        $this->name = $name;
+        $this->version = $version;
+    }
+
+    /**
+     * Retrieves the name of the Composer package.
+     *
+     * This method returns the fully qualified name of the Composer package,
+     * including the vendor and package name.
+     *
+     * @since 1.0.0
+     *
+     * @return string The name of the package.
+     */
+    public function getName(): string {
+        return $this->name;
+    }
+
+    /**
+     * Retrieves the version of the Composer package.
+     *
+     * This method returns the version of the Composer package being used,
+     * as specified in its metadata or dependencies file.
+     *
+     * @since 1.0.0
+     *
+     * @return string The version of the package.
+     */
+    public function getVersion(): string {
+        return $this->version;
+    }
+}
+]
+
+--------------------------------
+
+#src/Infrastructure/ComposerService.php
+
+[<?php
+
+namespace PackageUnifier\Infrastructure;
+
+use RuntimeException;
+
+/**
+ * Handles Composer-related operations for dependency management.
+ *
+ * This class provides methods to manage dependencies for plugins, including
+ * installing or updating dependencies using Composer and moving vendor packages
+ * from plugin directories to a global vendor directory.
+ *
+ * @package PackageUnifier\Infrastructure
+ * @since 1.0.0
+ */
+class ComposerService {
+    /**
+     * The path to the global vendor directory.
+     *
+     * This property stores the absolute path to the `vendor` directory located
+     * at the root of the WordPress installation.
+     *
+     * @since 1.0.0
+     * @global string $ABSPATH The absolute path to the WordPress root directory.
+     * @var string
+     */
+    private string $globalVendorDir;
+
+    /**
+     * Initializes the ComposerService with the global vendor directory path.
+     *
+     * @since 1.0.0
+     */
+    public function __construct() {
+        $this->globalVendorDir = ABSPATH . 'vendor';
+    }
+
+    /**
+     * Installs or updates dependencies in the global vendor directory.
+     *
+     * This method uses Composer's CLI command to install dependencies defined
+     * in a `composer.json` file located in a plugin's vendor folder.
+     *
+     * If the installation fails, an error is logged for debugging purposes.
+     *
+     * @since 1.0.0
+     *
+     * @param string $composerJsonPath The absolute path to the `composer.json` file to process.
+     * @uses escapeshellarg() To sanitize CLI arguments.
+     * @uses exec() To execute the Composer CLI command.
+     * @link https://getcomposer.org/doc/03-cli.md#require Documentation for Composer's `require` command.
+     * @throws RuntimeException If the Composer command fails.
+     * @return void
+     */
+    public function installDependencies(string $composerJsonPath): void {
+        $cmd = sprintf(
+            'composer require --working-dir=%s %s',
+            escapeshellarg($this->globalVendorDir),
+            escapeshellarg($composerJsonPath)
+        );
+        exec($cmd, $output, $returnVar);
+
+        if ($returnVar !== 0) {
+            error_log("Error installing dependencies for $composerJsonPath");
+            throw new RuntimeException(
+                sprintf('Failed to install dependencies for %s', $composerJsonPath)
+            );
+        }
+    }
+
+    /**
+     * Moves packages from a plugin's vendor folder to the global vendor directory.
+     *
+     * This method scans the specified `vendorPath` for package directories
+     * and uses `installDependencies` to consolidate them into the global directory.
+     *
+     * @since 1.0.0
+     *
+     * @param string $vendorPath The absolute path to the vendor directory of a plugin.
+     * @uses glob() To list package directories in the vendor path.
+     * @uses self::installDependencies() To handle the consolidation process.
+     * @link https://www.php.net/manual/en/function.glob.php Documentation for `glob`.
+     * @return void
+     */
+    public function movePackages(string $vendorPath): void {
+        $packages = glob($vendorPath . '/*', GLOB_ONLYDIR) ?? [];
+
+        foreach ($packages as $package) {
+            try {
+                $this->installDependencies($package);
+            } catch (RuntimeException $e) {
+                error_log("Failed to move package $package: " . $e->getMessage());
+            }
+        }
+    }
+}
+]
+
+--------------------------------
+
+#src/Infrastructure/WordPress/Hooks.php
+
+[<?php
+
+namespace PackageUnifier\Infrastructure\WordPress;
+
+use PackageUnifier\Application\VendorScanner;
+
+/**
+ * Handles the registration of WordPress hooks.
+ *
+ * This class manages all WordPress-specific hooks used by the plugin,
+ * ensuring the integration of core functionality such as scanning
+ * for vendor folders and loading translations for internationalization.
+ *
+ * @package PackageUnifier\Infrastructure\WordPress
+ * @since 1.0.0
+ */
+class Hooks {
+    /**
+     * Registers WordPress hooks for the plugin.
+     *
+     * Hooks included:
+     * - `init`: Used to trigger the scanning process of plugins for vendor folders.
+     * - `plugins_loaded`: Ensures the plugin's textdomain is loaded for translations.
+     *
+     * @since 1.0.0
+     *
+     * @uses add_action() Registers the actions with WordPress.
+     * @link https://developer.wordpress.org/reference/functions/add_action/ Documentation for `add_action`.
+     * @return void
+     */
+    public static function register(): void {
+        add_action('init', [self::class, 'scanPlugins']);
+        add_action('plugins_loaded', [self::class, 'loadTextDomain']);
+    }
+
+    /**
+     * Scans all plugins for vendor folders and consolidates dependencies.
+     *
+     * This method is triggered by the `init` hook. It instantiates the
+     * `VendorScanner` class, which handles the actual scanning and
+     * consolidation of vendor folders into a global directory.
+     *
+     * @since 1.0.0
+     *
+     * @uses VendorScanner::scan() Performs the scanning of plugins.
+     * @link https://developer.wordpress.org/reference/hooks/init/ Documentation for the `init` hook.
+     * @return void
+     */
+    public static function scanPlugins(): void {
+        (new VendorScanner())->scan();
+    }
+
+    /**
+     * Loads the plugin's textdomain for internationalization.
+     *
+     * This method ensures that translations for the plugin are properly loaded
+     * by WordPress. It is triggered by the `plugins_loaded` hook, which is
+     * recommended for localization setup.
+     *
+     * @since 1.0.0
+     *
+     * @uses load_plugin_textdomain() Loads the textdomain for translations.
+     * @link https://developer.wordpress.org/reference/functions/load_plugin_textdomain/ Documentation for `load_plugin_textdomain`.
+     * @link https://developer.wordpress.org/plugins/internationalization/ WordPress plugin internationalization guide.
+     * @return void
+     */
+    public static function loadTextDomain(): void {
+        load_plugin_textdomain(
+            domain: 'package-unifier', // The plugin's unique text domain.
+            plugin_rel_path: dirname(plugin_basename(__FILE__)) . '/languages' // Relative path to language files.
+        );
+    }
+}
+]
+
+--------------------------------
+
+#src/Infrastructure/WordPress/PluginActivator.php
+
+[<?php
+
+namespace PackageUnifier\Infrastructure\WordPress;
+
+use RuntimeException;
+
+/**
+ * Handles plugin activation, deactivation, and initialization.
+ *
+ * This class ensures that the plugin integrates seamlessly with WordPress
+ * by handling critical lifecycle events such as activation, deactivation,
+ * and initialization. It also prepares the environment for the plugin's
+ * operation, such as creating required directories and registering hooks.
+ *
+ * @package PackageUnifier\Infrastructure\WordPress
+ * @since 1.0.0
+ */
+class PluginActivator {
+    /**
+     * Actions to perform upon plugin activation.
+     *
+     * - Ensures the global vendor directory exists in the root of the WordPress installation.
+     * - Prepares the environment for the plugin's operation by creating necessary directories.
+     * - Logs any errors related to directory creation for debugging purposes.
+     *
+     * @since 1.0.0
+     *
+     * @global string $ABSPATH The absolute path to the WordPress root directory.
+     * @uses ABSPATH The global constant that holds the WordPress installation path.
+     * @link https://developer.wordpress.org/reference/functions/register_activation_hook/ Documentation for activation hooks.
+     *
+     * @throws RuntimeException If the directory cannot be created.
+     * @return void
+     */
+    public static function activate(): void {
+        // Ensure the global vendor directory exists.
+        if (!is_dir(ABSPATH . 'vendor')) {
+            if (!mkdir(ABSPATH . 'vendor', 0755, true) && !is_dir(ABSPATH . 'vendor')) {
+                // Log an error if the directory could not be created.
+                throw new RuntimeException(sprintf(
+                    'Failed to create global vendor directory at %s',
+                    ABSPATH . 'vendor'
+                ));
+            }
+        }
+    }
+
+    /**
+     * Actions to perform upon plugin deactivation.
+     *
+     * This method can be used to clean up resources or revert changes made during activation.
+     * Examples of deactivation tasks include:
+     * - Removing temporary data.
+     * - Unregistering scheduled tasks.
+     * - Reverting changes made to global settings.
+     *
+     * @since 1.0.0
+     *
+     * @uses register_deactivation_hook() Registers the deactivation hook.
+     * @link https://developer.wordpress.org/reference/functions/register_deactivation_hook/ Documentation for deactivation hooks.
+     *
+     * @todo Add cleanup logic for future versions.
+     * @return void
+     */
+    public static function deactivate(): void {
+        // Placeholder for deactivation logic.
+    }
+
+    /**
+     * Initializes the plugin by registering necessary hooks.
+     *
+     * This method sets up all required WordPress hooks and actions needed
+     * for the plugin's operation. It delegates the actual registration
+     * of hooks to the `Hooks` class, maintaining a clean separation of concerns.
+     *
+     * Example of hooks registered:
+     * - `init`: For initializing plugin-specific logic.
+     * - `plugins_loaded`: For loading translations or localization files.
+     *
+     * @since 1.0.0
+     *
+     * @uses Hooks::register() Registers hooks for the plugin.
+     * @link https://developer.wordpress.org/plugins/hooks/ Documentation for WordPress hooks.
+     *
+     * @return void
+     */
+    public static function init(): void {
+        Hooks::register(); // Registers WordPress hooks via the Hooks class.
+    }
+}
+]
+
+--------------------------------
+
+#src/Shared/Config.php
+
+[<?php
+
+namespace PackageUnifier\Shared;
+
+/**
+ * Provides shared configuration values for the plugin.
+ *
+ * This class centralizes configuration constants and utility methods
+ * that are used across the plugin, such as paths, default settings,
+ * and metadata. It ensures all shared data is easily accessible
+ * and maintains a single source of truth.
+ *
+ * @package PackageUnifier\Shared
+ * @since 1.0.0
+ */
+class Config {
+    /**
+     * The name of the plugin.
+     *
+     * This constant defines the name of the plugin, which can be displayed
+     * in admin notices, logs, or other parts of the WordPress admin panel.
+     *
+     * Example:
+     * - Displaying the plugin name in error messages or notices.
+     *
+     * @since 1.0.0
+     * @var string
+     */
+    public const PLUGIN_NAME = 'Package Unifier';
+
+    /**
+     * The current version of the plugin.
+     *
+     * This constant represents the version of the plugin and is used
+     * in various parts of the plugin for version-specific operations,
+     * such as enqueueing assets with versioned URLs.
+     *
+     * @since 1.0.0
+     * @var string
+     */
+    public const VERSION = '1.0.0';
+
+    /**
+     * The minimum required PHP version.
+     *
+     * This constant defines the minimum PHP version required for
+     * the plugin to function. It is used during activation to ensure
+     * compatibility with the server environment.
+     *
+     * @since 1.0.0
+     * @var string
+     */
+    public const REQUIRED_PHP_VERSION = '8.0';
+
+    /**
+     * The root directory of the plugin.
+     *
+     * This constant defines the absolute path to the root directory
+     * of the plugin. It is used to reference files and directories
+     * within the plugin's structure.
+     *
+     * @since 1.0.0
+     * @var string
+     */
+    public const ROOT_DIR = __DIR__ . '/../';
+
+    /**
+     * The basename of the plugin file.
+     *
+     * This constant defines the basename of the main plugin file,
+     * which is used for registering activation and deactivation hooks.
+     *
+     * @since 1.0.0
+     * @var string
+     */
+    public const BASENAME = 'package-unifier/package-unifier.php';
+
+    /**
+     * The text domain for the plugin.
+     *
+     * This constant defines the text domain used for internationalization
+     * and localization of the plugin. It is used with WordPress functions
+     * like `__()` and `_e()` to load the appropriate translation strings.
+     *
+     * @since 1.0.0
+     * @var string
+     */
+    public const TEXT_DOMAIN = 'package-unifier';
+
+    /**
+     * The path to the global vendor directory.
+     *
+     * This constant defines the absolute path to the global `vendor` directory,
+     * located in the root of the WordPress installation. The global directory
+     * is used to consolidate dependencies across multiple plugins.
+     *
+     * @since 1.0.0
+     *
+     * @global string $ABSPATH The absolute path to the WordPress root directory.
+     * @uses ABSPATH The global constant for the WordPress root directory path.
+     * @link https://developer.wordpress.org/reference/functions/ABSPATH/ Documentation for ABSPATH.
+     * @var string
+     */
+    public const GLOBAL_VENDOR_DIR = ABSPATH . 'vendor';
+
+    /**
+     * The path to the global Composer autoload file.
+     *
+     * This constant defines the absolute path to the `autoload.php` file
+     * located in the global `vendor` directory. It ensures that shared
+     * dependencies across plugins are properly loaded.
+     *
+     * @since 1.0.0
+     *
+     * @global string $ABSPATH The absolute path to the WordPress root directory.
+     * @uses ABSPATH The global constant for the WordPress root directory path.
+     * @link https://getcomposer.org/doc/01-basic-usage.md#autoloading Documentation for Composer autoloading.
+     * @var string
+     */
+    public const GLOBAL_VENDOR_AUTOLOAD = self::GLOBAL_VENDOR_DIR . '/autoload.php';
+
+    /**
+     * The path to the plugin-specific Composer autoload file.
+     *
+     * This constant defines the absolute path to the `autoload.php` file
+     * located in the plugin's `vendor` directory. It ensures that the
+     * plugin's own dependencies are loaded if needed.
+     *
+     * @since 1.0.0
+     *
+     * @var string
+     */
+    public const VENDOR_AUTOLOAD = self::ROOT_DIR . 'vendor/autoload.php';
+
+
+    /**
+     * The relative path for language files.
+     *
+     * This constant defines the path to the `languages` folder, which
+     * is used for storing translation files for the plugin. The path
+     * is relative to the plugin's root directory.
+     *
+     * @since 1.0.0
+     * @var string
+     */
+    public const LANGUAGES_PATH = '/languages';
+}
+]
+
+--------------------------------
+

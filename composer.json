@@ -1,0 +1,26 @@
+{
+    "name": "andrecsmenezes/package_unifier",
+    "description": "Reorganizes plugin vendor folders into a single global directory in WordPress projects.",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "composer/installers": "^2.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PackageUnifier\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "André Cesar Souza de Menezes"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
