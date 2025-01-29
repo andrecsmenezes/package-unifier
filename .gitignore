@@ -1,48 +1,111 @@
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# ==================================================
+# 📌 SYSTEM FILES
+# ==================================================
+# Ignore system-specific files that should not be tracked.
+.DS_Store              # macOS system file
+Thumbs.db              # Windows system file
+*.swp                  # Swap files (Vim, Nano)
+*.swo
+*.swn
+*.bak                  # Backup files
+*.tmp                  # Temporary files
+*.old                  # Old versions of files
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
-/wp-admin/
-/wp-content/index.php
-/wp-content/languages
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
-/wp-includes/
-/index.php
-/license.txt
-/readme.html
-/wp-*.php
-/xmlrpc.php
+# ==================================================
+# 📌 IDE & EDITOR FILES
+# ==================================================
+# Ignore files and configurations from development tools.
+.idea/                 # PHPStorm, WebStorm
+.vscode/               # Visual Studio Code
 
-# Configuration
-wp-config.php
+# ==================================================
+# 📌 LOGS & DEBUG FILES
+# ==================================================
+# Ignore logs and debug output files.
+*.log                  # Generic log files
+debug.log              # WordPress debug log
+error_log              # PHP error log
 
-# Example themes
-/wp-content/themes/twenty*/
+# ==================================================
+# 📌 DEPENDENCIES & BUILD FILES
+# ==================================================
+# Ignore Composer and Node.js dependencies (must be installed via package managers).
+vendor/                # Composer dependencies
+composer.lock          # Composer lock file
+node_modules/          # npm or Yarn dependencies
+package-lock.json      # npm lock file
+yarn.lock              # Yarn lock file
 
-# Example plugin
-/wp-content/plugins/hello.php
+# ==================================================
+# 📌 CACHES & BACKUPS
+# ==================================================
+# Ignore cache files, backup databases, and temporary archives.
+cache/                 # General cache folder
+backup/                # Backup files
+*.sql                  # Database backups
+*.sqlite               # SQLite database files
+*.db                   # Database files
+*.tar.gz               # Tarball archives
+*.zip                  # ZIP archives
 
-# Uploads
-/wp-content/uploads/
+# ==================================================
+# 📌 ENVIRONMENT & CONFIGURATION FILES
+# ==================================================
+# Ignore sensitive configuration files and environment variables.
+.env                   # Environment configuration file
+.env.*                 # Any additional environment files
+wp-config.php          # WordPress main config file
+wp-config-*.php        # Any additional config files
 
-# Log files
-*.log
+# ==================================================
+# 📌 PHP TEMPORARY FILES
+# ==================================================
+# Ignore compiled and temporary PHP files.
+*.php~                 # Temporary PHP files
+*.php.bak              # Backup PHP files
+*.php.swp              # Swap PHP files
+*.php.swn
 
-# htaccess
-/.htaccess
+# ==================================================
+# 📌 TESTING FILES
+# ==================================================
+# Ignore files related to automated testing.
+tests/_output/         # Output from test runs
+tests/_temp/           # Temporary test files
+coverage/              # Code coverage reports
 
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-#/wp-content/plugins
+# ==================================================
+# 📌 LOCALIZATION FILES
+# ==================================================
+# Ignore unnecessary generated localization files.
+*.mo                   # Machine Object files (compiled translations)
+*.po                   # Portable Object files (editable translations)
+*.pot                  # Portable Object Template files
 
-# All themes
-#
-# Note: If you wish to whitelist themes,
-# uncomment the next line
-#/wp-content/themes
+# ==================================================
+# 📌 WORDPRESS FILES
+# ==================================================
+# Ignore core WordPress files that should not be tracked.
+wp-admin/              # WordPress admin panel files
+wp-includes/           # WordPress includes folder
+xmlrpc.php             # WordPress XML-RPC interface
+readme.html            # Default WordPress readme
+license.txt            # WordPress default license
+
+# ==================================================
+# 📌 WORDPRESS THEMES & PLUGINS (EXCEPT THIS PLUGIN)
+# ==================================================
+# Ignore all themes and plugins, except this one.
+wp-content/themes/     # Ignore all themes
+wp-content/plugins/    # Ignore all plugins (EXCEPT the current one)
+!wp-content/plugins/package-unifier/  # Allow this plugin
+
+# ==================================================
+# 📌 OTHER FILES
+# ==================================================
+# Ignore additional generated or temporary files.
+*.bak                  # Backup files
+*.swp                  # Swap files (Vim)
+*.swo
+*.swn
+*.tmp
