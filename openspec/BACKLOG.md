@@ -22,7 +22,8 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [ ] Remove committed vendor/ only after proving `composer install` reproducibility and artifact/deployment strategy; do not break the local-autoload bootstrap.
 - [x] Eliminate redundant human-oriented class docblocks in dormant experimental models, adapters and configuration; preserve PHP code tokens and safety invariants. PR checks required.
 - [x] Add conservative entrypoint-reachability no-mutation source gate, covering bootstrap-owned classes and shell/filesystem/Composer sinks.
-- [ ] Expand source reachability verification to dynamic includes/callables; validate against a real WordPress runtime.
+- [x] Add negative fixtures and conservative static rejection for dynamic PHP function/callback/class dispatch and unapproved includes in bootstrap-reachable first-party code.
+- [ ] Validate dynamic include/callable behavior against a real WordPress runtime; static graph remains incomplete by design.
 
 ## P1 i18n
 - [x] Verify the single user-facing admin notice uses `esc_html__` with `package-unifier` domain and pt-BR source text; additional en/es translations require actual reviewed need.
