@@ -60,7 +60,7 @@ try {
     ob_start();
     ($GLOBALS['pu_hooks']['admin_notices'][0])();
     $notice = ob_get_clean();
-    check(is_string($notice) && str_contains($notice, 'Package Unifier is inactive:'), 'Expected translated admin notice missing.');
+    check(is_string($notice) && str_contains($notice, 'Package Unifier está inativo:'), 'Expected translated admin notice missing.');
     check(str_contains($notice, 'notice-error'), 'Expected WordPress error notice missing.');
 
     require $root . '/package-unifier.php';
