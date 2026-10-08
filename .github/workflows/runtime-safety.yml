@@ -1,0 +1,26 @@
+name: runtime-safety
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+      - name: Syntax check
+        run: |
+          php -l package-unifier.php
+          find src -type f -name '*.php' -exec php -l {} \;
+      - name: Fail-closed bootstrap contract
+        run: python3 scripts/validate_safe_bootstrap.py
