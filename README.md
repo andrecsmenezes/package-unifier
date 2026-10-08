@@ -46,6 +46,8 @@ python3 scripts/validate_safe_bootstrap.py
 php scripts/test_wordpress_bootstrap.php
 ```
 
+WordPress runtime integration=GitHub Actions `.github/workflows/wordpress-integration.yml`;official_tool=@wordpress/env@11.17.0;runner=ubuntu-latest;cases=activation_with_local_vendor,activation_without_local_vendor,public_HTTP_no_fatal,recovery;manual=wp-env start && bash scripts/test_wordpress_integration.sh;cleanup=wp-env stop
+
 ## Work queue
 
 owner=openspec/BACKLOG.md

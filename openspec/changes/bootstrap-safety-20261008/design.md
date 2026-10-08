@@ -6,6 +6,6 @@ Activation and request hooks perform no Composer installation, vendor scans, or 
 
 Runtime mutation classes remain research-only and must not become reachable from public hooks.
 
-Verification: PHP lint plus scripts/validate_safe_bootstrap.py; observed runtime-safety Actions success. Official OpenSpec CLI strict validation is an additional outstanding gate.
+Verification: PHP lint, guarded-bootstrap source checks, isolated PHP fixture and reachable-mutation regression; hosted runtime-safety and official OpenSpec 1.13.1 strict validation observed green on main. Real WordPress integration: hosted `@wordpress/env` workflow required; record actual CI outcome before marking complete.
 
 Rollback: retain fail-closed behavior; never restore removed source exporter or global-autoload boot.
