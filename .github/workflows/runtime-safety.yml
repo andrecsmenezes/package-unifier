@@ -28,5 +28,7 @@ jobs:
         run: python3 scripts/validate_safe_bootstrap.py
       - name: Reachable mutating-operation guard
         run: python3 scripts/validate_reachable_mutation.py
+      - name: Reachable mutation graph regression fixtures
+        run: python3 -m unittest scripts.test_reachable_mutation
       - name: Merged-branch deletion guard tests
         run: python3 -m unittest scripts.test_cleanup_merged_branches
