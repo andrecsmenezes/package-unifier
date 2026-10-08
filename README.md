@@ -24,6 +24,7 @@ lockfile=composer.lock
 - WordPress request hooks: localization only; no Composer invocation, vendor scanning, or package changes.
 - `VendorScanner`, `ComposerService`, `DependencyInstaller`, and `AutoloaderUpdater` remain experimental implementation references; do not invoke in production.
 - runtime Composer operations cannot be reenabled without a reviewed OpenSpec change, verified authorization, conflict resolution, atomic transactions, concurrency control, rollback, and dedicated test coverage.
+- root-level PHP source exporter and generated source report prohibited: both could disclose plugin internals through unauthenticated HTTP access on some WordPress deployments.
 - Locale priority for future user-facing UI: `pt-BR > en > es`; technical docs: English only.
 
 ## Validation
@@ -37,5 +38,5 @@ python3 scripts/validate_safe_bootstrap.py
 ## Open issues
 
 P0: verify boot via WordPress integration test; establish official OpenSpec CLI/init/update/validate workflow; add adversarial CODE_DEDUPLICATION_AGENT, CLEAN_CODE_AGENT, ARCHITECTURE_AGENT, I18N_AGENT contracts.
-P1: remove committed `vendor/` and generated `php_files_report.txt` after reproducibility review; consolidate duplicate Composer execution classes; remove dead code; resolve lifecycle ownership and version conflicts.
+P1: remove committed `vendor/` after reproducibility review; consolidate duplicate Composer execution classes; remove dead code; resolve lifecycle ownership and version conflicts.
 P2: implement explicit administrator/CLI-only dry-run plan, package compatibility verification, transactional install and rollback only after requirements/evidence permit.
