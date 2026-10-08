@@ -62,7 +62,7 @@ class Config {
      * @since 1.0.0
      * @var string
      */
-    public const ROOT_DIR = __DIR__ . '/../';
+    public const ROOT_DIR = __DIR__ . '/../../';
 
     /**
      * The basename of the plugin file.
