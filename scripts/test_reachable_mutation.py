@@ -89,5 +89,38 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.assert_gate(False)
 
 
+    def test_url_string_does_not_hide_reachable_shell_sink(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { echo "https://example.test"; exec("id"); } }'
+        )
+        self.assert_gate(False)
+
+    def test_hash_inside_php_string_does_not_hide_shell_sink(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { echo "route#fragment"; exec("id"); } }'
+        )
+        self.assert_gate(False)
+
+    def test_block_comment_marker_inside_string_does_not_hide_sink(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { echo "/* text */"; exec("id"); } }'
+        )
+        self.assert_gate(False)
+
+    def test_actual_php_comments_are_ignored(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { public function f() { // exec('never')\n"
+            "echo 'safe'; # exec('never')\n"
+            "/* exec('never') */ } }"
+        )
+        self.assert_gate(True)
+
+    def test_quote_escape_preserves_comment_delimiters_as_string(self) -> None:
+        self.hooks.write_text(
+            r'''<?php class Hooks { public function f() { echo "a\"https://example.test"; exec("id"); } }'''
+        )
+        self.assert_gate(False)
+
+
 if __name__ == "__main__":
     unittest.main()

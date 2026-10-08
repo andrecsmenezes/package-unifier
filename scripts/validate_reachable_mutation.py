@@ -8,10 +8,45 @@ SOURCE = ROOT / "src"
 ENTRY = ROOT / "package-unifier.php"
 
 def php_code(path: Path) -> str:
+    # Strip comments without discarding executable code after strings containing // or #.
     text = path.read_text(encoding="utf-8")
-    text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
-    text = re.sub(r"//[^\n]*|#[^\n]*", "", text)
-    return text
+    out: list[str] = []
+    i = 0
+    quote: str | None = None
+    while i < len(text):
+        char = text[i]
+        next_char = text[i + 1] if i + 1 < len(text) else ""
+        if quote is not None:
+            out.append(char)
+            if char == "\\" and next_char:
+                out.append(next_char)
+                i += 2
+                continue
+            if char == quote:
+                quote = None
+            i += 1
+            continue
+        if char in ("'", '"'):
+            quote = char
+            out.append(char)
+            i += 1
+            continue
+        if char == "/" and next_char == "*":
+            end = text.find("*/", i + 2)
+            comment_end = len(text) if end < 0 else end + 2
+        elif (char == "/" and next_char == "/") or (
+            char == "#" and next_char != "["
+        ):
+            end = text.find("\n", i)
+            comment_end = len(text) if end < 0 else end
+        else:
+            out.append(char)
+            i += 1
+            continue
+        out.extend("\n" if c == "\n" else " " for c in text[i:comment_end])
+        i = comment_end
+    return "".join(out)
+
 
 def reachable_files() -> set[Path]:
     files = {path.stem: path for path in SOURCE.rglob("*.php")}
