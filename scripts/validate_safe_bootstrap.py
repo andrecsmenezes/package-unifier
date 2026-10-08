@@ -15,6 +15,8 @@ checks = {
     'localization-only lifecycle': "add_action('plugins_loaded'" in hooks,
     'no activation-time global mutations': 'mkdir(' not in activator and 'exec(' not in activator and 'installDependencies(' not in activator,
     'correct plugin root': "ROOT_DIR = __DIR__ . '/../../'" in config,
+    'public source exporter absent': not (ROOT / 'export.php').exists(),
+    'generated source report absent': not (ROOT / 'php_files_report.txt').exists(),
 }
 failed = [name for name, ok in checks.items() if not ok]
 if failed:
