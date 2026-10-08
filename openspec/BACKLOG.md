@@ -19,7 +19,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [ ] Verify reachability of DependencyInstaller, AutoloaderUpdater, VendorScanner and ComposerService; delete truly unused/obsolete implementations only with tests.
 - [ ] Audit Composer CLI construction, package-name/path semantics, version constraints, global autoload load-order and failure modes; keep mutation disabled.
 - [ ] Remove committed vendor/ only after proving `composer install` reproducibility and artifact/deployment strategy; do not break the local-autoload bootstrap.
-- [ ] Eliminate human-oriented/redundant source comments when semantics are already discoverable from types/tests.
+- [x] Eliminate redundant human-oriented class docblocks in dormant experimental models, adapters and configuration; preserve PHP code tokens and safety invariants. PR checks required.
 - [x] Add conservative entrypoint-reachability no-mutation source gate, covering bootstrap-owned classes and shell/filesystem/Composer sinks.
 - [ ] Expand source reachability verification to dynamic includes/callables; validate against a real WordPress runtime.
 
