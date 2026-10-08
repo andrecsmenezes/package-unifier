@@ -25,7 +25,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [ ] Expand source reachability verification to dynamic includes/callables; validate against a real WordPress runtime.
 
 ## P1 i18n
-- [ ] Verify all user-facing notices use WordPress gettext with the exact text domain and pt-BR default; add en/es only if reviewed and actually required.
+- [x] Verify the single user-facing admin notice uses `esc_html__` with `package-unifier` domain and pt-BR source text; additional en/es translations require actual reviewed need.
 - [ ] Audit locale-sensitive formatting only where runtime behavior exists; technical documents remain English-only.
 
 ## P2 scope / decisions
