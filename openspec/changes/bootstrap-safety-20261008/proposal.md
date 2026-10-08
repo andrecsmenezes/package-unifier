@@ -1,7 +1,16 @@
 # Proposal: WordPress bootstrap safety
 
-State: implemented; runtime-safety GitHub Actions passed; official OpenSpec CLI validation pending.
+## Why
 
-Scope: formalize existing fail-closed bootstrap and no-mutation constraints; no new dependency-unification capability.
+The experimental plugin already has fail-closed runtime behavior, but its authoritative requirements are not represented in an operational OpenSpec project. Formalizing the verified behavior prevents accidental reactivation of unsafe global Composer mutations.
 
-Constraints: never load global autoloader, run Composer in a request/activation, expose root source-report scripts, or change plugin dependency files without an approved and tested separate change.
+## What Changes
+
+- Define normative, testable bootstrap and no-mutation requirements.
+- Record the elimination of unauthenticated source-export artifacts.
+- Install and validate the official OpenSpec CLI/tool integration in CI.
+- Keep existing production-disabled dependency-unification behavior unchanged.
+
+## Impact
+
+No new runtime features; existing safeguards remain mandatory. Official CLI validation and spec synchronization are independent gates.
