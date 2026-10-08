@@ -11,7 +11,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 ## P0 OpenSpec / agents
 - [x] Add official OpenSpec config and a CLI init/list/strict-validation CI workflow.
 - [x] Register CODE_DEDUP_AGENT, CLEAN_CODE_AGENT, ARCHITECTURE_AGENT, I18N_AGENT with adversarial questions and bounded ownership.
-- [ ] Observe official CLI initialization and strict spec validation green.
+- [x] Observe official CLI initialization and strict spec validation green.
 - [ ] Commit officially generated tool integration only after running `openspec init/update`; do not imitate generated files.
 - [ ] Sync/archived bootstrap-safety change only when all official and runtime gates pass.
 
@@ -34,10 +34,11 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 
 ## Branch lifecycle
 - [x] Add exact-merged-PR-head cleanup on main push with no-open-PR protection and unit tests.
-- [ ] Observe hosted branch-cleanup workflow deleting completed refs.
-- [ ] Delete merged PR #3 branch `chore/openspec-agents-bootstrap-20261008` after exact head verification.
-- [ ] Delete cleanup PR #4 temporary branch after its merge, using the same exact-head rule.
-- [ ] Delete merged PR #1 branch `fix/failclosed-wordpress-bootstrap-20261007` after exact head verification.
-- [ ] Delete merged PR #2 branch `fix/remove-public-code-exporter-20261008` after exact head verification.
+- [x] Observe hosted branch-cleanup workflow deleting completed refs.
+- [x] Delete merged PR #3 branch `chore/openspec-agents-bootstrap-20261008` after exact head verification.
+- [x] Delete cleanup PR #4 temporary branch after its merge, using the same exact-head rule.
+- [x] Delete merged PR #1 branch `fix/failclosed-wordpress-bootstrap-20261007` after exact head verification.
+- [x] Delete merged PR #2 branch `fix/remove-public-code-exporter-20261008` after exact head verification.
 - [ ] For each new completed change, remove the exact merged PR head and check residuals; do not delete unknown/unmerged heads.
+verified_2026-10-08=main_runtime-safety_run_37729851358:success;main_openspec_run_37729851307:success;main_cleanup_run_37729851304:success;branch_inventory:main_only;PR5_merged:3757f2f20632f6a8381a6d8116ba53734b2acc21
 - [ ] If GitHub Actions or available connector cannot delete refs, persist `blocked-external` without claiming cleanup succeeded.
