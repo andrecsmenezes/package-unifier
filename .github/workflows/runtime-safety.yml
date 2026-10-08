@@ -22,6 +22,8 @@ jobs:
         run: |
           php -l package-unifier.php
           find src -type f -name '*.php' -exec php -l {} \;
+      - name: WordPress bootstrap fixture regression
+        run: php scripts/test_wordpress_bootstrap.php
       - name: Fail-closed bootstrap contract
         run: python3 scripts/validate_safe_bootstrap.py
       - name: Reachable mutating-operation guard

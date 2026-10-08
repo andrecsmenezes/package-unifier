@@ -43,6 +43,7 @@ sync_and_archive_only_after_objective_validation=true
 php -l package-unifier.php
 find src -type f -name '*.php' -exec php -l {} \;
 python3 scripts/validate_safe_bootstrap.py
+php scripts/test_wordpress_bootstrap.php
 ```
 
 ## Work queue
