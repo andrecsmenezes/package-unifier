@@ -1,0 +1,21 @@
+schema: spec-driven
+context: |
+  Repo: package-unifier. Experimental WordPress/Composer dependency-consolidation research.
+  Production readiness=false; runtime consolidation=disabled.
+  WordPress bootstrap uses plugin-local autoload; Composer/vendor mutations are prohibited in request and activation paths.
+  Technical docs: English-only, AI-first, token-minimized, canonical, nonduplicated.
+  User-facing locale priority: pt-BR > en > es.
+  Findings: deduplicate, classify severity/dependencies/owner, implement only evidence-backed safe changes.
+  Runtime/global dependency merging requires explicit authorization, semver/load-order compatibility, atomicity, rollback, isolation tests.
+  Agent contracts: openspec/project/agents/.
+rules:
+  proposal:
+    - Distinguish current safe behavior from research-only, uncalled code and hypothetical future capability.
+    - Challenge utility of every component and identify safer deletion/simplification alternatives.
+    - Preserve WordPress bootstrap and filesystem safety.
+  specs:
+    - Use observable SHALL/MUST requirements with scenario coverage.
+    - Do not promote untested dependency unification into stable behavior.
+  tasks:
+    - Require objective validation, dependency ownership, and cleanup after each merged branch.
+    - Changes merge to main; completed temporary refs must be deleted when safe.
