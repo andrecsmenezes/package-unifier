@@ -17,7 +17,7 @@ class ReachableMutationGuardTest(unittest.TestCase):
         (self.root / "scripts").mkdir()
         (self.root / "src/Infrastructure/WordPress").mkdir(parents=True)
         (self.root / "src/Shared").mkdir(parents=True)
-        (self.root / "src/Infrastructure").mkdir(parents=True)
+        (self.root / "src/Infrastructure").mkdir(parents=True, exist_ok=True)
         (self.root / "scripts/validate_reachable_mutation.py").write_text(
             (ROOT / "scripts/validate_reachable_mutation.py").read_text(encoding="utf-8"),
             encoding="utf-8",
