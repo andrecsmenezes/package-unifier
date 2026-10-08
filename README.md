@@ -15,6 +15,10 @@ activation=src/Infrastructure/WordPress/PluginActivator.php
 config=src/Shared/Config.php
 dependency_manifest=composer.json
 lockfile=composer.lock
+specification=openspec/config.yaml
+active_changes=openspec/changes/*
+backlog=openspec/BACKLOG.md
+agent_contracts=openspec/project/agents/*
 
 ## Enforced safety
 
@@ -27,6 +31,12 @@ lockfile=composer.lock
 - root-level PHP source exporter and generated source report prohibited: both could disclose plugin internals through unauthenticated HTTP access on some WordPress deployments.
 - Locale priority for future user-facing UI: `pt-BR > en > es`; technical docs: English only.
 
+## Official OpenSpec
+
+cli=@fission-ai/openspec@1.13.1;init=openspec init --tools codex;validate=openspec validate --all --strict --no-interactive
+generated_tool_integrations=CLI_owned;refresh=openspec update;never_handcraft_generated_skills
+sync_and_archive_only_after_objective_validation=true
+
 ## Validation
 
 ```sh
@@ -35,8 +45,6 @@ find src -type f -name '*.php' -exec php -l {} \;
 python3 scripts/validate_safe_bootstrap.py
 ```
 
-## Open issues
+## Work queue
 
-P0: verify boot via WordPress integration test; establish official OpenSpec CLI/init/update/validate workflow; add adversarial CODE_DEDUPLICATION_AGENT, CLEAN_CODE_AGENT, ARCHITECTURE_AGENT, I18N_AGENT contracts.
-P1: remove committed `vendor/` after reproducibility review; consolidate duplicate Composer execution classes; remove dead code; resolve lifecycle ownership and version conflicts.
-P2: implement explicit administrator/CLI-only dry-run plan, package compatibility verification, transactional install and rollback only after requirements/evidence permit.
+owner=openspec/BACKLOG.md

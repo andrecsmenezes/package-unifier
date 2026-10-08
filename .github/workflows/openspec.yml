@@ -1,0 +1,38 @@
+name: openspec
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  framework:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENSPEC_TELEMETRY: "0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install official OpenSpec CLI
+        run: npm install --global @fission-ai/openspec@1.13.1 --no-audit --no-fund
+      - name: Initialize official Codex integration
+        run: openspec init --tools codex
+      - name: Verify generated agent integration
+        run: test -f .agents/skills/openspec-apply-change/SKILL.md
+      - name: Verify mandatory adversarial agent contracts
+        shell: bash
+        run: |
+          for agent in CODE_DEDUP_AGENT CLEAN_CODE_AGENT ARCHITECTURE_AGENT I18N_AGENT; do
+            test -f "openspec/project/agents/${agent}.md"
+          done
+      - name: Inspect project root
+        run: openspec list --json
+      - name: Validate all changes and specs
+        run: openspec validate --all --strict --no-interactive

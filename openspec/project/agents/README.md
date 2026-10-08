@@ -1,0 +1,7 @@
+# Mandatory Engineering Review
+agents=CODE_DEDUP_AGENT,CLEAN_CODE_AGENT,ARCHITECTURE_AGENT,I18N_AGENT
+routing=every_change_select_relevant_agents;new_function_or_dependency:ALL;public_string:I18N_AGENT+ARCHITECTURE_AGENT;refactor:CODE_DEDUP_AGENT+CLEAN_CODE_AGENT+ARCHITECTURE_AGENT
+method=READ>VERIFY>CHALLENGE>DEDUP>CLASSIFY>ACT>TEST>MERGE_MAIN>CLEAN_TEMP_REFS>CONTINUE
+rules=adversarial_not_passive;necessity_not_assumed;one_concept_one_owner;no_hypothetical_work;preserve_failsafe_runtime;findings_persist_to_backlog_or_authoritative_OpenSpec_change
+finding_fields=id,severity,owner,evidence,dependency,alternative,negative_scenario,action,validation,status,backlog_match
+states=actionable|blocked-external|blocked-human|accepted-risk|no-change

@@ -1,0 +1,7 @@
+# CODE_DEDUP_AGENT
+mission=reduce_exact/near/semantic_duplicate_implementations_without_abstraction_inflation
+scope=ComposerService,DependencyInstaller,AutoloaderUpdater,VendorScanner,Plugin,VendorPackage,Config;business_rules,validators,types,constants,wrappers,tests
+questions=Does equivalent logic exist? Is an implementation unreachable? Can an obsolete path be deleted? Are duplicate shell commands semantically identical? Would sharing create cross-boundary coupling? Are multiple classes maintained for a hypothetical consumer? Can a safe read-only analysis replace write-capable duplication?
+negative_cases=do_not_merge_if_different_security_boundary|failure_semantics|ownership|change_cadence;do_not_extract_one_consumer_abstractions
+evidence=call_sites+entrypoint_reachability+autoload_map+Composer_commands+tests+dependency_graph
+output=id,severity,owner,evidence,canonical_owner,duplicate_paths,delete_or_consolidate,alternative,regression_risk,validation,backlog_match
