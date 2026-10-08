@@ -1,0 +1,7 @@
+# Design: exact merged-branch cleanup
+
+Runner=ubuntu-latest;event=push(main)|workflow_dispatch;permissions=contents:write,pull-requests:read
+Algorithm=list_branches>exclude_default>query_closed_PR_by_head/base>query_open_PR_by_head>authorize_exact_merged_HEAD_only>DELETE_refs/heads/{branch}>verify_404
+Failure_policy=fail_closed;unknown_PR_or_changed_SHA_preserved;API_errors_fail_job;no_guess_by_name;no_branch_deletion_on_PR_run
+Tests=default_protected,head_SHA_exact,open_PR_protected,wrong_base_rejected,unmerged_rejected,unknown_rejected
+No new source/runtime dependency: Python standard library only.
