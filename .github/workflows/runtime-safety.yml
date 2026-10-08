@@ -24,5 +24,7 @@ jobs:
           find src -type f -name '*.php' -exec php -l {} \;
       - name: Fail-closed bootstrap contract
         run: python3 scripts/validate_safe_bootstrap.py
+      - name: Reachable mutating-operation guard
+        run: python3 scripts/validate_reachable_mutation.py
       - name: Merged-branch deletion guard tests
         run: python3 -m unittest scripts.test_cleanup_merged_branches
