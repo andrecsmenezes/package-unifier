@@ -6,7 +6,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [x] Remove unauthenticated root export.php and generated php_files_report.txt; add a regression guard.
 - [x] Observe runtime-safety workflow pass on main for export-removal PR #2.
 - [x] Add isolated PHP WordPress-function bootstrap fixture covering missing/local vendor, admin-only notice, hooks, activation/deactivation and gettext registration; this is not a real WordPress integration test.
-- [ ] Run a WordPress integration test including missing local vendor, activation, and no public fatals.
+- [ ] Run a WordPress integration test including missing local vendor, activation, and no public fatals; official wp-env hosted integration workflow introduced in PR, pending observed green evidence.
 - [ ] Confirm legacy deployments no longer expose source-export files after deploying new main.
 
 ## P0 OpenSpec / agents
