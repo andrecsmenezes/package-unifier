@@ -20,7 +20,8 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [ ] Audit Composer CLI construction, package-name/path semantics, version constraints, global autoload load-order and failure modes; keep mutation disabled.
 - [ ] Remove committed vendor/ only after proving `composer install` reproducibility and artifact/deployment strategy; do not break the local-autoload bootstrap.
 - [ ] Eliminate human-oriented/redundant source comments when semantics are already discoverable from types/tests.
-- [ ] Add code-level no-mutation gate including all entrypoint-reachable paths; static string checks alone are insufficient.
+- [x] Add conservative entrypoint-reachability no-mutation source gate, covering bootstrap-owned classes and shell/filesystem/Composer sinks.
+- [ ] Expand source reachability verification to dynamic includes/callables; validate against a real WordPress runtime.
 
 ## P1 i18n
 - [ ] Verify all user-facing notices use WordPress gettext with the exact text domain and pt-BR default; add en/es only if reviewed and actually required.
