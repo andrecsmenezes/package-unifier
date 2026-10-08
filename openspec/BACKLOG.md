@@ -6,7 +6,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [x] Remove unauthenticated root export.php and generated php_files_report.txt; add a regression guard.
 - [x] Observe runtime-safety workflow pass on main for export-removal PR #2.
 - [x] Add isolated PHP WordPress-function bootstrap fixture covering missing/local vendor, admin-only notice, hooks, activation/deactivation and gettext registration; this is not a real WordPress integration test.
-- [ ] Run a WordPress integration test including missing local vendor, activation, and no public fatals; official wp-env hosted integration workflow introduced in PR, pending observed green evidence.
+- [x] Real WordPress `@wordpress/env` activation, missing-local-vendor, public-HTTP no-fatal and dependency-recovery integration: PR #11 CI #37857648046 success; main CI #37857932855 success; main runtime-safety #37857932844, OpenSpec #37857932859, cleanup #37857932875 success; branch inventory `main` only.
 - [ ] Confirm legacy deployments no longer expose source-export files after deploying new main.
 
 ## P0 OpenSpec / agents
@@ -18,7 +18,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 
 ## P1 code architecture / dedup
 - [ ] Verify reachability of DependencyInstaller, AutoloaderUpdater, VendorScanner and ComposerService; delete truly unused/obsolete implementations only with tests.
-- [ ] Audit Composer CLI construction, package-name/path semantics, version constraints, global autoload load-order and failure modes; keep mutation disabled.
+- [ ] Review experimental Composer design before any enablement: `DependencyInstaller::installFromComposerFile` and `ComposerService::installDependencies` pass filesystem paths to `composer require` (expects package/version constraints); `Plugin::getComposerJsonPath` targets `vendor/composer.json` rather than plugin root; `ComposerService::movePackages` invokes require instead of moving packages and catches partial failures. All are currently bootstrap-unreachable; retain fail-closed and demand real resolution, dedup and rollback tests before enabling. Also audit version conflicts and autoload order.
 - [ ] Remove committed vendor/ only after proving `composer install` reproducibility and artifact/deployment strategy; do not break the local-autoload bootstrap.
 - [x] Eliminate redundant human-oriented class docblocks in dormant experimental models, adapters and configuration; preserve PHP code tokens and safety invariants. PR checks required.
 - [x] Add conservative entrypoint-reachability no-mutation source gate, covering bootstrap-owned classes and shell/filesystem/Composer sinks.
