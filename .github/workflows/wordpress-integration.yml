@@ -1,0 +1,47 @@
+name: WordPress integration
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'package-unifier.php'
+      - 'src/**'
+      - 'vendor/**'
+      - 'composer.json'
+      - 'scripts/test_wordpress_integration.sh'
+      - '.github/workflows/wordpress-integration.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'package-unifier.php'
+      - 'src/**'
+      - 'vendor/**'
+      - 'composer.json'
+      - 'scripts/test_wordpress_integration.sh'
+      - '.github/workflows/wordpress-integration.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: package-unifier-wordpress-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  wordpress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install official WordPress environment
+        run: npm install -g @wordpress/env@11.17.0 --no-audit --no-fund
+      - name: Start disposable WordPress and database
+        run: wp-env start
+      - name: Validate real WordPress plugin lifecycle
+        run: bash scripts/test_wordpress_integration.sh
+      - name: Stop disposable WordPress
+        if: always()
+        run: wp-env stop
