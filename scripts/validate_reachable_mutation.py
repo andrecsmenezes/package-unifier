@@ -31,7 +31,11 @@ def reachable_files() -> set[Path]:
 FORBIDDEN = re.compile(
     r"\b(?:exec|shell_exec|system|passthru|proc_open|popen)\s*\("
     r"|\b(?:installDependencies|movePackages|installFromComposerFile|updateAutoloader|scan)\s*\("
-    r"|\b(?:mkdir|rename|unlink|copy|file_put_contents)\s*\(",
+    r"|\b(?:mkdir|rename|unlink|copy|file_put_contents)\s*\("
+    r"|\b(?:call_user_func(?:_array)?|forward_static_call(?:_array)?|eval|assert)\s*\("
+    r"|\b(?:include|require)(?:_once)?\b(?!\s*\$localAutoload\s*;)"
+    r"|\bnew\s+\$[A-Za-z_]\w*"
+    r"|\$[A-Za-z_]\w*\s*\(",
     re.I,
 )
 
