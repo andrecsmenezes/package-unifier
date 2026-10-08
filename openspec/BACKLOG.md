@@ -32,6 +32,10 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [ ] Revalidate PHP/WordPress support versions and dependencies before production use.
 
 ## Branch lifecycle
+- [x] Add exact-merged-PR-head cleanup on main push with no-open-PR protection and unit tests.
+- [ ] Observe hosted branch-cleanup workflow deleting completed refs.
+- [ ] Delete merged PR #3 branch `chore/openspec-agents-bootstrap-20261008` after exact head verification.
+- [ ] Delete cleanup PR #4 temporary branch after its merge, using the same exact-head rule.
 - [ ] Delete merged PR #1 branch `fix/failclosed-wordpress-bootstrap-20261007` after exact head verification.
 - [ ] Delete merged PR #2 branch `fix/remove-public-code-exporter-20261008` after exact head verification.
 - [ ] For each new completed change, remove the exact merged PR head and check residuals; do not delete unknown/unmerged heads.
