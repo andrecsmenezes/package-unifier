@@ -23,6 +23,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [x] Eliminate redundant human-oriented class docblocks in dormant experimental models, adapters and configuration; preserve PHP code tokens and safety invariants. PR checks required.
 - [x] Add conservative entrypoint-reachability no-mutation source gate, covering bootstrap-owned classes and shell/filesystem/Composer sinks.
 - [x] Add negative fixtures and conservative static rejection for dynamic PHP function/callback/class dispatch and unapproved includes in bootstrap-reachable first-party code.
+- [x] Prevent comment lexer from swallowing executable PHP after URL/hash/block-comment delimiters inside string literals; negative and benign fixtures in `scripts/test_reachable_mutation.py`.
 - [ ] Validate dynamic include/callable behavior against a real WordPress runtime; static graph remains incomplete by design.
 
 ## P1 i18n
