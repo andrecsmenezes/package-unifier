@@ -13,7 +13,7 @@ checks = {
     'no global autoloader in entrypoint': 'GLOBAL_AUTOLOAD' not in entry and 'GLOBAL_VENDOR' not in entry,
     'no request-triggered vendor scan': "add_action('init'" not in hooks and 'scanPlugins' not in hooks,
     'localization-only lifecycle': "add_action('plugins_loaded'" in hooks,
-    'no activation-time global mutations': 'mkdir(' not in activator and 'composer' not in activator.lower(),
+    'no activation-time global mutations': 'mkdir(' not in activator and 'exec(' not in activator and 'installDependencies(' not in activator,
     'correct plugin root': "ROOT_DIR = __DIR__ . '/../../'" in config,
 }
 failed = [name for name, ok in checks.items() if not ok]
