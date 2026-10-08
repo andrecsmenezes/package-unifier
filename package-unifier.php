@@ -21,7 +21,7 @@ if (!is_file($localAutoload)) {
     add_action('admin_notices', static function (): void {
         echo '<div class="notice notice-error"><p>'
             . esc_html__(
-                'Package Unifier is inactive: install its local Composer dependencies before use.',
+                'Package Unifier está inativo: instale as dependências locais do Composer antes de utilizar o plugin.',
                 'package-unifier'
             )
             . '</p></div>';
