@@ -1,68 +1,41 @@
-# Package Unifier
+# package-unifier
 
-Experimental WordPress utility for exploring **shared Composer dependency management across multiple plugins**.
+state=experimental;production_ready=false;runtime_consolidation=disabled
+runtime=PHP>=8.0;WordPress;Composer-local-autoload
+scope=WordPress plugin dependency consolidation research;never assume safe cross-plugin package coalescing
 
-> **Status:** engineering experiment / proof of concept. The repository is intentionally public as a source-level example, but the current implementation should be reviewed and hardened before production use.
+## Canonical ownership
 
-## Problem
+entrypoint=package-unifier.php
+domain=src/Domain/*
+application=src/Application/*
+composer_adapter=src/Infrastructure/ComposerService.php
+wordpress_hooks=src/Infrastructure/WordPress/Hooks.php
+activation=src/Infrastructure/WordPress/PluginActivator.php
+config=src/Shared/Config.php
+dependency_manifest=composer.json
+lockfile=composer.lock
 
-WordPress installations can contain several plugins that ship overlapping Composer dependencies inside their own `vendor/` directories. Package Unifier explores a different model: scan plugin dependencies and consolidate compatible packages behind a shared vendor/autoload boundary.
+## Enforced safety
 
-## Current architecture
+- runtime autoload: local `vendor/autoload.php` only; global classloader prohibited until semver compatibility and load-order validation.
+- missing local autoload: no public fatal; admin-only notice; plugin bootstrap returns.
+- activation: no global vendor creation, package installation, or filesystem writes.
+- WordPress request hooks: localization only; no Composer invocation, vendor scanning, or package changes.
+- `VendorScanner`, `ComposerService`, `DependencyInstaller`, and `AutoloaderUpdater` remain experimental implementation references; do not invoke in production.
+- runtime Composer operations cannot be reenabled without a reviewed OpenSpec change, verified authorization, conflict resolution, atomic transactions, concurrency control, rollback, and dedicated test coverage.
+- Locale priority for future user-facing UI: `pt-BR > en > es`; technical docs: English only.
 
-```mermaid
-flowchart LR
-    WP[WordPress plugins] --> S[VendorScanner]
-    S --> P[Plugin domain model]
-    S --> C[ComposerService]
-    C --> G[(Global vendor)]
-    G --> A[Shared autoloader]
+## Validation
+
+```sh
+php -l package-unifier.php
+find src -type f -name '*.php' -exec php -l {} \;
+python3 scripts/validate_safe_bootstrap.py
 ```
 
-The code is separated into:
+## Open issues
 
-- `src/Domain` — plugin/package models.
-- `src/Application` — scanning, dependency installation and autoloader orchestration.
-- `src/Infrastructure` — Composer and WordPress integration.
-- `src/Shared` — shared configuration.
-- `package-unifier.php` — WordPress bootstrap/integration entrypoint.
-
-## Requirements
-
-- PHP 8+
-- WordPress
-- Composer CLI available to the runtime
-
-Install PHP dependencies with:
-
-```bash
-composer install
-```
-
-## Design intent
-
-The experiment investigates:
-
-- reducing duplicated Composer packages across plugins;
-- centralizing dependency discovery;
-- preserving a fallback path when the shared autoloader is unavailable;
-- separating WordPress integration from application/domain responsibilities.
-
-## Important limitations
-
-Shared dependency trees across independently versioned WordPress plugins create hard compatibility problems. A production implementation would need, at minimum:
-
-- explicit semantic-version conflict resolution;
-- transactional/rollback behavior;
-- filesystem permission and failure handling;
-- stronger process-execution isolation;
-- automated unit/integration coverage;
-- deterministic handling of plugin activation/deactivation;
-- a migration strategy for plugins that assume a local `vendor/`;
-- removal of generated/vendor artifacts from source control where appropriate.
-
-This repository should therefore be read as an **architecture and dependency-management experiment**, not as a drop-in production plugin.
-
-## License
-
-MIT
+P0: verify boot via WordPress integration test; establish official OpenSpec CLI/init/update/validate workflow; add adversarial CODE_DEDUPLICATION_AGENT, CLEAN_CODE_AGENT, ARCHITECTURE_AGENT, I18N_AGENT contracts.
+P1: remove committed `vendor/` and generated `php_files_report.txt` after reproducibility review; consolidate duplicate Composer execution classes; remove dead code; resolve lifecycle ownership and version conflicts.
+P2: implement explicit administrator/CLI-only dry-run plan, package compatibility verification, transactional install and rollback only after requirements/evidence permit.
