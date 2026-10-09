@@ -7,9 +7,7 @@ scope=WordPress plugin dependency consolidation research;never assume safe cross
 ## Canonical ownership
 
 entrypoint=package-unifier.php
-domain=src/Domain/*
-application=src/Application/*
-composer_adapter=src/Infrastructure/ComposerService.php
+runtime_domain_mutation=absent;experimental_implementation_removed=true
 wordpress_hooks=src/Infrastructure/WordPress/Hooks.php
 activation=src/Infrastructure/WordPress/PluginActivator.php
 config=src/Shared/Config.php
@@ -26,7 +24,7 @@ agent_contracts=openspec/project/agents/*
 - missing local autoload: no public fatal; admin-only notice; plugin bootstrap returns.
 - activation: no global vendor creation, package installation, or filesystem writes.
 - WordPress request hooks: localization only; no Composer invocation, vendor scanning, or package changes.
-- `VendorScanner`, `ComposerService`, `DependencyInstaller`, and `AutoloaderUpdater` remain experimental implementation references; do not invoke in production.
+- Unreachable legacy scanner/Composer/mutator classes and their orphaned domain models were removed; no runtime dependency consolidation implementation is shipped.
 - runtime Composer operations cannot be reenabled without a reviewed OpenSpec change, verified authorization, conflict resolution, atomic transactions, concurrency control, rollback, and dedicated test coverage.
 - root-level PHP source exporter and generated source report prohibited: both could disclose plugin internals through unauthenticated HTTP access on some WordPress deployments.
 - Locale priority for future user-facing UI: `pt-BR > en > es`; technical docs: English only.

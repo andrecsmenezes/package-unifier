@@ -17,8 +17,8 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 - [ ] Sync/archived bootstrap-safety change only when all official and runtime gates pass.
 
 ## P1 code architecture / dedup
-- [ ] Verify reachability of DependencyInstaller, AutoloaderUpdater, VendorScanner and ComposerService; delete truly unused/obsolete implementations only with tests.
-- [ ] Review experimental Composer design before any enablement: `DependencyInstaller::installFromComposerFile` and `ComposerService::installDependencies` pass filesystem paths to `composer require` (expects package/version constraints); `Plugin::getComposerJsonPath` targets `vendor/composer.json` rather than plugin root; `ComposerService::movePackages` invokes require instead of moving packages and catches partial failures. All are currently bootstrap-unreachable; retain fail-closed and demand real resolution, dedup and rollback tests before enabling. Also audit version conflicts and autoload order.
+- [x] Verified scanner, installer, updater and Composer adapter are unreachable from the WordPress bootstrap; removed six unused experimental classes. Runtime regression checks remain required.
+- [ ] Prior to any new Composer consolidation implementation, replace the removed unsafe prototype with reviewed CLI-only ownership, correct package constraint resolution, version conflict isolation, autoload order, rollback and concurrency tests; do not reenable runtime mutation.
 - [ ] Remove committed vendor/ only after proving `composer install` reproducibility and artifact/deployment strategy; do not break the local-autoload bootstrap.
 - [x] Eliminate redundant human-oriented class docblocks in dormant experimental models, adapters and configuration; preserve PHP code tokens and safety invariants. PR checks required.
 - [x] Add conservative entrypoint-reachability no-mutation source gate, covering bootstrap-owned classes and shell/filesystem/Composer sinks.
