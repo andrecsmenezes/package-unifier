@@ -31,7 +31,6 @@ error_log              # PHP error log
 # ==================================================
 # Ignore Composer and Node.js dependencies (must be installed via package managers).
 vendor/                # Composer dependencies
-composer.lock          # Composer lock file
 node_modules/          # npm or Yarn dependencies
 package-lock.json      # npm lock file
 yarn.lock              # Yarn lock file
