@@ -1,0 +1,108 @@
+name: Dependency security (parallel)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-security:
+    name: Dependency security / high-critical
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact target revision
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Verify tracked Composer manifest and lockfile
+        shell: bash
+        run: |
+          set -euo pipefail
+          git ls-files --error-unmatch composer.json composer.lock
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for filename in ('composer.json', 'composer.lock'):
+              document = json.loads(Path(filename).read_text(encoding='utf-8'))
+              if not isinstance(document, dict):
+                  raise SystemExit(f'Invalid Composer root: {filename}')
+          PY
+
+      - name: Scan resolved dependency vulnerabilities with pinned Trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          vuln-type: library
+          format: json
+          output: trivy-dependencies.json
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          ignore-unfixed: 'false'
+          exit-code: '0'
+          timeout: '5m'
+
+      - name: Enforce valid independent vulnerability result
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path('trivy-dependencies.json')
+          if not path.is_file():
+              raise SystemExit('BLOCKED: missing Trivy report')
+          try:
+              data = json.loads(path.read_text(encoding='utf-8'))
+          except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+              raise SystemExit(f'BLOCKED: invalid Trivy report: {type(exc).__name__}') from exc
+          if not isinstance(data, dict) or not isinstance(data.get('Results'), list):
+              raise SystemExit('BLOCKED: unexpected Trivy JSON Results structure')
+          blockers = []
+          advisory = 0
+          for result in data['Results']:
+              if not isinstance(result, dict):
+                  raise SystemExit('BLOCKED: malformed Trivy result')
+              vulnerabilities = result.get('Vulnerabilities') or []
+              if not isinstance(vulnerabilities, list):
+                  raise SystemExit('BLOCKED: malformed vulnerability list')
+              for vulnerability in vulnerabilities:
+                  if not isinstance(vulnerability, dict):
+                      raise SystemExit('BLOCKED: malformed vulnerability record')
+                  severity = str(vulnerability.get('Severity', 'UNKNOWN')).upper()
+                  name = str(vulnerability.get('PkgName', 'UNKNOWN'))[:80]
+                  identifier = str(vulnerability.get('VulnerabilityID', 'UNKNOWN'))[:80]
+                  if severity in {'HIGH', 'CRITICAL'}:
+                      blockers.append((identifier, name, severity))
+                  else:
+                      advisory += 1
+          for identifier, name, severity in blockers[:30]:
+              print(f'::error::Blocked {severity} {identifier} in {name}')
+          summary = (f'Composer dependency scan: {len(blockers)} HIGH/CRITICAL, '
+                     f'{advisory} advisory, commit={os.getenv("GITHUB_SHA", "UNKNOWN")}')
+          print(summary)
+          if os.getenv('GITHUB_STEP_SUMMARY'):
+              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+                  f.write(summary + '\n')
+          if blockers:
+              raise SystemExit(1)
+          PY
+
+      - name: Preserve scanner report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dependency-security-${{ github.run_id }}-${{ github.run_attempt }}
+          path: trivy-dependencies.json
+          if-no-files-found: warn
+          retention-days: 30
