@@ -28,7 +28,7 @@ rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_
 
 ## P1 i18n
 - [x] Verify the single user-facing admin notice uses `esc_html__` with `package-unifier` domain and pt-BR source text; additional en/es translations require actual reviewed need.
-- [ ] Audit locale-sensitive formatting only where runtime behavior exists; technical documents remain English-only.
+- [x] Audited locale-sensitive output in active first-party bootstrap (`package-unifier.php`, `src/Infrastructure/WordPress/{Hooks,PluginActivator}.php`, `src/Shared/Config.php`): no date/time/number/currency/plural formatter is reachable; the only administrative message uses WordPress `esc_html__` with the `package-unifier` text domain and a pt-BR source string. `scripts/test_wordpress_bootstrap.php` checks the notice and text-domain hook. This is a source/fixture audit, not live WordPress locale certification; excludes third-party `vendor/` and unshipped features. Reaudit when new output or formatters are introduced; technical docs remain English-only.
 
 ## P2 scope / decisions
 - [ ] Establish whether global dependency consolidation is necessary; compare read-only analysis and explicit CLI-only alternatives.
