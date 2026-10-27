@@ -5,10 +5,44 @@ import os
 import urllib.error
 import urllib.parse
 import urllib.request
+from pathlib import Path
 
 
-def eligible(branch: str, sha: str, default: str, merged: list[dict], open_prs: list[dict]) -> bool:
-    if not branch or not sha or branch == default or open_prs:
+INTENT_DISPOSITION = "DELETE_AFTER_VERIFIED_MAIN_MERGE"
+
+
+def load_deletion_intents(path: Path, repository: str) -> set[str]:
+    """Fail closed on an ambiguous or foreign branch deletion authorization."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or data.get("version") != 1 or data.get("owner") != repository:
+        raise RuntimeError("Invalid deletion register version or repository owner")
+    entries = data.get("deletion_intents")
+    if not isinstance(entries, list):
+        raise RuntimeError("Invalid deletion register entries")
+    registered: set[str] = set()
+    work_units: set[str] = set()
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise RuntimeError("Invalid deletion register entry")
+        branch = entry.get("branch")
+        unit = entry.get("work_unit_id")
+        if (
+            not isinstance(branch, str) or not branch.strip() or branch != branch.strip()
+            or branch in registered
+            or not isinstance(unit, str) or not unit.strip() or unit in work_units
+            or entry.get("disposition") != INTENT_DISPOSITION
+        ):
+            raise RuntimeError("Ambiguous or unauthorized deletion intent")
+        registered.add(branch)
+        work_units.add(unit)
+    return registered
+
+
+def eligible(
+    branch: str, sha: str, default: str, merged: list[dict],
+    open_prs: list[dict], registered: set[str],
+) -> bool:
+    if not branch or not sha or branch == default or branch not in registered or open_prs:
         return False
     return any(
         pr.get("merged_at")
@@ -56,6 +90,10 @@ class GitHub:
 
     def run(self) -> tuple[list[str], list[str]]:
         deleted, kept = [], []
+        registered = load_deletion_intents(
+            Path(__file__).resolve().parents[1] / "orchestration/branch-deletion-register.json",
+            self.repo,
+        )
         for item in self.list_all(f"/repos/{self.repo}/branches"):
             branch = item["name"]
             sha = (item.get("commit") or {}).get("sha", "")
@@ -65,7 +103,7 @@ class GitHub:
             merged = self.list_all(f"/repos/{self.repo}/pulls?{query}")
             open_query = urllib.parse.urlencode({"state": "open", "head": f"{self.owner}:{branch}"})
             open_prs = self.list_all(f"/repos/{self.repo}/pulls?{open_query}")
-            if not eligible(branch, sha, self.default, merged, open_prs):
+            if not eligible(branch, sha, self.default, merged, open_prs, registered):
                 kept.append(branch)
                 continue
             encoded = urllib.parse.quote(branch, safe="/")
