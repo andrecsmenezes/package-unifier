@@ -31,6 +31,13 @@
       "reason": "Canonical AI-only backlog normalization; delete only after exact-head tests, security, verified main merge and branch SHA provenance",
       "registered_date": "2026-10-27",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/track-composer-lock-20261027-4d7q",
+      "work_unit_id": "PKG-IGNORE-COMPOSER-LOCK-20261027-4D7Q",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete only after exact-head PR integration to main and branch ref verification.",
+      "registered_date": "2026-10-27"
     }
   ]
 }
