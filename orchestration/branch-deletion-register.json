@@ -8,6 +8,14 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Temporary metadata-only correction; exact-head CI and security gates, verified main merge and branch SHA lease required before deletion.",
       "registered_date": "2026-10-27"
+    },
+    {
+      "branch": "docs/pkg-i18n-runtime-format-audit-20261027",
+      "work_unit_id": "PKG-I18N-RUNTIME-AUDIT-20261027-01",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Source-grounded closure of pending runtime i18n formatter audit; delete only after exact-head CI success and verified main merge",
+      "registered_date": "2026-10-27",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
