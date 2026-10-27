@@ -23,6 +23,14 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Fail-closed cleanup: only explicitly registered, exact merged-head temporary refs may be removed after independent CI/security checks and main merge.",
       "registered_date": "2026-10-27"
+    },
+    {
+      "branch": "docs/normalize-openspec-backlog-20261027-0950",
+      "work_unit_id": "PKG-BACKLOG-NORMALIZE-20261027-0950",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Canonical AI-only backlog normalization; delete only after exact-head tests, security, verified main merge and branch SHA provenance",
+      "registered_date": "2026-10-27",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
