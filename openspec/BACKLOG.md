@@ -1,47 +1,42 @@
-# Backlog
+# Canonical OpenSpec backlog
+schema=backlog.v2;owner=openspec/BACKLOG.md;state=DONE|OPEN;priority=P0_SECURITY|P0_OPENSPEC|P1_CODE|P1_I18N|P2_DECISION|LIFECYCLE;record=ID|STATE|ACTION_OR_EVIDENCE
 rules=English_only;AI_first;source_of_truth=OpenSpec;dedup_findings;adversarial_agent_review;highest_severity_first;merge_main_after_each_stage;delete_completed_temporary_refs;never_invent_work
-
-## P0 security
-- [x] Default WordPress bootstrap fail-closed; local autoload only; request/activation Composer mutation disabled.
-- [x] Remove unauthenticated root export.php and generated php_files_report.txt; add a regression guard.
-- [x] Observe runtime-safety workflow pass on main for export-removal PR #2.
-- [x] Add isolated PHP WordPress-function bootstrap fixture covering missing/local vendor, admin-only notice, hooks, activation/deactivation and gettext registration; this is not a real WordPress integration test.
-- [x] Real WordPress `@wordpress/env` activation, missing-local-vendor, public-HTTP no-fatal and dependency-recovery integration: PR #11 CI #37857648046 success; main CI #37857932855 success; main runtime-safety #37857932844, OpenSpec #37857932859, cleanup #37857932875 success; branch inventory `main` only.
-- [ ] Confirm legacy deployments no longer expose source-export files after deploying new main.
-
-## P0 OpenSpec / agents
-- [x] Add official OpenSpec config and a CLI init/list/strict-validation CI workflow.
-- [x] Register CODE_DEDUP_AGENT, CLEAN_CODE_AGENT, ARCHITECTURE_AGENT, I18N_AGENT with adversarial questions and bounded ownership.
-- [x] Observe official CLI initialization and strict spec validation green.
-- [ ] Commit officially generated tool integration only after running `openspec init/update`; do not imitate generated files.
-- [ ] Sync/archived bootstrap-safety change only when all official and runtime gates pass.
-
-## P1 code architecture / dedup
-- [x] Verified scanner, installer, updater and Composer adapter are unreachable from the WordPress bootstrap; removed six unused experimental classes. Runtime regression checks remain required.
-- [ ] Prior to any new Composer consolidation implementation, replace the removed unsafe prototype with reviewed CLI-only ownership, correct package constraint resolution, version conflict isolation, autoload order, rollback and concurrency tests; do not reenable runtime mutation.
-- [ ] Remove committed vendor/ only after proving `composer install` reproducibility and artifact/deployment strategy; do not break the local-autoload bootstrap.
-- [x] Eliminate redundant human-oriented class docblocks in dormant experimental models, adapters and configuration; preserve PHP code tokens and safety invariants. PR checks required.
-- [x] Add conservative entrypoint-reachability no-mutation source gate, covering bootstrap-owned classes and shell/filesystem/Composer sinks.
-- [x] Add negative fixtures and conservative static rejection for dynamic PHP function/callback/class dispatch and unapproved includes in bootstrap-reachable first-party code.
-- [x] Prevent comment lexer from swallowing executable PHP after URL/hash/block-comment delimiters inside string literals; negative and benign fixtures in `scripts/test_reachable_mutation.py`.
-- [ ] Validate dynamic include/callable behavior against a real WordPress runtime; static graph remains incomplete by design.
-
-## P1 i18n
-- [x] Verify the single user-facing admin notice uses `esc_html__` with `package-unifier` domain and pt-BR source text; additional en/es translations require actual reviewed need.
-- [x] Audited locale-sensitive output in active first-party bootstrap (`package-unifier.php`, `src/Infrastructure/WordPress/{Hooks,PluginActivator}.php`, `src/Shared/Config.php`): no date/time/number/currency/plural formatter is reachable; the only administrative message uses WordPress `esc_html__` with the `package-unifier` text domain and a pt-BR source string. `scripts/test_wordpress_bootstrap.php` checks the notice and text-domain hook. This is a source/fixture audit, not live WordPress locale certification; excludes third-party `vendor/` and unshipped features. Reaudit when new output or formatters are introduced; technical docs remain English-only.
-
-## P2 scope / decisions
-- [ ] Establish whether global dependency consolidation is necessary; compare read-only analysis and explicit CLI-only alternatives.
-- [ ] Require plugin compatibility, semver conflict matrix, authorization, sandbox, atomic transactions, concurrency, backups, rollback and integration tests before enabling any Composer/vendor mutation.
-- [ ] Revalidate PHP/WordPress support versions and dependencies before production use.
-
-## Branch lifecycle
-- [x] Add exact-merged-PR-head cleanup on main push with no-open-PR protection and unit tests.
-- [x] Observe hosted branch-cleanup workflow deleting completed refs.
-- [x] Delete merged PR #3 branch `chore/openspec-agents-bootstrap-20261008` after exact head verification.
-- [x] Delete cleanup PR #4 temporary branch after its merge, using the same exact-head rule.
-- [x] Delete merged PR #1 branch `fix/failclosed-wordpress-bootstrap-20261007` after exact head verification.
-- [x] Delete merged PR #2 branch `fix/remove-public-code-exporter-20261008` after exact head verification.
-- [ ] For each new completed change, remove the exact merged PR head and check residuals; do not delete unknown/unmerged heads.
-verified_2026-10-08=main_runtime-safety_run_37729851358:success;main_openspec_run_37729851307:success;main_cleanup_run_37729851304:success;branch_inventory:main_only;PR5_merged:3757f2f20632f6a8381a6d8116ba53734b2acc21
-- [ ] If GitHub Actions or available connector cannot delete refs, persist `blocked-external` without claiming cleanup succeeded.
+P0_SECURITY:
+S01|DONE|WordPress bootstrap fails closed; only plugin-local autoload; no Composer mutations during request/activation.
+S02|DONE|Deleted unauthenticated export.php and generated php_files_report.txt; regression guard added.
+S03|DONE|Runtime-safety workflow observed passing on main after source-export removal PR #2.
+S04|DONE|PHP WordPress-function bootstrap fixture covers absent/local vendor, admin-only notice, hooks, activation/deactivation, gettext; fixture is NOT real WordPress integration.
+S05|DONE|Real @wordpress/env integration covers activation, missing vendor, public HTTP no fatal, dependency recovery. PR #11 CI 37857648046 PASS; main CI 37857932855 PASS; runtime-safety 37857932844 PASS; OpenSpec 37857932859 PASS; cleanup 37857932875 PASS; branches=main only.
+S06|OPEN|After deploying updated main, verify legacy deployments no longer expose source-export files; external deployment evidence required.
+P0_OPENSPEC:
+O01|DONE|Official OpenSpec config and CLI init/list/strict-validation CI workflow installed.
+O02|DONE|CODE_DEDUP_AGENT, CLEAN_CODE_AGENT, ARCHITECTURE_AGENT, I18N_AGENT contracts registered; adversarial questions and bounded ownership.
+O03|DONE|Observed official OpenSpec initialization and strict validation passing; prior run evidence only, not current-head parser proof.
+O04|OPEN|Commit generated tool integration ONLY after actual openspec init/update; do not handcraft generated skills.
+O05|OPEN|Sync/archive bootstrap-safety change ONLY after all official OpenSpec and runtime checks succeed.
+P1_CODE:
+C01|DONE|Confirmed scanner, installer, updater, Composer adapter unreachable from bootstrap; removed six unused experimental classes; runtime regression still required.
+C02|OPEN|Before new dependency consolidation, design reviewed CLI-only owner, correct package-constraint resolution, version-conflict isolation, autoload order, rollback and concurrency tests; never reenable runtime Composer mutations.
+C03|OPEN|Remove committed vendor/ ONLY after composer install reproducibility and deployment/artifact strategy are verified; preserve local-autoload WordPress boot.
+C04|DONE|Removed human-oriented docblocks from dormant models, adapters, config; PHP tokens and safety invariants preserved; PR validation still required.
+C05|DONE|Added conservative bootstrap entrypoint-reachability no-mutation static gate for first-party code, shell/filesystem/Composer sinks.
+C06|DONE|Added negative fixtures rejecting dynamic PHP functions, callbacks, class dispatch and unapproved includes in bootstrap-reachable source.
+C07|DONE|Fixed comment lexer URL/hash/block delimiter confusion in strings; negative and benign cases in scripts/test_reachable_mutation.py.
+C08|OPEN|Validate dynamic include/callable behavior against actual WordPress runtime; static graph intentionally incomplete.
+P1_I18N:
+I01|DONE|Single admin notice uses esc_html__ with text domain package-unifier and pt-BR source; en/es translations require reviewed need.
+I02|DONE|Active bootstrap audit: package-unifier.php; src/Infrastructure/WordPress/{Hooks,PluginActivator}.php; src/Shared/Config.php. No reachable date/time/number/currency/plural formatter; notice uses WordPress esc_html__ and pt-BR source. scripts/test_wordpress_bootstrap.php covers notice/domain. Scope=first-party static+fixture, NOT live locale certification; excludes vendor/ and unshipped code; reaudit new output; technical docs English only.
+P2_DECISION:
+D01|OPEN|Establish need for global dependency consolidation; compare read-only analysis versus explicit CLI-only alternatives.
+D02|OPEN|Before ANY Composer/vendor mutation require plugin compatibility, semver conflict matrix, authorization, sandbox, atomic transactions, concurrency, backup, rollback, integration tests.
+D03|OPEN|Revalidate PHP/WordPress support versions and dependency versions before production.
+LIFECYCLE:
+L01|DONE|Merged-PR-head cleanup after main push includes exact head, no-open-PR guard and unit tests.
+L02|DONE|Observed hosted cleanup deleting completed temporary refs.
+L03|DONE|Deleted merged PR #3 branch chore/openspec-agents-bootstrap-20261008 after exact head verification.
+L04|DONE|Deleted merged cleanup PR #4 branch after merge using exact-head guard.
+L05|DONE|Deleted merged PR #1 branch fix/failclosed-wordpress-bootstrap-20261007 after exact head verification.
+L06|DONE|Deleted merged PR #2 branch fix/remove-public-code-exporter-20261008 after exact head verification.
+L07|OPEN|For each new merged change, delete exact registered merged PR head and scan residuals; never remove unknown/unmerged heads.
+L08|OPEN|When Actions or connector cannot delete refs, persist blocked-external instead of claiming cleanup.
+historical_2026-10-08=main_runtime_safety_37729851358:PASS;main_openspec_37729851307:PASS;main_cleanup_37729851304:PASS;branch_inventory:main_only;PR5_merged:3757f2f20632f6a8381a6d8116ba53734b2acc21
