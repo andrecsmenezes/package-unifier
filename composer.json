@@ -1,6 +1,6 @@
 {
     "name": "andrecsmenezes/package_unifier",
-    "description": "Reorganizes plugin vendor folders into a single global directory in WordPress projects.",
+    "description": "Experimental WordPress plugin for researching dependency consolidation; runtime consolidation is disabled.",
     "type": "project",
     "require": {
         "php": "^8.0",
