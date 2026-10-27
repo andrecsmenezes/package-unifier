@@ -16,6 +16,13 @@
       "reason": "Source-grounded closure of pending runtime i18n formatter audit; delete only after exact-head CI success and verified main merge",
       "registered_date": "2026-10-27",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/registered-deletion-gate-20261027",
+      "work_unit_id": "PKG-REGISTERED-BRANCH-CLEANUP-20261027-01",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Fail-closed cleanup: only explicitly registered, exact merged-head temporary refs may be removed after independent CI/security checks and main merge.",
+      "registered_date": "2026-10-27"
     }
   ]
 }
