@@ -128,6 +128,19 @@ def has_parenthesized_literal_callable(code: str) -> bool:
     return False
 
 
+def has_parenthesized_receiver_callable(code: str) -> bool:
+    # Detect simple property/array callback receivers; no general PHP parser claim.
+    # Strip quoted contents so benign strings are not treated as executable calls.
+    executable = without_php_strings(code)
+    return re.search(
+        r"\(\s*\$[A-Za-z_]\w*"
+        r"(?:\s*->\s*[A-Za-z_]\w*|\s*\[[^\]\n]*\])"
+        r"\s*\)\s*\(",
+        executable,
+    ) is not None
+
+
+
 def has_shell_execution_backtick(code: str) -> bool:
     # Only unquoted backticks invoke PHP's shell operator; comments are removed upstream.
     quote: str | None = None
@@ -213,6 +226,11 @@ failures.extend(
     f"{path.relative_to(ROOT)}: parenthesized literal callable"
     for path in sorted(reached)
     if has_parenthesized_literal_callable(php_code(path))
+)
+failures.extend(
+    f"{path.relative_to(ROOT)}: parenthesized property/array callable"
+    for path in sorted(reached)
+    if has_parenthesized_receiver_callable(php_code(path))
 )
 if failures:
     raise SystemExit("REACHABLE_MUTATION=FAIL " + "; ".join(failures))
