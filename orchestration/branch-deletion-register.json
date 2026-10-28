@@ -86,6 +86,14 @@
       "reason": "Only delete after same-head safety/WordPress/OpenSpec/security CI, verified main merge and unchanged SHA lease",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/c08-dynamic-method-20261028-p6m4",
+      "work_unit_id": "PKG-C08-UNBRACED-PHP-DYNAMIC-20261028-P6M4",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete only after exact-head CI/security success, verified main merge, unchanged remote ref and cleanup readback.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
