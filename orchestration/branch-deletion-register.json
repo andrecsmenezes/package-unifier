@@ -127,6 +127,15 @@
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED",
       "preaction_decision": "DEC-PKG-C08-LITCALL-H3P7-001"
+    },
+    {
+      "branch": "fix/c08-local-autoload-include-20261028-l9d4",
+      "work_unit_id": "PKG-C08-RESTRICT-LOCAL-AUTOLOAD-20261028-L9D4",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Security guard restricts allowed WordPress local autoload to root require_once only; delete after exact-head OpenSpec, runtime, integration and dependency-security PASS, verified main merge and unchanged branch SHA",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-C08-LOCAL-INCLUDE-L9D4-001"
     }
   ]
 }
