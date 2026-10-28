@@ -185,6 +185,25 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.hooks.write_text("<?php class Hooks { function f() { Hooks::$method(); } }")
         self.assert_gate(False)
 
+
+    def test_variable_variable_function_is_rejected(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { function f() { $callback('id'); } }"
+        )
+        self.assert_gate(False)
+
+    def test_braced_variable_variable_function_is_rejected(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { function f() { ${$callback}('id'); } }"
+        )
+        self.assert_gate(False)
+
+    def test_parenthesized_variable_function_is_rejected(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { function f() { ($callback)('id'); } }"
+        )
+        self.assert_gate(False)
+
     def test_literal_method(self) -> None:
         self.hooks.write_text("<?php class Hooks { function f() { $this->safe(); } }")
         self.assert_gate(True)
