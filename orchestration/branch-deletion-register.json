@@ -62,6 +62,14 @@
       "reason": "Obsolete global Composer vendor path constants removal; exact-head CI/security, verified main merge and SHA lease required before deletion.",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "docs/pkg-c08-hook-evidence-20261028-m7q9",
+      "work_unit_id": "PKG-C08-WP-HOOK-EVIDENCE-20261028-M7Q9",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "C08 provenance correction only; exact-head CI/security, verified main merge and unchanged branch-head lease required before cleanup.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }

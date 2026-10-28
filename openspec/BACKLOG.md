@@ -22,7 +22,7 @@ C04|DONE|Removed human-oriented docblocks from dormant models, adapters, config;
 C05|DONE|Added conservative bootstrap entrypoint-reachability no-mutation static gate for first-party code, shell/filesystem/Composer sinks.
 C06|DONE|Added negative fixtures rejecting dynamic PHP functions, callbacks, class dispatch and unapproved includes in bootstrap-reachable source.
 C07|DONE|Fixed comment lexer URL/hash/block delimiter confusion in strings; negative and benign cases in scripts/test_reachable_mutation.py.
-C08|OPEN|Validate dynamic include/callable behavior against actual WordPress runtime; new WordPress hook-registry assertions pending hosted CI (PR); callback allowlist does not prove dynamic includes/closures safe.
+C08|OPEN|PR #21 merged with real WordPress hook-registry assertions; exact-head 905309e911c9d9bc0ee8c713387a849ace6fbfb0 passed WordPress integration, runtime-safety, OpenSpec and dependency-security CI. Dynamic PHP includes/callables/closures remain unproven; hook allowlist alone does not establish their safety.
 P1_I18N:
 I01|DONE|Single admin notice uses esc_html__ with text domain package-unifier and pt-BR source; en/es translations require reviewed need.
 I02|DONE|Active bootstrap audit: package-unifier.php; src/Infrastructure/WordPress/{Hooks,PluginActivator}.php; src/Shared/Config.php. No reachable date/time/number/currency/plural formatter; notice uses WordPress esc_html__ and pt-BR source. scripts/test_wordpress_bootstrap.php covers notice/domain. Scope=first-party static+fixture, NOT live locale certification; excludes vendor/ and unshipped code; reaudit new output; technical docs English only.
