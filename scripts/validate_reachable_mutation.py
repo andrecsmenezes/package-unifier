@@ -81,6 +81,54 @@ FORBIDDEN = re.compile(
 )
 
 
+def has_parenthesized_literal_callable(code: str) -> bool:
+    # Source-only conservative guard: ('function')(...), including double quotes.
+    # Skip outer string contents; php_code() has already stripped comments.
+    def after_string(start: int) -> int:
+        quote = code[start]
+        cursor = start + 1
+        while cursor < len(code):
+            if code[cursor] == "\\":
+                cursor += 2
+            elif code[cursor] == quote:
+                return cursor + 1
+            else:
+                cursor += 1
+        return len(code)
+
+    index = 0
+    while index < len(code):
+        if code[index] in ("'", '"'):
+            index = after_string(index)
+            continue
+        if code[index] != "(":
+            index += 1
+            continue
+        cursor = index + 1
+        while cursor < len(code) and code[cursor].isspace():
+            cursor += 1
+        if cursor >= len(code) or code[cursor] not in ("'", '"'):
+            index += 1
+            continue
+        end = after_string(cursor)
+        if end <= cursor + 1 or code[end - 1] != code[cursor]:
+            index += 1
+            continue
+        cursor = end
+        while cursor < len(code) and code[cursor].isspace():
+            cursor += 1
+        if cursor >= len(code) or code[cursor] != ")":
+            index += 1
+            continue
+        cursor += 1
+        while cursor < len(code) and code[cursor].isspace():
+            cursor += 1
+        if cursor < len(code) and code[cursor] == "(":
+            return True
+        index += 1
+    return False
+
+
 def has_shell_execution_backtick(code: str) -> bool:
     # Only unquoted backticks invoke PHP's shell operator; comments are removed upstream.
     quote: str | None = None
@@ -117,6 +165,11 @@ failures.extend(
     f"{path.relative_to(ROOT)}: shell-execution backtick"
     for path in sorted(reached)
     if has_shell_execution_backtick(php_code(path))
+)
+failures.extend(
+    f"{path.relative_to(ROOT)}: parenthesized literal callable"
+    for path in sorted(reached)
+    if has_parenthesized_literal_callable(php_code(path))
 )
 if failures:
     raise SystemExit("REACHABLE_MUTATION=FAIL " + "; ".join(failures))
