@@ -154,6 +154,15 @@
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED",
       "preaction_decision": "DEC-PKG-C08-CALLRECV-V7N2-001"
+    },
+    {
+      "branch": "docs/pkg-d01-alternatives-20261028-r6m8",
+      "work_unit_id": "PKG-D01-ALTERNATIVES-20261028-R6M8",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Documented D01 tradeoff only; remove after exact-head CI/OpenSpec/security PASS, verified main merge and unchanged remote ref.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-D01-ALTERNATIVES-20261028-R6M8-001"
     }
   ]
 }
