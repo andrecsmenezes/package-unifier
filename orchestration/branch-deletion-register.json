@@ -38,6 +38,14 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Delete only after exact-head PR integration to main and branch ref verification.",
       "registered_date": "2026-10-27"
+    },
+    {
+      "branch": "fix/pkg-branch-ref-recheck-20261027-q6a9",
+      "work_unit_id": "PKG-BRANCH-PREDELETE-REF-RECHECK-20261027-Q6A9",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Read exact current GitHub branch ref SHA immediately before deletion; reduce moved-ref deletion exposure; deletion allowed only after exact-head CI, main merge and verified unchanged ref",
+      "registered_date": "2026-10-27",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
