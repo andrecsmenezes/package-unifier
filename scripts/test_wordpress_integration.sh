@@ -24,27 +24,61 @@ assert_plugin_callbacks() {
       "activate_package-unifier/package-unifier.php|PackageUnifier\\Infrastructure\\WordPress\\PluginActivator::activate",
       "deactivate_package-unifier/package-unifier.php|PackageUnifier\\Infrastructure\\WordPress\\PluginActivator::deactivate",
     ];
-    $observed = [];
-    foreach ($GLOBALS["wp_filter"] as $hook => $registration) {
-      foreach ($registration->callbacks as $callbacks) {
-        foreach ($callbacks as $entry) {
-          $callback = $entry["function"];
-          if (is_array($callback) && count($callback) === 2) {
-            [$owner, $method] = $callback;
-            $owner = is_object($owner) ? get_class($owner) : $owner;
-            if (is_string($owner) && str_starts_with($owner, "PackageUnifier\\")) {
-              $observed[] = $hook . "|" . $owner . "::" . $method;
+    $collect = static function (): array {
+      $pluginRoot = realpath(WP_PLUGIN_DIR . "/package-unifier");
+      $observed = [];
+      foreach ($GLOBALS["wp_filter"] as $hook => $registration) {
+        foreach ($registration->callbacks as $callbacks) {
+          foreach ($callbacks as $entry) {
+            $callback = $entry["function"];
+            if (is_array($callback) && count($callback) === 2) {
+              [$owner, $method] = $callback;
+              $owner = is_object($owner) ? get_class($owner) : $owner;
+              if (is_string($owner) && str_starts_with($owner, "PackageUnifier\\")) {
+                $observed[] = $hook . "|" . $owner . "::" . $method;
+              }
+            } elseif ($callback instanceof \Closure) {
+              $sourceFile = (new \ReflectionFunction($callback))->getFileName();
+              $canonicalSource = is_string($sourceFile) ? realpath($sourceFile) : false;
+              if (
+                $pluginRoot !== false && $canonicalSource !== false
+                && (
+                  $canonicalSource === $pluginRoot . "/package-unifier.php"
+                  || str_starts_with($canonicalSource, $pluginRoot . "/src/")
+                )
+              ) {
+                $observed[] = $hook . "|PackageUnifier\\Closure@" . substr($canonicalSource, strlen($pluginRoot) + 1);
+              }
+            } elseif (is_object($callback) && is_callable($callback)) {
+              $owner = get_class($callback);
+              if (str_starts_with($owner, "PackageUnifier\\")) {
+                $observed[] = $hook . "|" . $owner . "::__invoke";
+              }
+            } elseif (is_string($callback) && str_starts_with($callback, "PackageUnifier\\")) {
+              $observed[] = $hook . "|" . $callback;
             }
-          } elseif (is_string($callback) && str_starts_with($callback, "PackageUnifier\\")) {
-            $observed[] = $hook . "|" . $callback;
           }
         }
       }
-    }
+      sort($observed);
+      return $observed;
+    };
     sort($expected);
-    sort($observed);
+    $observed = $collect();
     if ($expected !== $observed) {
-      throw new RuntimeException("Unexpected PackageUnifier hook registrations: " . json_encode($observed));
+      throw new \RuntimeException("Unexpected PackageUnifier hook registrations: " . json_encode($observed));
+    }
+
+    // Real WordPress negative probe: a first-party method converted to a Closure must be detected.
+    $probe = \Closure::fromCallable([\PackageUnifier\Infrastructure\WordPress\Hooks::class, "loadTextDomain"]);
+    add_action("package_unifier_probe", $probe);
+    $withProbe = $collect();
+    $additional = array_values(array_diff($withProbe, $observed));
+    if (
+      count($additional) !== 1
+      || $additional[0] !== "package_unifier_probe|PackageUnifier\\Closure@src/Infrastructure/WordPress/Hooks.php"
+    ) {
+      throw new \RuntimeException("First-party Closure hook probe was not detected: " . json_encode($additional));
     }
   '
 }
