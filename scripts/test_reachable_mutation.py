@@ -152,5 +152,17 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.assert_gate(False)
 
 
+    def test_unbraced_object_method(self) -> None:
+        self.hooks.write_text("<?php class Hooks { function f() { $this->$method(); } }")
+        self.assert_gate(False)
+
+    def test_unbraced_static_method(self) -> None:
+        self.hooks.write_text("<?php class Hooks { function f() { Hooks::$method(); } }")
+        self.assert_gate(False)
+
+    def test_literal_method(self) -> None:
+        self.hooks.write_text("<?php class Hooks { function f() { $this->safe(); } }")
+        self.assert_gate(True)
+
 if __name__ == "__main__":
     unittest.main()

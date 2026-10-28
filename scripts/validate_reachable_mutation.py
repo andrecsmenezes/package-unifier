@@ -72,6 +72,7 @@ FORBIDDEN = re.compile(
     r"|\bnew\s+\$[A-Za-z_]\w*"
     r"|\$[A-Za-z_]\w*\s*\("
     r"|(?:->|::)\s*(?:invoke(?:Args)?|newInstance(?:Args|WithoutConstructor)?|getClosure|fromCallable)\s*\("
+    r"|(?:->|::)\s*\$[A-Za-z_]\w*\s*\("
     r"|->\s*\{\s*\$[A-Za-z_]\w*\s*\}\s*\(",
     re.I,
 )
