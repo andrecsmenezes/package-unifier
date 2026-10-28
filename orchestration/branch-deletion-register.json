@@ -118,6 +118,15 @@
       "reason": "Guard previously undetected braced and parenthesized variable callable invocation in bootstrap-reachable PHP; delete only after exact-head tests, dependency security, verified merge and unchanged remote branch ref.",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/c08-literal-callable-20261028-h3p7",
+      "work_unit_id": "PKG-C08-LITERAL-CALLABLE-20261028-H3P7",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Static PHP guard and regressions; delete only after exact-head independent CI/security/OpenSpec PASS, verified main merge and unchanged branch-ref lease.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-C08-LITCALL-H3P7-001"
     }
   ]
 }
