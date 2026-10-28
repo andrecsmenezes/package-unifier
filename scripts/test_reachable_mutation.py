@@ -220,5 +220,42 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.hooks.write_text("<?php class Hooks { function f() { Hooks::safe(); } }")
         self.assert_gate(True)
 
+    def test_parenthesized_literal_callable_is_rejected(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { function f() { ('system')('true'); } }"
+        )
+        self.assert_gate(False)
+
+    def test_parenthesized_double_quoted_callable_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { function f() { ("system")("true"); } }'
+        )
+        self.assert_gate(False)
+
+    def test_parenthesized_literal_callable_with_whitespace_is_rejected(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { function f() { (  'system'  ) \n ('true'); } }"
+        )
+        self.assert_gate(False)
+
+    def test_parenthesized_literal_callable_inside_string_is_permitted(self) -> None:
+        self.hooks.write_text(
+            """<?php class Hooks { function f() { echo "text ('system')('true')"; } }"""
+        )
+        self.assert_gate(True)
+
+    def test_parenthesized_literal_callable_inside_comment_is_permitted(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { function f() { // ('system')('true')\n echo 'safe'; } }"
+        )
+        self.assert_gate(True)
+
+    def test_parenthesized_string_value_without_call_is_permitted(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { function f() { echo ('system'); } }"
+        )
+        self.assert_gate(True)
+
+
 if __name__ == "__main__":
     unittest.main()
