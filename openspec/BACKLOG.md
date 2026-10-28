@@ -29,7 +29,7 @@ I02|DONE|Active bootstrap audit: package-unifier.php; src/Infrastructure/WordPre
 P2_DECISION:
 D01|OPEN|Establish need for global dependency consolidation; compare read-only analysis versus explicit CLI-only alternatives.
 D02|OPEN|Before ANY Composer/vendor mutation require plugin compatibility, semver conflict matrix, authorization, sandbox, atomic transactions, concurrency, backup, rollback, integration tests.
-D03|OPEN|Revalidate PHP/WordPress support versions and dependency versions before production.
+D03|OPEN|2026-10-28_SUPPORT_SNAPSHOT: WordPress recommends PHP>=8.3; WP7.0+ permits legacy PHP>=7.4 but EOL versions are unsafe. PHP security support: 8.2 until 2026-12-31;8.3 until 2027-12-31;8.4 until 2028-12-31;8.5 until 2029-12-31. Current composer.json declares php:^8.0 and composer/installers:^2.3; published composer/installers v2.3.0 requires php:^7.2||^8.0 and composer-plugin-api:^1||^2. These are metadata compatibilities, NOT proof of current runtime support. Deployed WordPress/PHP/Composer, lock resolution and integration matrix UNVERIFIED; no automatic minimum-version bump/deploy. Next=verify deployed exact versions, WordPress integration, Composer lock and policy owner before production. Sources=https://wordpress.org/about/requirements/,https://make.wordpress.org/core/2026/05/22/php-support-clarification-2026/,https://www.php.net/supported-versions.php,https://packagist.org/packages/composer/installers.
 LIFECYCLE:
 L01|DONE|Merged-PR-head cleanup after main push includes exact head, no-open-PR guard and unit tests.
 L02|DONE|Observed hosted cleanup deleting completed temporary refs.
