@@ -68,7 +68,6 @@ FORBIDDEN = re.compile(
     r"|\b(?:installDependencies|movePackages|installFromComposerFile|updateAutoloader|scan)\s*\("
     r"|\b(?:mkdir|rename|unlink|copy|file_put_contents)\s*\("
     r"|\b(?:call_user_func(?:_array)?|forward_static_call(?:_array)?|eval|assert)\s*\("
-    r"|\b(?:include|require)(?:_once)?\b(?!\s*\$localAutoload\s*;)"
     r"|\bnew\s+\$[A-Za-z_]\w*"
     r"|\$[A-Za-z_]\w*\s*\("
     r"|(?:->|::)\s*(?:invoke(?:Args)?|newInstance(?:Args|WithoutConstructor)?|getClosure|fromCallable)\s*\("
@@ -147,6 +146,46 @@ def has_shell_execution_backtick(code: str) -> bool:
             return True
     return False
 
+
+def without_php_strings(code: str) -> str:
+    # Preserve offsets while excluding quoted content from directive matching.
+    out = list(code)
+    quote: str | None = None
+    i = 0
+    while i < len(code):
+        char = code[i]
+        if quote is not None:
+            if char == "\\" and i + 1 < len(code):
+                out[i] = out[i + 1] = " "
+                i += 2
+                continue
+            if char == quote:
+                quote = None
+            out[i] = " "
+        elif char in ("'", '"'):
+            quote = char
+            out[i] = " "
+        i += 1
+    return "".join(out)
+
+
+def invalid_includes(path: Path, code: str) -> list[str]:
+    executable = without_php_strings(code)
+    directives = list(
+        re.finditer(r"\b(?:include|require)(?:_once)?\b", executable, re.I)
+    )
+    # Only the entrypoint owns the verified plugin-local autoload statement.
+    # Duplicate directives or any other keyword/path fail closed.
+    if path == ENTRY and len(directives) == 1:
+        allowed = re.search(r"\brequire_once\s+\$localAutoload\s*;", executable, re.I)
+        if allowed and allowed.start() == directives[0].start():
+            return []
+    return [
+        f"{path.relative_to(ROOT)}: forbidden include/require: {directive.group(0)}"
+        for directive in directives
+    ]
+
+
 reached = reachable_files()
 required = {
     ENTRY,
@@ -161,6 +200,10 @@ failures = [
     for path in sorted(reached)
     for match in FORBIDDEN.finditer(php_code(path))
 ]
+failures.extend(
+    error for path in sorted(reached)
+    for error in invalid_includes(path, php_code(path))
+)
 failures.extend(
     f"{path.relative_to(ROOT)}: shell-execution backtick"
     for path in sorted(reached)
