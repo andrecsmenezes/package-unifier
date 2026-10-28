@@ -257,5 +257,46 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.assert_gate(True)
 
 
+
+    def test_secondary_autoload_include_in_hooks_is_rejected(self) -> None:
+        for directive in ("require_once", "require", "include", "include_once"):
+            with self.subTest(directive=directive):
+                self.hooks.write_text(
+                    f"<?php class Hooks {{ function f() {{ {directive} $localAutoload; }} }}",
+                    encoding="utf-8",
+                )
+                self.assert_gate(False)
+
+    def test_entrypoint_alternative_include_keywords_are_rejected(self) -> None:
+        entry = self.root / "package-unifier.php"
+        original = entry.read_text(encoding="utf-8")
+        for directive in ("require", "include", "include_once"):
+            with self.subTest(directive=directive):
+                entry.write_text(
+                    original.replace(
+                        "require_once $localAutoload;",
+                        f"{directive} $localAutoload;",
+                    ),
+                    encoding="utf-8",
+                )
+                self.assert_gate(False)
+
+    def test_entrypoint_duplicate_autoload_is_rejected(self) -> None:
+        entry = self.root / "package-unifier.php"
+        entry.write_text(
+            entry.read_text(encoding="utf-8")
+            + "\nrequire_once $localAutoload;\n",
+            encoding="utf-8",
+        )
+        self.assert_gate(False)
+
+    def test_quoted_include_statement_is_not_executed(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { function f() { echo "include $path;"; } }',
+            encoding="utf-8",
+        )
+        self.assert_gate(True)
+
+
 if __name__ == "__main__":
     unittest.main()
