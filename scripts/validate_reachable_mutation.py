@@ -70,7 +70,9 @@ FORBIDDEN = re.compile(
     r"|\b(?:call_user_func(?:_array)?|forward_static_call(?:_array)?|eval|assert)\s*\("
     r"|\b(?:include|require)(?:_once)?\b(?!\s*\$localAutoload\s*;)"
     r"|\bnew\s+\$[A-Za-z_]\w*"
-    r"|\$[A-Za-z_]\w*\s*\(",
+    r"|\$[A-Za-z_]\w*\s*\("
+    r"|(?:->|::)\s*(?:invoke(?:Args)?|newInstance(?:Args|WithoutConstructor)?|getClosure|fromCallable)\s*\("
+    r"|->\s*\{\s*\$[A-Za-z_]\w*\s*\}\s*\(",
     re.I,
 )
 

@@ -78,6 +78,14 @@
       "reason": "After same-head WordPress, OpenSpec, runtime-safety and dependency-security success, verified main merge and remote SHA lease.",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/pkg-c08-reflective-dispatch-20261028-8k6q",
+      "work_unit_id": "PKG-C08-REFLECTIVE-DISPATCH-20261028-8K6Q",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Only delete after same-head safety/WordPress/OpenSpec/security CI, verified main merge and unchanged SHA lease",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
