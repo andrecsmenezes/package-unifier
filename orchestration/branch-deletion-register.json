@@ -136,6 +136,15 @@
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED",
       "preaction_decision": "DEC-PKG-C08-LOCAL-INCLUDE-L9D4-001"
+    },
+    {
+      "branch": "docs/openspec-cli-proof-20261028-n8f2",
+      "work_unit_id": "PKG-OPENSPEC-PROOF-CHECKLIST-20261028-N8F2",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Canonical bootstrap-safety OpenSpec task repaired from observed official CLI exact-main PASS; delete after exact-PR-head gates, verified merge and unchanged branch SHA; archive remains OPEN",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-OPENSPEC-PROOF-N8F2-001"
     }
   ]
 }
