@@ -78,6 +78,25 @@ FORBIDDEN = re.compile(
     re.I,
 )
 
+
+def has_shell_execution_backtick(code: str) -> bool:
+    # Only unquoted backticks invoke PHP's shell operator; comments are removed upstream.
+    quote: str | None = None
+    escaped = False
+    for char in code:
+        if quote is not None:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == quote:
+                quote = None
+        elif char in ("'", '"'):
+            quote = char
+        elif char == "`":
+            return True
+    return False
+
 reached = reachable_files()
 required = {
     ENTRY,
@@ -92,6 +111,11 @@ failures = [
     for path in sorted(reached)
     for match in FORBIDDEN.finditer(php_code(path))
 ]
+failures.extend(
+    f"{path.relative_to(ROOT)}: shell-execution backtick"
+    for path in sorted(reached)
+    if has_shell_execution_backtick(php_code(path))
+)
 if failures:
     raise SystemExit("REACHABLE_MUTATION=FAIL " + "; ".join(failures))
 print(f"REACHABLE_MUTATION=READY files={len(reached)}")
