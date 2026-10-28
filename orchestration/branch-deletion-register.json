@@ -70,6 +70,14 @@
       "reason": "C08 provenance correction only; exact-head CI/security, verified main merge and unchanged branch-head lease required before cleanup.",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "test/pkg-hook-callable-registry-20261028-x7f3",
+      "work_unit_id": "PKG-C08-DYNAMIC-CALLBACKS-20261028-X7F3",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "After same-head WordPress, OpenSpec, runtime-safety and dependency-security success, verified main merge and remote SHA lease.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
