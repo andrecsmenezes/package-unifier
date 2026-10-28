@@ -15,10 +15,6 @@ class Config {
 
     public const TEXT_DOMAIN = 'package-unifier';
 
-    public const GLOBAL_VENDOR_DIR = ABSPATH . 'vendor';
-
-    public const GLOBAL_VENDOR_AUTOLOAD = self::GLOBAL_VENDOR_DIR . '/autoload.php';
-
     public const VENDOR_AUTOLOAD = self::ROOT_DIR . 'vendor/autoload.php';
 
     public const LANGUAGES_PATH = '/languages';

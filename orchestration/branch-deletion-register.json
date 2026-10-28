@@ -54,6 +54,14 @@
       "reason": "Test first-party WordPress hook registry in actual wp-env; delete only after exact-head required CI and security, verified main merge, SHA lease and cleanup run.",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/pkg-remove-unused-global-vendor-20261028-7k2q",
+      "work_unit_id": "PKG-CLEAN-CODE-GLOBALVENDOR-20261028-7K2Q",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Obsolete global Composer vendor path constants removal; exact-head CI/security, verified main merge and SHA lease required before deletion.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
