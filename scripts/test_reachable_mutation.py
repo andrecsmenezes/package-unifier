@@ -164,5 +164,17 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.hooks.write_text("<?php class Hooks { function f() { $this->safe(); } }")
         self.assert_gate(True)
 
+    def test_braced_static_dynamic_method_is_rejected(self) -> None:
+        self.hooks.write_text("<?php class Hooks { function f() { Hooks::{$method}(); } }")
+        self.assert_gate(False)
+
+    def test_dollar_braced_static_dynamic_method_is_rejected(self) -> None:
+        self.hooks.write_text("<?php class Hooks { function f() { Hooks::${method}(); } }")
+        self.assert_gate(False)
+
+    def test_literal_static_method_remains_permitted(self) -> None:
+        self.hooks.write_text("<?php class Hooks { function f() { Hooks::safe(); } }")
+        self.assert_gate(True)
+
 if __name__ == "__main__":
     unittest.main()
