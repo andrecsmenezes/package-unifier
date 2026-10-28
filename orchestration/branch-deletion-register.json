@@ -163,6 +163,15 @@
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED",
       "preaction_decision": "DEC-PKG-D01-ALTERNATIVES-20261028-R6M8-001"
+    },
+    {
+      "branch": "docs/pkg-d03-support-snapshot-20261028-r6m8",
+      "work_unit_id": "PKG-D03-PHP-WORDPRESS-SUPPORT-20261028-R6M8",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Documentary support snapshot only; delete exact branch only after required HEAD CI/security/OpenSpec PASS, verified main merge, unchanged ref.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-D03-SUPPORT-20261028-R6M8-002"
     }
   ]
 }
