@@ -157,7 +157,7 @@ class ReachableMutationGuardTest(unittest.TestCase):
 
     def test_backtick_in_php_comment_is_permitted(self) -> None:
         self.hooks.write_text(
-            "<?php class Hooks { public function f() { // shell `id` ignored\\n"
+            "<?php class Hooks { public function f() { // shell `id` ignored\n"
             "echo 'safe'; } }"
         )
         self.assert_gate(True)
