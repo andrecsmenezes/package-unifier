@@ -54,6 +54,19 @@ def eligible(
     )
 
 
+def current_ref_matches(reference: object, branch: str, expected_sha: str) -> bool:
+    """Reject a moved, missing, malformed, or non-commit ref before deletion."""
+    if not isinstance(reference, dict) or reference.get("ref") != f"refs/heads/{branch}":
+        return False
+    target = reference.get("object")
+    return (
+        isinstance(target, dict)
+        and target.get("type") == "commit"
+        and target.get("sha") == expected_sha
+        and bool(expected_sha)
+    )
+
+
 class GitHub:
     def __init__(self) -> None:
         self.repo = os.environ["GH_REPOSITORY"]
@@ -107,6 +120,10 @@ class GitHub:
                 kept.append(branch)
                 continue
             encoded = urllib.parse.quote(branch, safe="/")
+            current_ref = self.api(f"/repos/{self.repo}/git/ref/heads/{encoded}", allow_404=True)
+            if not current_ref_matches(current_ref, branch, sha):
+                kept.append(branch)
+                continue
             self.api(f"/repos/{self.repo}/git/refs/heads/{encoded}", method="DELETE")
             verify = urllib.parse.quote(branch, safe="")
             if self.api(f"/repos/{self.repo}/branches/{verify}", allow_404=True) is not None:
