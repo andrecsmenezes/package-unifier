@@ -89,6 +89,36 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.assert_gate(False)
 
 
+    def test_reflection_method_invocation_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { $r = new ReflectionMethod("Safe", "run"); $r->invoke($target); } }'
+        )
+        self.assert_gate(False)
+
+    def test_reflection_instantiation_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { $r = new ReflectionClass("Safe"); $r->newInstanceArgs([]); } }'
+        )
+        self.assert_gate(False)
+
+    def test_callable_conversion_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { \Closure::fromCallable($target); } }'
+        )
+        self.assert_gate(False)
+
+    def test_dynamic_braced_member_invocation_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { $this->{$method}(); } }'
+        )
+        self.assert_gate(False)
+
+    def test_reflection_metadata_only_remains_permitted(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { $r = new ReflectionClass("Safe"); $r->getName(); } }'
+        )
+        self.assert_gate(True)
+
     def test_url_string_does_not_hide_reachable_shell_sink(self) -> None:
         self.hooks.write_text(
             '<?php class Hooks { public function f() { echo "https://example.test"; exec("id"); } }'
