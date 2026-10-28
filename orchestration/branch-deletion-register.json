@@ -102,6 +102,14 @@
       "reason": "Delete after exact-head source/OpenSpec/dependency checks, verified main integration and unchanged remote ref.",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/php-shell-backtick-guard-20261028-p6t2",
+      "work_unit_id": "PU-PHP-SHELL-BACKTICK-P6T2",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Only delete after exact PR28 head passing required CI/security, verified integration to main and unchanged branch SHA lease.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }

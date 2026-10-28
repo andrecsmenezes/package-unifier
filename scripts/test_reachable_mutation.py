@@ -137,6 +137,31 @@ class ReachableMutationGuardTest(unittest.TestCase):
         )
         self.assert_gate(False)
 
+    def test_shell_execution_backtick_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { $output = `id`; } }'
+        )
+        self.assert_gate(False)
+
+    def test_backtick_text_inside_php_string_is_permitted(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { public function f() { echo "literal `code`"; } }'
+        )
+        self.assert_gate(True)
+
+    def test_backtick_text_after_escaped_quote_is_permitted(self) -> None:
+        self.hooks.write_text(
+            r'''<?php class Hooks { public function f() { echo "escaped \" quote `code`"; } }'''
+        )
+        self.assert_gate(True)
+
+    def test_backtick_in_php_comment_is_permitted(self) -> None:
+        self.hooks.write_text(
+            "<?php class Hooks { public function f() { // shell `id` ignored\n"
+            "echo 'safe'; } }"
+        )
+        self.assert_gate(True)
+
     def test_actual_php_comments_are_ignored(self) -> None:
         self.hooks.write_text(
             "<?php class Hooks { public function f() { // exec('never')\n"
