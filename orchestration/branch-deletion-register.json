@@ -110,6 +110,14 @@
       "reason": "Only delete after exact PR28 head passing required CI/security, verified integration to main and unchanged branch SHA lease.",
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/c08-variable-variable-invocation-20261028-s5v2",
+      "work_unit_id": "PKG-C08-VARIABLE-CALLABLE-GUARD-20261028-S5V2",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Guard previously undetected braced and parenthesized variable callable invocation in bootstrap-reachable PHP; delete only after exact-head tests, dependency security, verified merge and unchanged remote branch ref.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
