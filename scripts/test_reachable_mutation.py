@@ -103,7 +103,7 @@ class ReachableMutationGuardTest(unittest.TestCase):
 
     def test_callable_conversion_is_rejected(self) -> None:
         self.hooks.write_text(
-            '<?php class Hooks { public function f() { \Closure::fromCallable($target); } }'
+            '<?php class Hooks { public function f() { \\Closure::fromCallable($target); } }'
         )
         self.assert_gate(False)
 
