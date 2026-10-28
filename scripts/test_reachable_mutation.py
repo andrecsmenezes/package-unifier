@@ -298,5 +298,42 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.assert_gate(True)
 
 
+
+    def test_parenthesized_property_callable_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { function f() { ($this->callback)("id"); } }',
+            encoding="utf-8",
+        )
+        self.assert_gate(False)
+
+    def test_parenthesized_array_callable_is_rejected(self) -> None:
+        self.hooks.write_text(
+            """<?php class Hooks { function f() { ($callbacks['selected'])("id"); } }""",
+            encoding="utf-8",
+        )
+        self.assert_gate(False)
+
+    def test_parenthesized_dynamic_key_callable_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { function f() { ($callbacks[$key])("id"); } }',
+            encoding="utf-8",
+        )
+        self.assert_gate(False)
+
+    def test_parenthesized_receiver_literal_text_is_permitted(self) -> None:
+        self.hooks.write_text(
+            """<?php class Hooks { function f() { echo '($this->callback)("id")'; } }""",
+            encoding="utf-8",
+        )
+        self.assert_gate(True)
+
+    def test_parenthesized_receiver_without_invocation_is_permitted(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { function f() { echo ($this->callback); } }',
+            encoding="utf-8",
+        )
+        self.assert_gate(True)
+
+
 if __name__ == "__main__":
     unittest.main()
