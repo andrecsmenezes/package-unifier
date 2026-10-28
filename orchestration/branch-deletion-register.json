@@ -46,6 +46,14 @@
       "reason": "Read exact current GitHub branch ref SHA immediately before deletion; reduce moved-ref deletion exposure; deletion allowed only after exact-head CI, main merge and verified unchanged ref",
       "registered_date": "2026-10-27",
       "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "test/wordpress-hook-callback-registry-20261028-n4t8",
+      "work_unit_id": "PKG-C08-WP-RUNTIME-HOOKS-20261028-N4T8",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Test first-party WordPress hook registry in actual wp-env; delete only after exact-head required CI and security, verified main merge, SHA lease and cleanup run.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
     }
   ]
 }
