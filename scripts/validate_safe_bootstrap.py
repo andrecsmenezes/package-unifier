@@ -11,6 +11,7 @@ checks = {
     'local autoloader guard': "is_file($localAutoload)" in entry,
     'local autoloader load': "require_once $localAutoload;" in entry,
     'no global autoloader in entrypoint': 'GLOBAL_AUTOLOAD' not in entry and 'GLOBAL_VENDOR' not in entry,
+    'no obsolete global vendor constants': 'GLOBAL_VENDOR_DIR' not in config and 'GLOBAL_VENDOR_AUTOLOAD' not in config,
     'no request-triggered vendor scan': "add_action('init'" not in hooks and 'scanPlugins' not in hooks,
     'localization-only lifecycle': "add_action('plugins_loaded'" in hooks,
     'no activation-time global mutations': 'mkdir(' not in activator and 'exec(' not in activator and 'installDependencies(' not in activator,
