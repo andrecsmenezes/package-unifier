@@ -117,7 +117,7 @@ final class ComposerMetadataComparator
                 if (
                     !is_string($package)
                     || strlen($package) > 120
-                    || preg_match('/^[a-z0-9._-]+\/[a-z0-9._-]+$/D', $package) !== 1
+                    || preg_match('/^[a-z0-9][a-z0-9._-]*\/[a-z0-9][a-z0-9._-]*$/D', $package) !== 1
                     || isset($seen[$package])
                     || !is_string($constraint)
                     || strlen($constraint) > 100
