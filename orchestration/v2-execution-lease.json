@@ -1,22 +1,20 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 9,
-  "attempt_id": "pu-v2-remaining-subtasks-evidence-20261103-a9",
-  "task_id": "PU-V2-REMAINING-DOCUMENTARY-SUBTASKS",
-  "status": "RELEASED",
+  "generation": 10,
+  "attempt_id": "pu-v2-plan-scope-integrity-repair-20261103-g10",
+  "task_id": "PU-V2-APPROVED-SCOPE-INTEGRITY",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
-  "expected_main_sha": "a99e46e3da4d8c8d8e36b8292b914cd7ebe39903",
+  "expected_main_sha": "f45be4adfa6a37b64771c583125226dcb2f4cf85",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-001-S2-T2-ST1",
-    "E-PU-V2-003-S1-T1-ST1",
-    "E-PU-V2-003-S2-T2-ST1"
+    "PU-V2-PLAN-SCOPE-DIGEST-RESTORE"
   ],
-  "current_stage": "BOUND_DOCUMENTARY_READBACK",
-  "claimed_at": "2026-11-03T21:41:15.566Z",
+  "current_stage": "RESTORE_IMMUTABLE_APPROVED_SCOPE_DIGEST",
+  "claimed_at": "2026-11-03T21:54:40.164Z",
   "writer_attestation": "main and coordination only, no open PRs, receipt MIGRATED_VERIFIED, preclaim approved plan digest matches.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
@@ -24,7 +22,7 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "generation": 9,
@@ -88,7 +86,7 @@
     "production_deployment": false,
     "global_runtime_consolidation": false
   },
-  "recovery_of": "pu-v2-e003-s2-lock-repro-20261103-a8",
+  "recovery_of": "pu-v2-remaining-subtasks-evidence-20261103-a9",
   "approved_scope": "Source-backed deployed-version unknown matrix, keep-vs-remove-vendor gate, explicit no-authorized-deployment blocker. No scans, deploys, runtime changes, package removal, or release authorization.",
   "resume_evidence": {
     "pr_number": 42,
@@ -119,5 +117,18 @@
   },
   "staged_branch": "docs/v2-e002-demand-evidence-20261103",
   "overall_plan_state": "WAITING_EXTERNAL",
-  "released_at": "2026-11-03T21:47:54.214Z"
+  "released_at": "2026-11-03T21:47:54.214Z",
+  "claim_reason": "Remove two unintended blocked_reason properties from approved plan; preserve every task ID, status, dependency and acceptance.",
+  "readback": {
+    "preclaim_plan_blob": "a37fb2bc40e3a28bd32e0ecc7dbe3c6cdd7b96b0",
+    "saved_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+    "current_digest": "dc4e7f66af50374e6cc65b73831e94106078b7eb2a55ce1b56fee5995ecf2843",
+    "computed_after_removing_two_fields": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+    "affected_ids": [
+      "E-PU-V2-002-S1-T2-ST1",
+      "E-PU-V2-003-S1-T2-ST1"
+    ],
+    "open_prs": 0,
+    "main_sha": "f45be4adfa6a37b64771c583125226dcb2f4cf85"
+  }
 }
