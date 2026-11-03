@@ -210,7 +210,7 @@
               "title": "Assess safe architecture and transaction gates (C02/D02)",
               "description": "",
               "acceptance": "Review local autoload, offline read-only comparison and opt-in sandboxed CLI alternatives, including conflict isolation, rollback, concurrency and atomicity.",
-              "status": "READY",
+              "status": "DONE",
               "depends_on": [
                 "E-PU-V2-002-S1-T1"
               ],
@@ -224,9 +224,11 @@
                   "title": "Produce a testable threat/conflict/rollback matrix with a fail-closed default.",
                   "description": "",
                   "acceptance": "The matrix records mandatory preconditions, rejection cases and safe cancellation.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/44"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/44"
             },
             {
               "id": "E-PU-V2-002-S2-T2",
