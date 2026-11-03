@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/compare_composer_metadata.php';
-
 use PackageUnifier\Tools\ComposerMetadataComparator;
+
+require_once __DIR__ . '/compare_composer_metadata.php';
 
 /**
  * Require an expected scalar or structured result.
