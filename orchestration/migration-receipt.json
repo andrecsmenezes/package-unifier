@@ -1,0 +1,29 @@
+{
+  "schema": "orchestrator-repository-adoption-v2",
+  "generation": "v2",
+  "repo": "andrecsmenezes/package-unifier",
+  "status": "TRANSITION_BLOCKED",
+  "accepted": false,
+  "source_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+  "migration_branch": "chore/adopt-orchestrator-v2-20261103",
+  "authorization": "User authorized V2 migration and cleanup after verified historical consolidation, 2026-11-03",
+  "history": {
+    "catalog": "historico/catalog.json",
+    "pull_request_records": "historico/legacy-pull-requests.json",
+    "legacy_backlog": "historico/legacy-openspec-backlog.md",
+    "legacy_branch_registry": "historico/legacy-branch-deletion-register.json",
+    "prs_archived": 35,
+    "prs_merged": 35,
+    "open_prs_observed": 0,
+    "unmerged_prs_observed": 0
+  },
+  "preflight": {
+    "status": "NOT_YET_PASSED",
+    "requires": "Official OpenSpec CLI validate --all --strict against unchanged staged candidate",
+    "cli_version": null,
+    "spec_digest": null
+  },
+  "app_code_changes_allowed": false,
+  "app_code_unchanged_proof": "PENDING_CURRENT_BRANCH_DIFF_READBACK",
+  "next_gate": "Official CLI preflight PASS before archive PR; then exact-head CI and guarded merge"
+}
