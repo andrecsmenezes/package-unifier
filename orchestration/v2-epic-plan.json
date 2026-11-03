@@ -193,8 +193,7 @@
                   "title": "Check supplied metadata for semver incompatibilities in an isolated read-only test fixture.",
                   "description": "",
                   "acceptance": "The resulting table records actual constraints, versions, provenance and unknowns.",
-                  "status": "WAITING_EXTERNAL",
-                  "blocked_reason": "Two separately authorized sanitized Composer metadata inputs have not been supplied."
+                  "status": "WAITING_EXTERNAL"
                 }
               ],
               "external_wait": {
@@ -331,8 +330,7 @@
                   "title": "Execute the supported plugin bootstrap/activation integration tests on isolated known-version environments.",
                   "description": "",
                   "acceptance": "Results and safe failure handling are linked to exact commits and versions.",
-                  "status": "BLOCKED",
-                  "blocked_reason": "Parent S1-T2 depends on blocked deployed-version evidence task S1-T1."
+                  "status": "BLOCKED"
                 }
               ],
               "external_wait": {
