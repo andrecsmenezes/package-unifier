@@ -40,7 +40,7 @@
   },
   "app_code_changes_allowed": false,
   "app_code_unchanged_proof": "VERIFIED_NO_RUNTIME_CODE_DIFF",
-  "next_gate": "Create adoption PR after official preflight PASS; require exact-head CI, guarded merge and main receipt readback",
+  "next_gate": "Complete PR#37 exact-head CI, merge to main, verify safe deletion of temporary branches and permanent coordination release",
   "branch_inventory_at_preflight": {
     "permanent_coordination": "coordination",
     "migration_temp_branch": "chore/adopt-orchestrator-v2-20261103",
@@ -52,9 +52,40 @@
     "archive_record_sha": "orchestration/archival-integrity-verification.json",
     "historical_pr_records_readback": "35_OF_35",
     "archived_changes_byte_identical": "13_GIT_BLOBS_MOVED",
-    "main_readback_verified": false,
-    "pr_exact_head_checks": "REQUIRED_BEFORE_MERGE"
+    "main_readback_verified": true,
+    "pr_exact_head_checks": "PASS_ALL_REQUIRED_SAME_SHA_90764c8501580c9ae1dda70e134ab27d4b9f71a6",
+    "pr36_merge_sha": "8ecfc467d769079e29551e6a5f6744b33554b687",
+    "pr36": {
+      "number": 36,
+      "head_sha": "90764c8501580c9ae1dda70e134ab27d4b9f71a6",
+      "merged_at": "2026-11-03T20:00:14Z",
+      "url": "https://github.com/andrecsmenezes/package-unifier/pull/36",
+      "ci": {
+        "openspec": {
+          "run_id": 41708212063,
+          "conclusion": "success"
+        },
+        "runtime_safety": {
+          "run_id": 41708212034,
+          "conclusion": "success"
+        },
+        "dependency_security": {
+          "run_id": 41708212182,
+          "conclusion": "success"
+        }
+      }
+    }
   },
-  "activation": "This receipt becomes effective ONLY if present on current main after the migration PR passes mandatory exact-head checks, merges with verified SHA, and historical temporary branch is deleted safely. Presence in the staging branch is NOT an accepted adoption.",
-  "state_note": "Candidate accepted record only. Repository remains in transition until guarded merge, CI/security checks, source/receipt readback on main, and safe cleanup of temporary refs."
+  "activation": "Effective after guarded merge and main readback of PR#36 plus verified safe deletion of both registered temporary branches in PR#37's main-push cleanup workflow, permanent coordination branch intact.",
+  "state_note": "Migration application and history are merged into main with exact-head CI success. Completing branch cleanup and coordination lease release is required before final closure.",
+  "cleanup": {
+    "workflow": ".github/workflows/cleanup-merged-branches.yml",
+    "deletion_register": "orchestration/branch-deletion-register.json",
+    "registered_temporary_refs": [
+      "chore/adopt-orchestrator-v2-20261103",
+      "chore/v2-migration-cleanup-20261103"
+    ],
+    "permanent_ref": "coordination",
+    "verification_rule": "Confirm both registered temporary branch refs absent after merged PR#37 GitHub cleanup; no active PRs and coordination branch retained."
+  }
 }
