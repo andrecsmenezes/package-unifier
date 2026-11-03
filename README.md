@@ -15,7 +15,10 @@ dependency_manifest=composer.json
 lockfile=composer.lock
 specification=openspec/config.yaml
 active_changes=openspec/changes/*
-backlog=openspec/BACKLOG.md
+legacy_backlog=historico/legacy-openspec-backlog.md
+v2_requirements=openspec/specs/
+v2_migration_receipt=orchestration/migration-receipt.json
+historical_evidence=historico/
 agent_contracts=openspec/project/agents/*
 
 ## Enforced safety
@@ -48,4 +51,4 @@ WordPress runtime integration=GitHub Actions `.github/workflows/wordpress-integr
 
 ## Work queue
 
-owner=openspec/BACKLOG.md
+Legacy V1 work is archived and non-executable. Propose a new bounded V2 epic only after repository migration is accepted on main; require explicit approval before any implementation.
