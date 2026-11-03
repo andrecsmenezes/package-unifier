@@ -1,0 +1,145 @@
+{
+  "schema": "universal-orchestrator-v2-execution-checkpoint",
+  "repository": "andrecsmenezes/package-unifier",
+  "checkpoint_generation": 9,
+  "observation_date": "2026-11-03",
+  "approval_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "approved_plan_ref": "coordination/orchestration/v2-epic-plan.json",
+  "main_sha": "f45be4adfa6a37b64771c583125226dcb2f4cf85",
+  "prior_checkpoint_blob_sha": "30f7feb6b7387647389549fc1e32334c24d93092",
+  "merged_prs": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "latest_merge": {
+    "pr": 47,
+    "head_sha": "fe10f588ad4a2ec336229259bb68fcba5fdb6b71",
+    "merge_sha": "f45be4adfa6a37b64771c583125226dcb2f4cf85",
+    "required_ci": [
+      "openspec",
+      "runtime-safety",
+      "Dependency security (parallel)"
+    ],
+    "all_success": true,
+    "temporary_branch_absent": true
+  },
+  "parent_tasks_total": 12,
+  "parent_tasks_done": 7,
+  "subtasks_total": 12,
+  "subtasks_done": 10,
+  "subtasks_newly_done": [
+    "E-PU-V2-001-S2-T2-ST1",
+    "E-PU-V2-003-S1-T1-ST1",
+    "E-PU-V2-003-S2-T2-ST1"
+  ],
+  "remaining_parent_tasks": [
+    {
+      "id": "E-PU-V2-001-S2-T2",
+      "status": "BLOCKED",
+      "depends_on": [],
+      "external_wait": null
+    },
+    {
+      "id": "E-PU-V2-002-S1-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [
+        "E-PU-V2-002-S1-T1"
+      ],
+      "external_wait": {
+        "category": "AUTHORIZED_COMPOSER_METADATA",
+        "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e002-manifest-intake.schema.json",
+        "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed.",
+        "checked_at": "2026-11-03T21:05:08.693Z"
+      }
+    },
+    {
+      "id": "E-PU-V2-003-S1-T1",
+      "status": "BLOCKED",
+      "depends_on": [],
+      "external_wait": null
+    },
+    {
+      "id": "E-PU-V2-003-S1-T2",
+      "status": "BLOCKED",
+      "depends_on": [
+        "E-PU-V2-003-S1-T1"
+      ],
+      "external_wait": {
+        "category": "DEPENDENCY_ON_DEPLOYED_VERSION_EVIDENCE",
+        "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e003-s1-version-support-matrix.md",
+        "resume_condition": "E-PU-V2-003-S1-T1 must have verified authorized target PHP/WordPress/Composer versions before exact integration test targets are selected.",
+        "checked_at": "2026-11-03T21:45:54.292Z"
+      }
+    },
+    {
+      "id": "E-PU-V2-003-S2-T2",
+      "status": "BLOCKED",
+      "depends_on": [
+        "E-PU-V2-003-S2-T1"
+      ],
+      "external_wait": null
+    }
+  ],
+  "remaining_subtasks": [
+    {
+      "id": "E-PU-V2-002-S1-T2-ST1",
+      "status": "WAITING_EXTERNAL"
+    },
+    {
+      "id": "E-PU-V2-003-S1-T2-ST1",
+      "status": "BLOCKED"
+    }
+  ],
+  "ready_approved_tasks": [],
+  "epics": [
+    {
+      "id": "E-PU-V2-001",
+      "status": "READY",
+      "parents_done": 3,
+      "parents_total": 4,
+      "subtasks_done": 4
+    },
+    {
+      "id": "E-PU-V2-002",
+      "status": "READY",
+      "parents_done": 3,
+      "parents_total": 4,
+      "subtasks_done": 3
+    },
+    {
+      "id": "E-PU-V2-003",
+      "status": "READY",
+      "parents_done": 1,
+      "parents_total": 4,
+      "subtasks_done": 3
+    }
+  ],
+  "open_prs": 0,
+  "remaining_branches": [
+    "main",
+    "coordination"
+  ],
+  "blocking_evidence": {
+    "E001_S06": "No authorized deployment URL, release or anonymous endpoint scope supplied; no production check was performed",
+    "E002_D01": "No two owner-authorized sanitized cross-plugin Composer manifests/locks supplied",
+    "E003_D03": "No authorized installed WordPress/PHP/Composer version evidence; exact-version matrix blocked",
+    "E003_C03": "No independently verified release+rollback plan or separate owner authorization to remove tracked vendor"
+  },
+  "non_authorized_operations": [
+    "Production HTTP checks without target authorization",
+    "Installed plugin enumeration",
+    "Global classloader",
+    "Vendor deletion or relocation",
+    "Runtime Composer operations",
+    "Unapproved PHP/WordPress minimum change"
+  ],
+  "runtime_consolidation": "DISABLED",
+  "production_deployment": "NOT_PERFORMED",
+  "next_ready_approved_work": null,
+  "status": "WAITING_EXTERNAL"
+}
