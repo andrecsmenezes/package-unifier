@@ -1,0 +1,28 @@
+{
+  "schema": "orchestrator-v2-lease",
+  "repository": "andrecsmenezes/package-unifier",
+  "generation": 1,
+  "attempt_id": "pu-v2-e001-s1-20261103-a1",
+  "task_id": "E-PU-V2-001-S1",
+  "status": "ACTIVE",
+  "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
+  "plan_ref": "orchestration/v2-epic-plan.json",
+  "expected_main_sha": "432415888f08384c3174315c2beb337e3fce8455",
+  "epic_issue": 38,
+  "work_unit_ids": [
+    "E-PU-V2-001-S1-T1-ST1",
+    "E-PU-V2-001-S1-T1",
+    "E-PU-V2-001-S1-T2-ST1",
+    "E-PU-V2-001-S1-T2"
+  ],
+  "current_stage": "READ_ONLY_EVIDENCE_FIRST",
+  "claimed_at": "2026-11-03",
+  "writer_attestation": "No open PRs and only main plus coordination branches observed at claim",
+  "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
+  "not_authorized": [
+    "Production deploy",
+    "runtime Composer mutations",
+    "Cross-plugin scan"
+  ]
+}
