@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/compare_composer_metadata.php';
 
-use InvalidArgumentException;
 use PackageUnifier\Tools\ComposerMetadataComparator;
 
 /**
