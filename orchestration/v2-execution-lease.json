@@ -1,29 +1,29 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 2,
-  "attempt_id": "pu-v2-e001-s2-c08-20261103-a2",
-  "task_id": "E-PU-V2-001-S2-T1",
-  "status": "RELEASED",
+  "generation": 3,
+  "attempt_id": "pu-v2-e002-s1-evidence-20261103-a3",
+  "task_id": "E-PU-V2-002-S1-T1",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
   "expected_main_sha": "9116d997157c91c4d0b9746faf8beaa6fc243247",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-001-S2-T1-ST1",
-    "E-PU-V2-001-S2-T1"
+    "E-PU-V2-002-S1-T1-ST1",
+    "E-PU-V2-002-S1-T1"
   ],
-  "current_stage": "C08_SOURCE_MAPPING",
+  "current_stage": "READ_ONLY_EVIDENCE_TEMPLATE",
   "claimed_at": "2026-11-03",
-  "writer_attestation": "No open PRs; only main and coordination branches. S1 merged and cleanup verified.",
+  "writer_attestation": "Only PR#42 from this orchestration remains open for independent C08 CI; no overlapping production writer; E002 stages independent documentation; no branch-deletion-register edits until PR#42 closes.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "WAITING_EXTERNAL",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "task_id": "E-PU-V2-001-S2-T1",
@@ -41,5 +41,6 @@
     "plan_blob_sha": "cd43498a9024ccd58bc149cb31daddaadee87365",
     "main_sha": "9116d997157c91c4d0b9746faf8beaa6fc243247"
   },
-  "recovery_of": "pu-v2-e001-s1-20261103-a1"
+  "recovery_of": "pu-v2-e001-s2-c08-20261103-a2",
+  "approved_scope": "Publish privacy-safe offline manifest/lock evidence template; explicitly record demand UNVERIFIED with provenance. No live plugin scan or production mutations."
 }
