@@ -11,7 +11,7 @@
       "title": "Canonical V2 and residual WordPress runtime safety",
       "description": "",
       "acceptance": "Canonical OpenSpec, executable safety regression coverage and explicit external deployment blocker are verified; every merged change follows exact-SHA CI and guarded branch cleanup.",
-      "status": "READY",
+      "status": "BLOCKED",
       "priority": "P0",
       "source_ids": [
         "O04",
@@ -82,7 +82,7 @@
           "title": "Bound runtime security claims and deployment verification",
           "description": "",
           "acceptance": "Known residual C08 detection gaps are identified and tested within a bounded source scope; external legacy-deployment verification stays blocked without deployment evidence.",
-          "status": "READY",
+          "status": "BLOCKED",
           "tasks": [
             {
               "id": "E-PU-V2-001-S2-T1",
@@ -139,7 +139,7 @@
       "title": "Evidence-based dependency consolidation decision",
       "description": "",
       "acceptance": "A recorded, evidence-backed go/no-go decision exists for A local vendor, B offline read-only comparison, or C isolated CLI-only assessment; unsafe global runtime merging remains prohibited.",
-      "status": "READY",
+      "status": "WAITING_EXTERNAL",
       "priority": "P1",
       "source_ids": [
         "D01",
@@ -152,7 +152,7 @@
           "title": "Establish measured demand without runtime scans",
           "description": "",
           "acceptance": "Any real dependency-unification need is supported by authorized, reproducible evidence; absent evidence causes a recorded no-go.",
-          "status": "READY",
+          "status": "WAITING_EXTERNAL",
           "tasks": [
             {
               "id": "E-PU-V2-002-S1-T1",
@@ -209,7 +209,13 @@
                 "checked_at": "2026-11-03T21:05:08.693Z"
               }
             }
-          ]
+          ],
+          "external_wait": {
+            "category": "AUTHORIZED_COMPOSER_METADATA",
+            "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e002-manifest-intake.schema.json",
+            "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed.",
+            "checked_at": "2026-11-03T21:56:49.073Z"
+          }
         },
         {
           "id": "E-PU-V2-002-S2",
@@ -277,14 +283,20 @@
         "No vendor/node_modules mutations",
         "No live scan of installed plugins",
         "Separate authorization for any CLI-only prototype"
-      ]
+      ],
+      "external_wait": {
+        "category": "AUTHORIZED_COMPOSER_METADATA",
+        "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e002-manifest-intake.schema.json",
+        "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed.",
+        "checked_at": "2026-11-03T21:56:49.073Z"
+      }
     },
     {
       "id": "E-PU-V2-003",
       "title": "WordPress/PHP compatibility and reproducible packaging",
       "description": "",
       "acceptance": "Verified version and deployment compatibility evidence, reproducible Composer artifacts and a conditional vendor-retention decision are available; no implicit production deployment.",
-      "status": "READY",
+      "status": "BLOCKED",
       "priority": "P1",
       "source_ids": [
         "D03",
@@ -296,7 +308,7 @@
           "title": "Verify actual support and compatibility",
           "description": "",
           "acceptance": "Actual deployment versions and current supported software constraints are recorded and tested; no unverified PHP/WordPress minimum upgrade is imposed.",
-          "status": "READY",
+          "status": "BLOCKED",
           "tasks": [
             {
               "id": "E-PU-V2-003-S1-T1",
@@ -353,7 +365,7 @@
           "title": "Decide reproducible Composer package strategy",
           "description": "",
           "acceptance": "A clean local Composer build can reproduce expected artifacts and restore plugin-local autoload; committed vendor removal remains conditional on a verified delivery strategy.",
-          "status": "READY",
+          "status": "BLOCKED",
           "tasks": [
             {
               "id": "E-PU-V2-003-S2-T1",
