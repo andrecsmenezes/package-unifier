@@ -2,12 +2,12 @@
   "schema": "orchestrator-v2-migration-lease",
   "repository": "andrecsmenezes/package-unifier",
   "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
-  "attempt_id": "migration-pkg-unifier-20261103-01",
-  "generation": 1,
-  "status": "RELEASED",
+  "attempt_id": "migration-pkg-unifier-20261103-02",
+  "generation": 2,
+  "status": "ACTIVE",
   "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
-  "claimed_at": "2026-11-03T19:15:00Z",
-  "expires_at": "2026-11-03T20:00:00Z",
+  "claimed_at": "2026-11-03T19:30:00Z",
+  "expires_at": "2026-11-03T20:15:00Z",
   "authorization": "User request of 2026-11-03: continue V2 migration, may close/delete legacy refs only after historical consolidation",
   "evidence": {
     "branch_inventory_before_claim": [
@@ -28,5 +28,15 @@
     "adoption_status": "TRANSITION_BLOCKED",
     "required_next_step": "Official CLI PASS and proof digest before any adoption PR",
     "no_deletion_or_merge": true
+  },
+  "recovery_of": "migration-pkg-unifier-20261103-01",
+  "current_stage": "PREFLIGHT_EVIDENCE",
+  "reconciliation": {
+    "previous_attempt_released": true,
+    "staging_sha": "506a3c63c8546ce3605f668a581bc7e11ffefb5a",
+    "main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+    "changed_runtime_files": 0,
+    "open_prs": 0,
+    "open_issues": 0
   }
 }
