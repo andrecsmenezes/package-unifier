@@ -24,6 +24,11 @@ jobs:
           find src -type f -name '*.php' -exec php -l {} \;
       - name: Validate Composer lock consistency
         run: composer validate --no-check-publish --strict
+      - name: Verify retained local autoloader is committed
+        run: |
+          test -f vendor/autoload.php
+          git ls-files --error-unmatch vendor/autoload.php
+          php -r 'require "vendor/autoload.php"; if (!class_exists("Composer\\InstalledVersions")) { exit(1); }'
       - name: WordPress bootstrap fixture regression
         run: php scripts/test_wordpress_bootstrap.php
       - name: Fail-closed bootstrap contract
