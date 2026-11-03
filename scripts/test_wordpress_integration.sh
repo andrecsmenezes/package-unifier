@@ -92,6 +92,9 @@ wp-env run cli wp eval 'if (!class_exists("PackageUnifier\\Infrastructure\\WordP
 assert_plugin_callbacks
 curl --fail --silent --show-error --retry 3 --max-time 20 http://127.0.0.1:8888/ >/dev/null
 
+# Verify that legacy source-export paths cannot be read anonymously in disposable WordPress.
+bash scripts/test_source_export_http.sh
+
 # Missing local dependencies must not fatal on activation, CLI or public HTTP.
 wp-env run cli wp plugin deactivate package-unifier
 mv "$root/vendor" "$held_vendor"
