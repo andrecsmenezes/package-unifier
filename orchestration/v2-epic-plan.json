@@ -296,7 +296,7 @@
       "title": "WordPress/PHP compatibility and reproducible packaging",
       "description": "",
       "acceptance": "Verified version and deployment compatibility evidence, reproducible Composer artifacts and a conditional vendor-retention decision are available; no implicit production deployment.",
-      "status": "BLOCKED",
+      "status": "DONE",
       "priority": "P1",
       "source_ids": [
         "D03",
@@ -308,7 +308,7 @@
           "title": "Verify actual support and compatibility",
           "description": "",
           "acceptance": "Actual deployment versions and current supported software constraints are recorded and tested; no unverified PHP/WordPress minimum upgrade is imposed.",
-          "status": "BLOCKED",
+          "status": "DONE",
           "tasks": [
             {
               "id": "E-PU-V2-003-S1-T1",
@@ -336,7 +336,7 @@
               "title": "Run isolated compatibility regression matrix (D03)",
               "description": "",
               "acceptance": "Relevant PHP 8+ and WordPress test combinations pass or have documented failures; release decision is grounded in exact results.",
-              "status": "READY",
+              "status": "DONE",
               "depends_on": [
                 "E-PU-V2-003-S1-T1"
               ],
@@ -349,11 +349,14 @@
                   "title": "Execute the supported plugin bootstrap/activation integration tests on isolated known-version environments.",
                   "description": "",
                   "acceptance": "Results and safe failure handling are linked to exact commits and versions.",
-                  "status": "BLOCKED"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/49"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/49"
             }
-          ]
+          ],
+          "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/49"
         },
         {
           "id": "E-PU-V2-003-S2",
@@ -415,7 +418,8 @@
         "No automatic PHP minimum bump",
         "Keep local vendor/autoload boot",
         "Vendor removal only with verified artifact and explicit approval"
-      ]
+      ],
+      "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/49"
     }
   ],
   "global_quality_gate": "Every implementation requires separate explicit approval; exact PR-head official OpenSpec, runtime safety and independent dependency-security PASS, guarded merge to main and exact registered branch cleanup.",
