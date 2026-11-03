@@ -1,0 +1,101 @@
+{
+  "schema": "universal-orchestrator-v2-reconciliation-checkpoint",
+  "repository": "andrecsmenezes/package-unifier",
+  "checkpoint_generation": 10,
+  "recorded_at": "2026-11-03T21:58:00.147Z",
+  "state": "WAITING_EXTERNAL",
+  "accepted_migration": "MIGRATED_VERIFIED",
+  "approved_scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "prior_approved_plan_blob": "a37fb2bc40e3a28bd32e0ecc7dbe3c6cdd7b96b0",
+  "current_approved_plan_blob": "1ab44040632237a0ba1e7d9513c5f98bc505a8b2",
+  "original_invalid_digest": "dc4e7f66af50374e6cc65b73831e94106078b7eb2a55ce1b56fee5995ecf2843",
+  "restored_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "repair": {
+    "removed_unapproved_scope_attributes": [
+      "E-PU-V2-002-S1-T2-ST1.blocked_reason",
+      "E-PU-V2-003-S1-T2-ST1.blocked_reason"
+    ],
+    "corrected_external_wait_metadata": [
+      "E-PU-V2-002-S1-T2-ST1",
+      "E-PU-V2-003-S1-T2"
+    ],
+    "normalized_epic_states": [
+      {
+        "id": "E-PU-V2-001",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "E-PU-V2-002",
+        "status": "WAITING_EXTERNAL"
+      },
+      {
+        "id": "E-PU-V2-003",
+        "status": "BLOCKED"
+      }
+    ],
+    "scope_ids_acceptance_dependencies_unchanged": true,
+    "checked_against": "andrecsmenezes/agentes/core/plan.py canonical _scope() and validate_plan() rules",
+    "schema_wait_fields_valid": true
+  },
+  "current_main_sha": "f45be4adfa6a37b64771c583125226dcb2f4cf85",
+  "application_runtime_mutated": false,
+  "merged_prs_this_attempt": [],
+  "branches": [
+    "coordination",
+    "main"
+  ],
+  "open_prs": 0,
+  "progress": {
+    "parent_tasks_done": 7,
+    "parent_tasks_total": 12,
+    "subtasks_done": 10,
+    "subtasks_total": 12
+  },
+  "pending_tasks": [
+    {
+      "id": "E-PU-V2-001-S2-T2",
+      "status": "BLOCKED",
+      "depends_on": [],
+      "resume_evidence": null
+    },
+    {
+      "id": "E-PU-V2-002-S1-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [
+        "E-PU-V2-002-S1-T1"
+      ],
+      "resume_evidence": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed."
+    },
+    {
+      "id": "E-PU-V2-003-S1-T1",
+      "status": "BLOCKED",
+      "depends_on": [],
+      "resume_evidence": null
+    },
+    {
+      "id": "E-PU-V2-003-S1-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [
+        "E-PU-V2-003-S1-T1"
+      ],
+      "resume_evidence": "E-PU-V2-003-S1-T1 must have verified authorized target PHP/WordPress/Composer versions before exact integration test targets are selected."
+    },
+    {
+      "id": "E-PU-V2-003-S2-T2",
+      "status": "BLOCKED",
+      "depends_on": [
+        "E-PU-V2-003-S2-T1"
+      ],
+      "resume_evidence": null
+    }
+  ],
+  "next_ready_task": null,
+  "conditions_to_resume": [
+    "Authorized deployment target/release and consented read-only source-export check for E001",
+    "Two owner-supplied sanitized Composer lock/manifest metadata sets for E002",
+    "Authorized deployed PHP/WordPress/Composer runtime observations for E003; only then exact-version tests",
+    "Separately approved artifact/rollback scope and owner signoff before any vendor removal"
+  ],
+  "production_deployment": false,
+  "global_runtime_consolidation": false
+}
