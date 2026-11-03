@@ -4,7 +4,7 @@
   "generation": 13,
   "attempt_id": "pu-v2-e003-s1-compatibility-20261103-g13",
   "task_id": "E-PU-V2-003-S1-T2",
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
@@ -23,22 +23,56 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "ACTIVE",
+  "task_state": "DONE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
-    "generation": 12,
-    "task_id": "E-PU-V2-003-S1-T1",
+    "generation": 13,
+    "task_id": "E-PU-V2-003-S1-T2",
     "task_done": true,
-    "evidence_ref": "orchestration/v2-e003-s1-version-inventory-acceptance.json",
-    "exact_criteria": "or clearly report unknowns",
-    "deployed_versions": "UNKNOWN",
-    "plan_blob": "10147a972362ce7238f878588357d112f765149a",
-    "main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
-    "next_task": "E-PU-V2-003-S1-T2",
-    "next_generation": 13,
-    "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+    "epic_closed": "E-PU-V2-003",
+    "issue_number": 40,
+    "issue_state": "closed",
+    "pr_number": 49,
+    "head_sha": "e6dbb74a7a639fecd7bdf14d4e43f584737fb422",
+    "main_sha": "65a4f87b23cf67a45c5d522985c629595fcbc981",
+    "exact_head_check_status": "PASS_ALL",
+    "wordpress_php_matrix": [
+      "8.0",
+      "8.2",
+      "8.3"
+    ],
+    "wordpress_core": "6.7.1",
+    "temporary_ref_absent": true,
+    "checkpoint_path": "orchestration/v2-execution-checkpoint-g13-20261103.json",
+    "checkpoint_blob": "4b2edbadf1302bc17140029784d8590ef45c3c95",
+    "approved_plan_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+    "plan_blob": "5fe4dafaf257eb9403a1d96d429166d56ca65d1e",
+    "done_parents": 10,
+    "all_parents": 12,
+    "done_subtasks": 11,
+    "all_subtasks": 12,
+    "remaining_tasks": [
+      {
+        "id": "E-PU-V2-001-S2-T2",
+        "status": "BLOCKED",
+        "depends_on": [],
+        "resume_condition": "Explicit authorized deployed target and release required"
+      },
+      {
+        "id": "E-PU-V2-002-S1-T2",
+        "status": "WAITING_EXTERNAL",
+        "depends_on": [
+          "E-PU-V2-002-S1-T1"
+        ],
+        "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed."
+      }
+    ],
+    "next_ready_task": null,
+    "next_generation": 14,
+    "resume_condition": "Authorized existing deployment URL/release and scope for E001 S06; at least two owner-authorized sanitized Composer manifests/locks for E002 D01.",
+    "external_wait": true,
     "production_deployment": false,
-    "live_compatibility_claim": false
+    "vendor_removed": false
   },
   "recovery_of": "pu-v2-e003-s1-version-unknown-20261103-g12",
   "approved_scope": "Run and report exact WordPress/PHP compatibility tests, bootstrap/activation/fail-closed recovery, with version-pinned CI and runtime proof. No production claims or minimum version bump.",
@@ -71,7 +105,7 @@
   },
   "staged_branch": "docs/v2-e002-demand-evidence-20261103",
   "overall_plan_state": "WAITING_EXTERNAL",
-  "released_at": "2026-11-03T22:12:13.151Z",
+  "released_at": "2026-11-03T22:35:09.231Z",
   "claim_reason": "Remove two unintended blocked_reason properties from approved plan; preserve every task ID, status, dependency and acceptance.",
   "readback": {
     "source_plan_sha": "6be280ce77879574a4fa1e6995f3ec7495e3bc54",
