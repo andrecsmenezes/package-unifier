@@ -12,6 +12,11 @@ namespace PackageUnifier\Tools;
 use InvalidArgumentException;
 use Throwable;
 
+// Prevent direct web execution of this explicit-input CLI utility.
+if (PHP_SAPI !== 'cli') {
+    exit;
+}
+
 /**
  * Validate owner-authorized metadata and report shared package observations.
  *
@@ -227,6 +232,7 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && realpath((string) $_SERVER['SCRIPT_FIL
         $file = $argv[2];
         if (
             pathinfo($file, PATHINFO_EXTENSION) !== 'json'
+            || str_contains($file, '://')
             || is_link($file)
             || !is_file($file)
             || !is_readable($file)
