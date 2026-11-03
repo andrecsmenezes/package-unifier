@@ -1,0 +1,379 @@
+{
+  "schema": "universal-orchestrator-v2-proposed-plan",
+  "repository": "andrecsmenezes/package-unifier",
+  "source_main_sha": "432415888f08384c3174315c2beb337e3fce8455",
+  "source_backlog": "historico/legacy-openspec-backlog.md",
+  "state": "APPROVED",
+  "created_date": "2026-11-03",
+  "epics": [
+    {
+      "id": "E-PU-V2-001",
+      "title": "Canonical V2 and residual WordPress runtime safety",
+      "description": "",
+      "acceptance": "Canonical OpenSpec, executable safety regression coverage and explicit external deployment blocker are verified; every merged change follows exact-SHA CI and guarded branch cleanup.",
+      "status": "READY",
+      "priority": "P0",
+      "source_ids": [
+        "O04",
+        "O05",
+        "C08",
+        "S06",
+        "L07",
+        "L08"
+      ],
+      "stories": [
+        {
+          "id": "E-PU-V2-001-S1",
+          "title": "Reconcile canonical OpenSpec and generated tooling",
+          "description": "",
+          "acceptance": "Official CLI-managed integration is verified or documented as not needed; bootstrap safety requirements are canonical, nonduplicate and strict-validated.",
+          "status": "READY",
+          "tasks": [
+            {
+              "id": "E-PU-V2-001-S1-T1",
+              "title": "Review CLI-generated integration (O04)",
+              "description": "",
+              "acceptance": "Any generated integration committed was produced by an actual openspec init/update and its source is recorded; nothing is hand-crafted.",
+              "status": "READY",
+              "source_ids": [
+                "O04"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-001-S1-T1-ST1",
+                  "title": "Run the official CLI on a disposable environment; compare outputs with tracked integration and document the result.",
+                  "description": "",
+                  "acceptance": "CLI invocation and exact generated diff or evidence of no required update are recorded.",
+                  "status": "READY"
+                }
+              ]
+            },
+            {
+              "id": "E-PU-V2-001-S1-T2",
+              "title": "Reconcile archived bootstrap-safety delta (O05)",
+              "description": "",
+              "acceptance": "Relevant behavior from archived changes is represented once in current stable OpenSpec; official strict validation passes.",
+              "status": "READY",
+              "depends_on": [
+                "E-PU-V2-001-S1-T1"
+              ],
+              "source_ids": [
+                "O05"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-001-S1-T2-ST1",
+                  "title": "Compare archived bootstrap-safety spec to current stable spec and inventory overlaps or missing assertions.",
+                  "description": "",
+                  "acceptance": "Diff review and requirement provenance are recorded without resurrecting legacy changes.",
+                  "status": "READY"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E-PU-V2-001-S2",
+          "title": "Bound runtime security claims and deployment verification",
+          "description": "",
+          "acceptance": "Known residual C08 detection gaps are identified and tested within a bounded source scope; external legacy-deployment verification stays blocked without deployment evidence.",
+          "status": "READY",
+          "tasks": [
+            {
+              "id": "E-PU-V2-001-S2-T1",
+              "title": "Bounded dynamic-execution regression analysis (C08)",
+              "description": "",
+              "acceptance": "Bootstrap-reachable first-party paths are enumerated; regression fixtures and real WordPress checks cover the documented cases without claiming full PHP-parser security.",
+              "status": "READY",
+              "source_ids": [
+                "C08"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-001-S2-T1-ST1",
+                  "title": "Map remaining dynamic includes, reflection, non-hook callables and each relevant source-reachable edge.",
+                  "description": "",
+                  "acceptance": "A traceable negative/benign fixture matrix covers verified paths and records unproven cases.",
+                  "status": "READY"
+                }
+              ]
+            },
+            {
+              "id": "E-PU-V2-001-S2-T2",
+              "title": "Verify legacy deployment does not expose source exporter (S06)",
+              "description": "",
+              "acceptance": "Only after an authorized deployment target and current release are supplied, independently verify exporter and source-report endpoints cannot be read anonymously; otherwise remain blocked.",
+              "status": "BLOCKED",
+              "source_ids": [
+                "S06"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-001-S2-T2-ST1",
+                  "title": "Request an authorized deployment/release reference and run a bounded unauthenticated exposure check without secrets.",
+                  "description": "",
+                  "acceptance": "Timestamped external evidence or an explicit no-deployment blocker is recorded.",
+                  "status": "READY"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "constraints": [
+        "No live WordPress plugin scans",
+        "No Composer or vendor mutation at runtime",
+        "No automatic deployment"
+      ]
+    },
+    {
+      "id": "E-PU-V2-002",
+      "title": "Evidence-based dependency consolidation decision",
+      "description": "",
+      "acceptance": "A recorded, evidence-backed go/no-go decision exists for A local vendor, B offline read-only comparison, or C isolated CLI-only assessment; unsafe global runtime merging remains prohibited.",
+      "status": "READY",
+      "priority": "P1",
+      "source_ids": [
+        "D01",
+        "C02",
+        "D02"
+      ],
+      "stories": [
+        {
+          "id": "E-PU-V2-002-S1",
+          "title": "Establish measured demand without runtime scans",
+          "description": "",
+          "acceptance": "Any real dependency-unification need is supported by authorized, reproducible evidence; absent evidence causes a recorded no-go.",
+          "status": "READY",
+          "tasks": [
+            {
+              "id": "E-PU-V2-002-S1-T1",
+              "title": "Identify verifiable dependency-conflict use case (D01)",
+              "description": "",
+              "acceptance": "Record a named use case, affected plugin and measured cross-plugin conflict, or explicitly record that the need remains unverified.",
+              "status": "READY",
+              "source_ids": [
+                "D01"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-002-S1-T1-ST1",
+                  "title": "Define a privacy-safe evidence schema for supplied manifest and lock metadata.",
+                  "description": "",
+                  "acceptance": "The evidence template rejects secrets, filesystem scans and unsupported assertions.",
+                  "status": "READY"
+                }
+              ]
+            },
+            {
+              "id": "E-PU-V2-002-S1-T2",
+              "title": "Run bounded offline read-only comparison (D01)",
+              "description": "",
+              "acceptance": "Only explicitly supplied manifests/lockfiles are compared offline, with an explained version/conflict matrix; no production plugin scan occurs.",
+              "status": "BLOCKED",
+              "depends_on": [
+                "E-PU-V2-002-S1-T1"
+              ],
+              "source_ids": [
+                "D01"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-002-S1-T2-ST1",
+                  "title": "Check supplied metadata for semver incompatibilities in an isolated read-only test fixture.",
+                  "description": "",
+                  "acceptance": "The resulting table records actual constraints, versions, provenance and unknowns.",
+                  "status": "READY"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E-PU-V2-002-S2",
+          "title": "Design safe alternatives and owner decision",
+          "description": "",
+          "acceptance": "A/B/C options are reviewed against isolation, semver, load order, rollback, authorization and concurrency; no global runtime consolidation is authorized.",
+          "status": "READY",
+          "tasks": [
+            {
+              "id": "E-PU-V2-002-S2-T1",
+              "title": "Assess safe architecture and transaction gates (C02/D02)",
+              "description": "",
+              "acceptance": "Review local autoload, offline read-only comparison and opt-in sandboxed CLI alternatives, including conflict isolation, rollback, concurrency and atomicity.",
+              "status": "READY",
+              "depends_on": [
+                "E-PU-V2-002-S1-T1"
+              ],
+              "source_ids": [
+                "C02",
+                "D02"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-002-S2-T1-ST1",
+                  "title": "Produce a testable threat/conflict/rollback matrix with a fail-closed default.",
+                  "description": "",
+                  "acceptance": "The matrix records mandatory preconditions, rejection cases and safe cancellation.",
+                  "status": "READY"
+                }
+              ]
+            },
+            {
+              "id": "E-PU-V2-002-S2-T2",
+              "title": "Record go/no-go decision (D01/D02)",
+              "description": "",
+              "acceptance": "Document the selected option and explicit named-owner authorization, or retain local vendor as a measured no-go; implementation is not automatically approved.",
+              "status": "READY",
+              "depends_on": [
+                "E-PU-V2-002-S2-T1"
+              ],
+              "source_ids": [
+                "D01",
+                "D02"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-002-S2-T2-ST1",
+                  "title": "Present source-backed alternatives and capture the decision boundary.",
+                  "description": "",
+                  "acceptance": "Decision states permitted scope and requires a separate approved OpenSpec change before application code changes.",
+                  "status": "READY"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "constraints": [
+        "No runtime global classloader",
+        "No vendor/node_modules mutations",
+        "No live scan of installed plugins",
+        "Separate authorization for any CLI-only prototype"
+      ]
+    },
+    {
+      "id": "E-PU-V2-003",
+      "title": "WordPress/PHP compatibility and reproducible packaging",
+      "description": "",
+      "acceptance": "Verified version and deployment compatibility evidence, reproducible Composer artifacts and a conditional vendor-retention decision are available; no implicit production deployment.",
+      "status": "READY",
+      "priority": "P1",
+      "source_ids": [
+        "D03",
+        "C03"
+      ],
+      "stories": [
+        {
+          "id": "E-PU-V2-003-S1",
+          "title": "Verify actual support and compatibility",
+          "description": "",
+          "acceptance": "Actual deployment versions and current supported software constraints are recorded and tested; no unverified PHP/WordPress minimum upgrade is imposed.",
+          "status": "READY",
+          "tasks": [
+            {
+              "id": "E-PU-V2-003-S1-T1",
+              "title": "Verify deployed PHP, WordPress and Composer versions (D03)",
+              "description": "",
+              "acceptance": "Record authorized deployed version evidence or clearly report unknowns; compare with declared composer.json and official support matrix.",
+              "status": "BLOCKED",
+              "source_ids": [
+                "D03"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-003-S1-T1-ST1",
+                  "title": "Collect a source-backed version matrix without requiring production credentials in the repository.",
+                  "description": "",
+                  "acceptance": "Version evidence includes source, observation date, runtime/manifest distinction and unsupported cases.",
+                  "status": "READY"
+                }
+              ]
+            },
+            {
+              "id": "E-PU-V2-003-S1-T2",
+              "title": "Run isolated compatibility regression matrix (D03)",
+              "description": "",
+              "acceptance": "Relevant PHP 8+ and WordPress test combinations pass or have documented failures; release decision is grounded in exact results.",
+              "status": "READY",
+              "depends_on": [
+                "E-PU-V2-003-S1-T1"
+              ],
+              "source_ids": [
+                "D03"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-003-S1-T2-ST1",
+                  "title": "Execute the supported plugin bootstrap/activation integration tests on isolated known-version environments.",
+                  "description": "",
+                  "acceptance": "Results and safe failure handling are linked to exact commits and versions.",
+                  "status": "READY"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E-PU-V2-003-S2",
+          "title": "Decide reproducible Composer package strategy",
+          "description": "",
+          "acceptance": "A clean local Composer build can reproduce expected artifacts and restore plugin-local autoload; committed vendor removal remains conditional on a verified delivery strategy.",
+          "status": "READY",
+          "tasks": [
+            {
+              "id": "E-PU-V2-003-S2-T1",
+              "title": "Reproduce composer.lock install and deploy artifact (C03)",
+              "description": "",
+              "acceptance": "Clean-build reproduction, immutable lock resolution, artifact inventory and WordPress-local autoload recovery are evidenced.",
+              "status": "READY",
+              "source_ids": [
+                "C03"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-003-S2-T1-ST1",
+                  "title": "Rebuild the locked dependency artifact in isolation and compare packaged files and bootstrap tests.",
+                  "description": "",
+                  "acceptance": "Artifacts and failure/rollback checks have traceable test output and exact source SHA.",
+                  "status": "READY"
+                }
+              ]
+            },
+            {
+              "id": "E-PU-V2-003-S2-T2",
+              "title": "Gate optional removal of committed vendor directory (C03)",
+              "description": "",
+              "acceptance": "Do not remove tracked vendor unless reproducibility, installation/deployment plan, recovery and rollback are independently verified and approved.",
+              "status": "BLOCKED",
+              "depends_on": [
+                "E-PU-V2-003-S2-T1"
+              ],
+              "source_ids": [
+                "C03"
+              ],
+              "subtasks": [
+                {
+                  "id": "E-PU-V2-003-S2-T2-ST1",
+                  "title": "Document keep-vs-remove tradeoffs using test results and a separate owner approval gate.",
+                  "description": "",
+                  "acceptance": "No vendor removal occurs in this epic without a new approved OpenSpec change and release plan.",
+                  "status": "READY"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "constraints": [
+        "No automatic PHP minimum bump",
+        "Keep local vendor/autoload boot",
+        "Vendor removal only with verified artifact and explicit approval"
+      ]
+    }
+  ],
+  "global_quality_gate": "Every implementation requires separate explicit approval; exact PR-head official OpenSpec, runtime safety and independent dependency-security PASS, guarded merge to main and exact registered branch cleanup.",
+  "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
+  "approval_required": true
+}
