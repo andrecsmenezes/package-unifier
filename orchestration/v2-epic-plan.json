@@ -365,7 +365,7 @@
           "title": "Decide reproducible Composer package strategy",
           "description": "",
           "acceptance": "A clean local Composer build can reproduce expected artifacts and restore plugin-local autoload; committed vendor removal remains conditional on a verified delivery strategy.",
-          "status": "BLOCKED",
+          "status": "DONE",
           "tasks": [
             {
               "id": "E-PU-V2-003-S2-T1",
@@ -393,7 +393,7 @@
               "title": "Gate optional removal of committed vendor directory (C03)",
               "description": "",
               "acceptance": "Do not remove tracked vendor unless reproducibility, installation/deployment plan, recovery and rollback are independently verified and approved.",
-              "status": "BLOCKED",
+              "status": "DONE",
               "depends_on": [
                 "E-PU-V2-003-S2-T1"
               ],
@@ -409,9 +409,11 @@
                   "status": "DONE",
                   "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/47"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/48"
             }
-          ]
+          ],
+          "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/48"
         }
       ],
       "constraints": [
