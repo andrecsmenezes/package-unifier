@@ -1,0 +1,86 @@
+{
+  "schema": "orchestrator-repository-adoption-closeout-v2",
+  "repository": "andrecsmenezes/package-unifier",
+  "generation": "v2",
+  "status": "MIGRATED_VERIFIED",
+  "accepted": true,
+  "main_sha": "432415888f08384c3174315c2beb337e3fce8455",
+  "receipt_path": "orchestration/migration-receipt.json",
+  "source_main_before_migration": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+  "official_preflight": {
+    "cli": "1.14.3",
+    "result": "PASS",
+    "command": "openspec validate --all --strict",
+    "spec_digest": "886a2a1fc4d17d6a99560d4bd607327205d41d60f1e145c6622a59a02d7f7c0e"
+  },
+  "history": {
+    "archived_merged_prs": 35,
+    "archived_legacy_openspec_change_files": 13,
+    "verified_original_source_file_shas": 10,
+    "archive_catalog": "historico/catalog.json",
+    "archival_integrity_report": "orchestration/archival-integrity-verification.json",
+    "runtime_code_modified": false
+  },
+  "migration_pr": {
+    "number": 36,
+    "url": "https://github.com/andrecsmenezes/package-unifier/pull/36",
+    "head_sha": "90764c8501580c9ae1dda70e134ab27d4b9f71a6",
+    "merge_sha": "8ecfc467d769079e29551e6a5f6744b33554b687",
+    "head_ci": {
+      "runtime_safety": 41708212034,
+      "openspec": 41708212063,
+      "dependency_security": 41708212182
+    },
+    "checks": "ALL_PASS"
+  },
+  "cleanup_pr": {
+    "number": 37,
+    "url": "https://github.com/andrecsmenezes/package-unifier/pull/37",
+    "head_sha": "d4ef20e909d355a6a8f1bdaaf152b05f09b7c66f",
+    "merge_sha": "432415888f08384c3174315c2beb337e3fce8455",
+    "head_ci": {
+      "runtime_safety": 41708946913,
+      "openspec": 41708947230,
+      "dependency_security": 41708946980
+    },
+    "checks": "ALL_PASS"
+  },
+  "main_ci": {
+    "runtime_safety": {
+      "id": 41709142408,
+      "conclusion": "success"
+    },
+    "openspec": {
+      "id": 41709142693,
+      "conclusion": "success"
+    },
+    "dependency_security": {
+      "id": 41709142459,
+      "conclusion": "success"
+    }
+  },
+  "cleanup": {
+    "workflow_run_id": 41709142412,
+    "job_id": 126172308375,
+    "workflow_url": "https://github.com/andrecsmenezes/package-unifier/actions/runs/41709142412",
+    "job_conclusion": "success",
+    "deleted_refs": [
+      "chore/adopt-orchestrator-v2-20261103",
+      "chore/v2-migration-cleanup-20261103"
+    ],
+    "log": "deleted_branches=chore/adopt-orchestrator-v2-20261103,chore/v2-migration-cleanup-20261103",
+    "log_completion": "BRANCH_CLEANUP=READY",
+    "remote_absence_readback": true,
+    "retained_refs": [
+      "main",
+      "coordination"
+    ]
+  },
+  "post_adoption": {
+    "old_tasks_executable": false,
+    "next_scope": "NEW FINITE PROPOSED EPIC REQUIRES SEPARATE USER APPROVAL",
+    "application_runtime_consolidation": "DISABLED",
+    "production_deployment": "NOT_PERFORMED"
+  },
+  "verified_date": "2026-11-03"
+}
