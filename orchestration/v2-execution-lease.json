@@ -4,7 +4,7 @@
   "generation": 2,
   "attempt_id": "pu-v2-e001-s2-c08-20261103-a2",
   "task_id": "E-PU-V2-001-S2-T1",
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
@@ -23,17 +23,23 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "ACTIVE",
+  "task_state": "WAITING_EXTERNAL",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
-    "pr": 41,
-    "merge_sha": "9116d997157c91c4d0b9746faf8beaa6fc243247",
-    "required_pr_checks": "ALL_SUCCESS",
-    "temporary_branch_deleted": true,
-    "remaining_epic_task": "E-PU-V2-001-S2-T1",
-    "external_blocker": "E-PU-V2-001-S2-T2: authorized deployment evidence unavailable",
-    "plan_blob": "0c4255ac29ae91daad25504e43afd4eff520a72e",
-    "next_lease_generation": 3
+    "task_id": "E-PU-V2-001-S2-T1",
+    "run_id": 41715075446,
+    "pr_number": 42,
+    "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
+    "three_other_required_checks": "PASS",
+    "external_wait": {
+      "category": "GITHUB_ACTIONS_WORDPRESS_INTEGRATION",
+      "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/actions/runs/41715075446",
+      "resume_condition": "Exact PR #42 head 3689463b583026649a1f692758a1b419f6aea60d has completed-success WordPress integration and all other mandatory CI checks; only then merge with expected head SHA.",
+      "checked_at": "2026-11-03T20:45:14.200Z"
+    },
+    "next_independent": "E-PU-V2-002-S1-T1-ST1",
+    "plan_blob_sha": "cd43498a9024ccd58bc149cb31daddaadee87365",
+    "main_sha": "9116d997157c91c4d0b9746faf8beaa6fc243247"
   },
   "recovery_of": "pu-v2-e001-s1-20261103-a1"
 }
