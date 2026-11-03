@@ -221,6 +221,13 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Delete only after exact-head official OpenSpec, runtime-safety and independent dependency security PASS, verified main merge, unchanged current ref SHA, no open PR and remote branch absence readback.",
       "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "fix/v2-e003-reproducible-lock-20261103",
+      "work_unit_id": "PU-V2-E003-S2-LOCK-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Exact-head PHP 8.0 runtime and Composer strict validation, real WordPress integration, OpenSpec, independent dependency-security PASS; main merge verified; no open PR, unchanged branch head SHA and remote absence readback before deletion.",
+      "registered_date": "2026-11-03"
     }
   ]
 }
