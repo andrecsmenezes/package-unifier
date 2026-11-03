@@ -1,0 +1,29 @@
+{
+  "schema": "universal-orchestrator-v2-task-acceptance-evidence",
+  "repository": "andrecsmenezes/package-unifier",
+  "recorded_date": "2026-11-03",
+  "plan_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "task_id": "E-PU-V2-003-S1-T1",
+  "task_acceptance": "Record authorized deployed version evidence or clearly report unknowns; compare with declared composer.json and official support matrix.",
+  "selected_alternative": "CLEARLY_REPORT_DEPLOYED_VERSIONS_AS_UNKNOWN",
+  "status": "ACCEPTANCE_ALTERNATIVE_SUPPORTED",
+  "source_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
+  "source_file": "docs/evidence/v2-e003-s1-version-support-matrix.md",
+  "source_blob_sha": "663251afb1c9e505a0abcd38ffedca974829efce",
+  "related_verified_pr": 47,
+  "verified_fields": {
+    "installed_php": "UNKNOWN",
+    "installed_wordpress": "UNKNOWN",
+    "installed_composer": "UNKNOWN",
+    "installed_package_unifier_release": "UNKNOWN",
+    "declared_php": "^8.0",
+    "declared_wp_minimum": "5.6",
+    "intended_target_wp": "6.7.1",
+    "official_php_support_matrix_link": "https://www.php.net/supported-versions.php",
+    "official_wp_php_table": "https://make.wordpress.org/core/handbook/references/php-compatibility-and-wordpress-versions/"
+  },
+  "authorization": "User explicitly approved all required repository changes and confirms a single writer; no authorized installed-site identifier supplied.",
+  "boundary": "This closes the explicit 'or clearly report unknowns' alternative for version inventory only. It does not prove production compatibility, authorize live probing, deployment, or assert an observed release.",
+  "next_task": "E-PU-V2-003-S1-T2",
+  "next_task_boundary": "Run deterministic isolated WP 6.7.1/PHP version combinations, report exact results, never claim deployed site compatibility."
+}
