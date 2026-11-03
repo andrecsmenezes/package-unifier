@@ -1,29 +1,30 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 8,
-  "attempt_id": "pu-v2-e003-s2-lock-repro-20261103-a8",
-  "task_id": "E-PU-V2-003-S2-T1",
-  "status": "RELEASED",
+  "generation": 9,
+  "attempt_id": "pu-v2-remaining-subtasks-evidence-20261103-a9",
+  "task_id": "PU-V2-REMAINING-DOCUMENTARY-SUBTASKS",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
-  "expected_main_sha": "f415de1a948795737b5e5f6f9b4b49bc2a8c9bdd",
+  "expected_main_sha": "a99e46e3da4d8c8d8e36b8292b914cd7ebe39903",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-003-S2-T1-ST1",
-    "E-PU-V2-003-S2-T1"
+    "E-PU-V2-001-S2-T2-ST1",
+    "E-PU-V2-003-S1-T1-ST1",
+    "E-PU-V2-003-S2-T2-ST1"
   ],
-  "current_stage": "ISOLATED_LOCK_ARTIFACT_REPRODUCTION",
-  "claimed_at": "2026-11-03",
-  "writer_attestation": "No open PR; only main and permanent coordination refs.",
+  "current_stage": "BOUND_DOCUMENTARY_READBACK",
+  "claimed_at": "2026-11-03T21:41:15.566Z",
+  "writer_attestation": "main and coordination only, no open PRs, receipt MIGRATED_VERIFIED, preclaim approved plan digest matches.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "task_id": "E-PU-V2-003-S2-T1",
@@ -80,8 +81,8 @@
     "resume_condition": "User provides independently verifiable deployment/version evidence, owner-supplied sanitized manifests, or new separate authorization; reconcile current plan and re-claim generation 9 before mutations.",
     "production_deploy": false
   },
-  "recovery_of": "pu-v2-e002-s2-decision-20261103-a7",
-  "approved_scope": "Reproduce exact composer.lock installation, isolated artifact inventory and WordPress-local autoload fixture. No production install, vendor removal, runtime mutations or release.",
+  "recovery_of": "pu-v2-e003-s2-lock-repro-20261103-a8",
+  "approved_scope": "Source-backed deployed-version unknown matrix, keep-vs-remove-vendor gate, explicit no-authorized-deployment blocker. No scans, deploys, runtime changes, package removal, or release authorization.",
   "resume_evidence": {
     "pr_number": 42,
     "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
