@@ -346,7 +346,7 @@
               "title": "Reproduce composer.lock install and deploy artifact (C03)",
               "description": "",
               "acceptance": "Clean-build reproduction, immutable lock resolution, artifact inventory and WordPress-local autoload recovery are evidenced.",
-              "status": "READY",
+              "status": "DONE",
               "source_ids": [
                 "C03"
               ],
@@ -356,9 +356,11 @@
                   "title": "Rebuild the locked dependency artifact in isolation and compare packaged files and bootstrap tests.",
                   "description": "",
                   "acceptance": "Artifacts and failure/rollback checks have traceable test output and exact source SHA.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/46"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/46"
             },
             {
               "id": "E-PU-V2-003-S2-T2",
