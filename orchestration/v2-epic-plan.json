@@ -158,7 +158,7 @@
               "title": "Identify verifiable dependency-conflict use case (D01)",
               "description": "",
               "acceptance": "Record a named use case, affected plugin and measured cross-plugin conflict, or explicitly record that the need remains unverified.",
-              "status": "READY",
+              "status": "DONE",
               "source_ids": [
                 "D01"
               ],
@@ -168,9 +168,11 @@
                   "title": "Define a privacy-safe evidence schema for supplied manifest and lock metadata.",
                   "description": "",
                   "acceptance": "The evidence template rejects secrets, filesystem scans and unsupported assertions.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/43"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/43"
             },
             {
               "id": "E-PU-V2-002-S1-T2",
