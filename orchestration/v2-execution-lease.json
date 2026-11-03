@@ -4,7 +4,7 @@
   "generation": 15,
   "attempt_id": "pu-e002-s1-offline-metadata-compare-20261103-g15",
   "task_id": "E-PU-V2-002-S1-T2",
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
@@ -23,65 +23,54 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "ACTIVE",
+  "task_state": "WAITING_EXTERNAL",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
-    "generation": 14,
-    "task_id": "E-PU-V2-001-S2-T2",
-    "parent_status": "WAITING_EXTERNAL",
-    "pr_number": 50,
-    "merge_sha": "74054c5aff45cc30501892d063f117b4072d2338",
-    "head_sha": "0136784f91cb524280fb5cb3419f8c4a1e051380",
-    "isolated_ci_run": 41733524038,
-    "exact_head_ci": [
-      {
-        "name": "openspec",
-        "run_id": 41733524237,
-        "conclusion": "success"
-      },
-      {
-        "name": "runtime-safety",
-        "run_id": 41733524037,
-        "conclusion": "success"
-      },
-      {
-        "name": "Dependency security (parallel)",
-        "run_id": 41733524146,
-        "conclusion": "success"
-      },
-      {
-        "name": "WordPress integration",
-        "run_id": 41733524038,
-        "conclusion": "success"
-      }
-    ],
-    "wordpress_php_matrix": [
-      {
-        "name": "WordPress 6.7.1 / PHP 8.0",
-        "job_id": 126256688925,
-        "conclusion": "success"
-      },
-      {
-        "name": "WordPress 6.7.1 / PHP 8.2",
-        "job_id": 126256688325,
-        "conclusion": "success"
-      },
-      {
-        "name": "WordPress 6.7.1 / PHP 8.3",
-        "job_id": 126256688864,
-        "conclusion": "success"
-      }
-    ],
-    "temporary_branch_deleted": true,
-    "proof_blob": "51fc4219860ddd6696568983fb99f35eb6ac4197",
+    "generation": 15,
+    "task_id": "E-PU-V2-002-S1-T2",
+    "task_status": "WAITING_EXTERNAL",
+    "pr_number": 51,
+    "head_sha": "0bbbc02c151a7aca995d85ebbd6bd984ade722cf",
+    "merge_sha": "93caade6d845e040ee66141f8344ffe1682c677b",
+    "synthetic_cases": 15,
+    "exact_head_ci": "ALL_PASS",
+    "temporary_ref_absent": true,
+    "other_pr_number": 50,
+    "isolated_source_export_test": "PASS",
+    "external_source_export_test": "NOT_RUN_NO_AUTHORIZED_TARGET",
+    "checkpoint_path": "orchestration/v2-execution-checkpoint-g15-20261103.json",
+    "checkpoint_blob": "f0788b6655554c2c726a5c3a1c507493f42fce65",
     "plan_blob": "fd90210816c9018eafd3160ef3664eca8873cbee",
-    "completed_parent_tasks": 10,
-    "remaining_parent_tasks": 2,
-    "next_independent_task": "E-PU-V2-002-S1-T2",
-    "next_generation": 15,
-    "source_main_sha": "74054c5aff45cc30501892d063f117b4072d2338",
-    "prohibited_claim": "No external deployed S06 endpoint has been tested; epic #38 remains open.",
-    "next_resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage."
+    "approved_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+    "parent_done": 10,
+    "parent_total": 12,
+    "subtasks_done": 11,
+    "subtasks_total": 12,
+    "remaining_tasks": [
+      {
+        "id": "E-PU-V2-001-S2-T2",
+        "status": "WAITING_EXTERNAL",
+        "depends_on": [],
+        "resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage."
+      },
+      {
+        "id": "E-PU-V2-002-S1-T2",
+        "status": "WAITING_EXTERNAL",
+        "depends_on": [
+          "E-PU-V2-002-S1-T1"
+        ],
+        "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed."
+      }
+    ],
+    "open_epics": [
+      "E-PU-V2-001",
+      "E-PU-V2-002"
+    ],
+    "next_ready_task": null,
+    "next_generation": 16,
+    "resume_condition": "User supplies verified authorized deployed site URL/release and allowed anonymous endpoint paths for E001; or at least two explicit sanitized authorized plugin Composer metadata records for E002. Do not infer these sources or authorize production changes from generic repository-write permission.",
+    "production_deployment": false,
+    "global_consolidation": false
   },
   "recovery_of": "pu-v2-e003-s1-compatibility-20261103-g13",
   "approved_scope": "Build PHP 8.0 standalone offline metadata comparison using only an explicitly provided sanitized JSON file conforming to the existing schema; reject unknown fields, conflicts remain UNKNOWN until Composer-semver proof; use synthetic test fixtures; do not scan installed plugins, run Composer or mutate vendor. Keep E002 S1-T2 WAITING_EXTERNAL until real input provided.",
@@ -114,7 +103,7 @@
   },
   "staged_branch": "docs/v2-e002-demand-evidence-20261103",
   "overall_plan_state": "WAITING_EXTERNAL",
-  "released_at": "2026-11-03T22:49:54.130Z",
+  "released_at": "2026-11-03T23:02:09.863Z",
   "claim_reason": "Remove two unintended blocked_reason properties from approved plan; preserve every task ID, status, dependency and acceptance.",
   "readback": {
     "source_plan_sha": "6be280ce77879574a4fa1e6995f3ec7495e3bc54",
