@@ -27,14 +27,14 @@
           "title": "Reconcile canonical OpenSpec and generated tooling",
           "description": "",
           "acceptance": "Official CLI-managed integration is verified or documented as not needed; bootstrap safety requirements are canonical, nonduplicate and strict-validated.",
-          "status": "READY",
+          "status": "DONE",
           "tasks": [
             {
               "id": "E-PU-V2-001-S1-T1",
               "title": "Review CLI-generated integration (O04)",
               "description": "",
               "acceptance": "Any generated integration committed was produced by an actual openspec init/update and its source is recorded; nothing is hand-crafted.",
-              "status": "READY",
+              "status": "DONE",
               "source_ids": [
                 "O04"
               ],
@@ -44,16 +44,18 @@
                   "title": "Run the official CLI on a disposable environment; compare outputs with tracked integration and document the result.",
                   "description": "",
                   "acceptance": "CLI invocation and exact generated diff or evidence of no required update are recorded.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/41"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/41"
             },
             {
               "id": "E-PU-V2-001-S1-T2",
               "title": "Reconcile archived bootstrap-safety delta (O05)",
               "description": "",
               "acceptance": "Relevant behavior from archived changes is represented once in current stable OpenSpec; official strict validation passes.",
-              "status": "READY",
+              "status": "DONE",
               "depends_on": [
                 "E-PU-V2-001-S1-T1"
               ],
@@ -66,11 +68,14 @@
                   "title": "Compare archived bootstrap-safety spec to current stable spec and inventory overlaps or missing assertions.",
                   "description": "",
                   "acceptance": "Diff review and requirement provenance are recorded without resurrecting legacy changes.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/41"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/41"
             }
-          ]
+          ],
+          "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/41"
         },
         {
           "id": "E-PU-V2-001-S2",
