@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "owner": "andrecsmenezes/package-unifier",
+  "deletion_intents": [
+    {
+      "branch": "docs/manifest-runtime-reality-20261027",
+      "work_unit_id": "PKG-MANIFEST-REALITY-20261027",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Temporary metadata-only correction; exact-head CI and security gates, verified main merge and branch SHA lease required before deletion.",
+      "registered_date": "2026-10-27"
+    },
+    {
+      "branch": "docs/pkg-i18n-runtime-format-audit-20261027",
+      "work_unit_id": "PKG-I18N-RUNTIME-AUDIT-20261027-01",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Source-grounded closure of pending runtime i18n formatter audit; delete only after exact-head CI success and verified main merge",
+      "registered_date": "2026-10-27",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/registered-deletion-gate-20261027",
+      "work_unit_id": "PKG-REGISTERED-BRANCH-CLEANUP-20261027-01",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Fail-closed cleanup: only explicitly registered, exact merged-head temporary refs may be removed after independent CI/security checks and main merge.",
+      "registered_date": "2026-10-27"
+    },
+    {
+      "branch": "docs/normalize-openspec-backlog-20261027-0950",
+      "work_unit_id": "PKG-BACKLOG-NORMALIZE-20261027-0950",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Canonical AI-only backlog normalization; delete only after exact-head tests, security, verified main merge and branch SHA provenance",
+      "registered_date": "2026-10-27",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/track-composer-lock-20261027-4d7q",
+      "work_unit_id": "PKG-IGNORE-COMPOSER-LOCK-20261027-4D7Q",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete only after exact-head PR integration to main and branch ref verification.",
+      "registered_date": "2026-10-27"
+    },
+    {
+      "branch": "fix/pkg-branch-ref-recheck-20261027-q6a9",
+      "work_unit_id": "PKG-BRANCH-PREDELETE-REF-RECHECK-20261027-Q6A9",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Read exact current GitHub branch ref SHA immediately before deletion; reduce moved-ref deletion exposure; deletion allowed only after exact-head CI, main merge and verified unchanged ref",
+      "registered_date": "2026-10-27",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "test/wordpress-hook-callback-registry-20261028-n4t8",
+      "work_unit_id": "PKG-C08-WP-RUNTIME-HOOKS-20261028-N4T8",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Test first-party WordPress hook registry in actual wp-env; delete only after exact-head required CI and security, verified main merge, SHA lease and cleanup run.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/pkg-remove-unused-global-vendor-20261028-7k2q",
+      "work_unit_id": "PKG-CLEAN-CODE-GLOBALVENDOR-20261028-7K2Q",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Obsolete global Composer vendor path constants removal; exact-head CI/security, verified main merge and SHA lease required before deletion.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "docs/pkg-c08-hook-evidence-20261028-m7q9",
+      "work_unit_id": "PKG-C08-WP-HOOK-EVIDENCE-20261028-M7Q9",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "C08 provenance correction only; exact-head CI/security, verified main merge and unchanged branch-head lease required before cleanup.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "test/pkg-hook-callable-registry-20261028-x7f3",
+      "work_unit_id": "PKG-C08-DYNAMIC-CALLBACKS-20261028-X7F3",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "After same-head WordPress, OpenSpec, runtime-safety and dependency-security success, verified main merge and remote SHA lease.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/pkg-c08-reflective-dispatch-20261028-8k6q",
+      "work_unit_id": "PKG-C08-REFLECTIVE-DISPATCH-20261028-8K6Q",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Only delete after same-head safety/WordPress/OpenSpec/security CI, verified main merge and unchanged SHA lease",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/c08-dynamic-method-20261028-p6m4",
+      "work_unit_id": "PKG-C08-UNBRACED-PHP-DYNAMIC-20261028-P6M4",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete only after exact-head CI/security success, verified main merge, unchanged remote ref and cleanup readback.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/c08-static-braced-method-20261028-p6m4",
+      "work_unit_id": "PKG-C08-BRACED-STATIC-20261028-P6M4",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete after exact-head source/OpenSpec/dependency checks, verified main integration and unchanged remote ref.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/php-shell-backtick-guard-20261028-p6t2",
+      "work_unit_id": "PU-PHP-SHELL-BACKTICK-P6T2",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Only delete after exact PR28 head passing required CI/security, verified integration to main and unchanged branch SHA lease.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/c08-variable-variable-invocation-20261028-s5v2",
+      "work_unit_id": "PKG-C08-VARIABLE-CALLABLE-GUARD-20261028-S5V2",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Guard previously undetected braced and parenthesized variable callable invocation in bootstrap-reachable PHP; delete only after exact-head tests, dependency security, verified merge and unchanged remote branch ref.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED"
+    },
+    {
+      "branch": "fix/c08-literal-callable-20261028-h3p7",
+      "work_unit_id": "PKG-C08-LITERAL-CALLABLE-20261028-H3P7",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Static PHP guard and regressions; delete only after exact-head independent CI/security/OpenSpec PASS, verified main merge and unchanged branch-ref lease.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-C08-LITCALL-H3P7-001"
+    },
+    {
+      "branch": "fix/c08-local-autoload-include-20261028-l9d4",
+      "work_unit_id": "PKG-C08-RESTRICT-LOCAL-AUTOLOAD-20261028-L9D4",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Security guard restricts allowed WordPress local autoload to root require_once only; delete after exact-head OpenSpec, runtime, integration and dependency-security PASS, verified main merge and unchanged branch SHA",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-C08-LOCAL-INCLUDE-L9D4-001"
+    },
+    {
+      "branch": "docs/openspec-cli-proof-20261028-n8f2",
+      "work_unit_id": "PKG-OPENSPEC-PROOF-CHECKLIST-20261028-N8F2",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Canonical bootstrap-safety OpenSpec task repaired from observed official CLI exact-main PASS; delete after exact-PR-head gates, verified merge and unchanged branch SHA; archive remains OPEN",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-OPENSPEC-PROOF-N8F2-001"
+    },
+    {
+      "branch": "fix/c08-parenthesized-callable-receiver-20261028-v7n2",
+      "work_unit_id": "PKG-C08-PAREN-CALLABLE-RECEIVER-20261028-V7N2",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "PHP-proven callable receiver dispatch regression; delete only after exact-head safety/official OpenSpec/dependency CI, verified main merge and unchanged SHA",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-C08-CALLRECV-V7N2-001"
+    },
+    {
+      "branch": "docs/pkg-d01-alternatives-20261028-r6m8",
+      "work_unit_id": "PKG-D01-ALTERNATIVES-20261028-R6M8",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Documented D01 tradeoff only; remove after exact-head CI/OpenSpec/security PASS, verified main merge and unchanged remote ref.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-D01-ALTERNATIVES-20261028-R6M8-001"
+    },
+    {
+      "branch": "docs/pkg-d03-support-snapshot-20261028-r6m8",
+      "work_unit_id": "PKG-D03-PHP-WORDPRESS-SUPPORT-20261028-R6M8",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Documentary support snapshot only; delete exact branch only after required HEAD CI/security/OpenSpec PASS, verified main merge, unchanged ref.",
+      "registered_date": "2026-10-28",
+      "state": "INTENT_REGISTERED",
+      "preaction_decision": "DEC-PKG-D03-SUPPORT-20261028-R6M8-002"
+    }
+  ]
+}
