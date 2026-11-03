@@ -22,6 +22,8 @@ jobs:
         run: |
           php -l package-unifier.php
           find src -type f -name '*.php' -exec php -l {} \;
+          php -l scripts/compare_composer_metadata.php
+          php -l scripts/test_offline_composer_metadata.php
       - name: Validate Composer lock consistency
         run: composer validate --no-check-publish --strict
       - name: Verify retained local autoloader is committed
@@ -29,6 +31,8 @@ jobs:
           test -f vendor/autoload.php
           git ls-files --error-unmatch vendor/autoload.php
           php -r 'require "vendor/autoload.php"; if (!class_exists("Composer\\InstalledVersions")) { exit(1); }'
+      - name: Offline owner-supplied Composer metadata comparison fixtures
+        run: php scripts/test_offline_composer_metadata.php
       - name: WordPress bootstrap fixture regression
         run: php scripts/test_wordpress_bootstrap.php
       - name: Fail-closed bootstrap contract
