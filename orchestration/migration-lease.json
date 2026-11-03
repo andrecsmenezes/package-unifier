@@ -2,9 +2,9 @@
   "schema": "orchestrator-v2-migration-lease",
   "repository": "andrecsmenezes/package-unifier",
   "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
-  "attempt_id": "migration-pkg-unifier-20261103-03",
-  "generation": 3,
-  "status": "RELEASED",
+  "attempt_id": "migration-pkg-unifier-20261103-04",
+  "generation": 4,
+  "status": "ACTIVE",
   "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
   "claimed_at": "2026-11-03T19:30:00Z",
   "expires_at": "2026-11-03T20:15:00Z",
@@ -32,14 +32,15 @@
     "adoption_pr_created": false,
     "required_next_step": "Obtain official OpenSpec validate --all --strict pre-PR proof of exact candidate; independently verify run, version, digest before any PR"
   },
-  "recovery_of": "migration-pkg-unifier-20261103-02",
-  "current_stage": "OPENSPEC_PREFLIGHT",
+  "recovery_of": "migration-pkg-unifier-20261103-03",
+  "current_stage": "REPAIR_LEGACY_OPENSPEC_PREFLIGHT",
   "reconciliation": {
-    "main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
-    "original_archival_staging_commits": 11,
-    "changed_application_files": [],
+    "previous_status": "RELEASED",
+    "preflight_failed_on_active_legacy_changes": 3,
+    "official_cli_version": "1.14.3",
+    "source_main": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
     "open_prs": 0,
-    "open_issues": 0
+    "staging_files": 12
   },
   "released_at": "2026-11-03T19:33:00Z",
   "task_state": "WAITING_EXTERNAL",
@@ -54,5 +55,5 @@
     "prefight_still_waiting": true
   },
   "previous_lease_status": "RELEASED",
-  "approved_scope": "Additional read-only archive verification and safe audit evidence commit; no PR or merge without official OpenSpec CLI PASS"
+  "approved_scope": "Byte-exact relocation of 13 legacy OpenSpec files into historico/, official CLI validation, no plugin code changes"
 }
