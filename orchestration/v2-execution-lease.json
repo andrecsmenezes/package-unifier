@@ -4,7 +4,7 @@
   "generation": 6,
   "attempt_id": "pu-v2-e002-s2-architecture-20261103-a6",
   "task_id": "E-PU-V2-002-S2-T1",
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
@@ -23,16 +23,16 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "ACTIVE",
+  "task_state": "DONE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
-    "task_id": "E-PU-V2-002-S1-T1",
-    "pr_number": 43,
-    "merge_sha": "839fa7413e565e33cedc2819a8017c195fd2c2d7",
-    "temporary_ref_deleted": true,
-    "remaining_blocked": "E-PU-V2-002-S1-T2 requires two supplied sanitized metadata sets",
-    "next_independent": "E-PU-V2-002-S2-T1",
-    "plan_sha": "c9388969bf04fa187ecbc353e51e8f8db8ae0cae"
+    "task_id": "E-PU-V2-002-S2-T1",
+    "pr": 44,
+    "merge_sha": "39e03294282a75a382908526721f5090b27122f8",
+    "three_head_checks": "PASS",
+    "temporary_branch_deleted": true,
+    "next_task": "E-PU-V2-002-S2-T2",
+    "plan_sha": "eb38b5e8c4b73da3bf85613c873d0ead9c37d75c"
   },
   "recovery_of": "pu-v2-e002-s1-demand-20261103-a5",
   "approved_scope": "Document A/B/C decision architecture, compatibility isolation, atomicity, concurrency, backup, rollback, evidence limitations. No vendor mutation or unverified conflict claim.",
