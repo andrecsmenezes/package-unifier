@@ -1,28 +1,29 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 12,
-  "attempt_id": "pu-v2-e003-s1-version-unknown-20261103-g12",
-  "task_id": "E-PU-V2-003-S1-T1",
-  "status": "RELEASED",
+  "generation": 13,
+  "attempt_id": "pu-v2-e003-s1-compatibility-20261103-g13",
+  "task_id": "E-PU-V2-003-S1-T2",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
   "expected_main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-003-S1-T1"
+    "E-PU-V2-003-S1-T2-ST1",
+    "E-PU-V2-003-S1-T2"
   ],
-  "current_stage": "VERIFY_UNKNOWN_DEPLOYMENT_ACCEPTANCE_ALTERNATIVE",
+  "current_stage": "PINNED_NONPRODUCTION_WORDPRESS_PHP_MATRIX",
   "claimed_at": "2026-11-03T21:54:40.164Z",
-  "writer_attestation": "User explicitly confirms no other person/agent works on this project; checked main + coordination only, no open PRs.",
+  "writer_attestation": "main/coordination only; zero open PRs; user states no other agent or person works in repository.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "generation": 12,
@@ -39,8 +40,8 @@
     "production_deployment": false,
     "live_compatibility_claim": false
   },
-  "recovery_of": "pu-v2-e003-s2-vendor-retain-decision-20261103-g11",
-  "approved_scope": "E003-S1-T1 already permits explicit UNKNOWN deployed versions and official source comparison; document this alternative precisely without inventing deployed site/version or changing PHP/WordPress minimum.",
+  "recovery_of": "pu-v2-e003-s1-version-unknown-20261103-g12",
+  "approved_scope": "Run and report exact WordPress/PHP compatibility tests, bootstrap/activation/fail-closed recovery, with version-pinned CI and runtime proof. No production claims or minimum version bump.",
   "resume_evidence": {
     "pr_number": 42,
     "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
@@ -77,6 +78,6 @@
     "source_main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
     "source_acceptance": "Record authorized deployed version evidence or clearly report unknowns; compare with declared composer.json and official support matrix."
   },
-  "authorization": "Explicit user 2026-11-03 approval of all necessary additions/deletions/modifications, unchanged approved plan digest.",
+  "authorization": "User 2026-11-03 authorized all repo changes; user is sole writer. Test isolated WordPress 6.7.1 and PHP 8.0/8.2/8.3, without production deploy.",
   "claim_date": "2026-11-03"
 }
