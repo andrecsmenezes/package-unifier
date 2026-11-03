@@ -1,0 +1,20 @@
+{
+  "schema": "orchestrator-v2-migration-lease",
+  "repository": "andrecsmenezes/package-unifier",
+  "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
+  "attempt_id": "migration-pkg-unifier-20261103-01",
+  "generation": 1,
+  "status": "ACTIVE",
+  "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+  "claimed_at": "2026-11-03T19:15:00Z",
+  "expires_at": "2026-11-03T20:00:00Z",
+  "authorization": "User request of 2026-11-03: continue V2 migration, may close/delete legacy refs only after historical consolidation",
+  "evidence": {
+    "branch_inventory_before_claim": [
+      "main"
+    ],
+    "open_prs_observed": 0,
+    "unmerged_prs_observed": 0
+  },
+  "note": "Exclusive initial claim staged atomically on permanent coordination ref; release required after staging."
+}
