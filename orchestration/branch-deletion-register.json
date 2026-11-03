@@ -228,6 +228,13 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Exact-head PHP 8.0 runtime and Composer strict validation, real WordPress integration, OpenSpec, independent dependency-security PASS; main merge verified; no open PR, unchanged branch head SHA and remote absence readback before deletion.",
       "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "docs/v2-remaining-evidence-gates-20261103",
+      "work_unit_id": "PU-V2-EVIDENCE-CHILD-20261103-G9",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Only after exact-PR-head OpenSpec, PHP/runtime-safety, dependency-security CI success, reviewed merge to main, unchanged registered head SHA and GitHub absence readback; never delete main/coordination.",
+      "registered_date": "2026-11-03"
     }
   ]
 }
