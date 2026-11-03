@@ -53,3 +53,19 @@ Historical PR bodies, issues, backlogs, decisions and branch cleanup intents in 
 #### Scenario: An archived task remains open in its original backlog
 - **WHEN** the archived backlog contains an unfinished task
 - **THEN** the task remains non-executable until re-evaluated and separately approved under V2
+
+### Requirement: WordPress execution boundary
+
+The plugin entrypoint MUST terminate before requiring dependencies or registering hooks if the WordPress ABSPATH constant is undefined.
+
+#### Scenario: Direct execution outside WordPress
+- **WHEN** the plugin entrypoint executes without the WordPress ABSPATH constant
+- **THEN** it terminates before loading dependencies or installing WordPress hooks
+
+### Requirement: No public PHP source exporter
+
+The plugin repository MUST NOT contain unauthenticated root-level PHP source exporters or generated PHP source reports. The first-party source validator MUST reject export.php or php_files_report.txt in the plugin root.
+
+#### Scenario: Source export artifact introduced
+- **WHEN** export.php or php_files_report.txt exists in the plugin root
+- **THEN** the source safety validator fails before the change can be accepted
