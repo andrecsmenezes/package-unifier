@@ -9,6 +9,7 @@ on:
       - 'vendor/**'
       - 'composer.json'
       - 'composer.lock'
+      - '.wp-env.json'
       - 'scripts/test_wordpress_integration.sh'
       - 'scripts/validate_reachable_mutation.py'
       - 'scripts/test_reachable_mutation.py'
@@ -21,6 +22,7 @@ on:
       - 'vendor/**'
       - 'composer.json'
       - 'composer.lock'
+      - '.wp-env.json'
       - 'scripts/test_wordpress_integration.sh'
       - 'scripts/validate_reachable_mutation.py'
       - 'scripts/test_reachable_mutation.py'
@@ -35,8 +37,15 @@ concurrency:
 
 jobs:
   wordpress:
+    name: WordPress 6.7.1 / PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.0', '8.2', '8.3']
+    env:
+      WP_ENV_PHP_VERSION: ${{ matrix.php }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
@@ -44,9 +53,14 @@ jobs:
           node-version: '24'
       - name: Install official WordPress environment
         run: npm install -g @wordpress/env@11.17.0 --no-audit --no-fund
-      - name: Start disposable WordPress and database
+      - name: Start version-pinned disposable WordPress and database
         run: wp-env start
-      - name: Validate real WordPress plugin lifecycle
+      - name: Verify exact WordPress core and server-side PHP versions
+        run: |
+          wp-env run cli wp eval 'if (get_bloginfo("version") !== "6.7.1") { throw new RuntimeException("Unexpected WordPress core version: " . get_bloginfo("version")); }'
+          wp-env run wordpress php -r 'if ((PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION) !== "${{ matrix.php }}") { fwrite(STDERR, "Unexpected PHP version: " . PHP_VERSION . PHP_EOL); exit(1); }'
+          echo "WORDPRESS_VERSION=6.7.1 PHP_VERSION=${{ matrix.php }}"
+      - name: Validate real WordPress plugin lifecycle and autoload recovery
         run: bash scripts/test_wordpress_integration.sh
       - name: Stop disposable WordPress
         if: always()
