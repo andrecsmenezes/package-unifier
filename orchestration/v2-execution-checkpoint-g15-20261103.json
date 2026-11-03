@@ -1,0 +1,94 @@
+{
+  "schema": "universal-orchestrator-v2-execution-checkpoint",
+  "repository": "andrecsmenezes/package-unifier",
+  "generation": 15,
+  "recorded_at": "2026-11-03T23:00:55.590Z",
+  "status": "WAITING_EXTERNAL",
+  "migration_receipt": "MIGRATED_VERIFIED",
+  "approval_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "plan_ref": "orchestration/v2-epic-plan.json",
+  "plan_blob": "fd90210816c9018eafd3160ef3664eca8873cbee",
+  "main_sha": "93caade6d845e040ee66141f8344ffe1682c677b",
+  "commits": [
+    {
+      "pr": 50,
+      "head": "0136784f91cb524280fb5cb3419f8c4a1e051380",
+      "merge": "74054c5aff45cc30501892d063f117b4072d2338",
+      "kind": "WordPress isolated anonymous source exposure",
+      "result": "PASS",
+      "php_matrix": [
+        "WordPress 6.7.1 / PHP 8.0",
+        "WordPress 6.7.1 / PHP 8.2",
+        "WordPress 6.7.1 / PHP 8.3"
+      ],
+      "proof_blob": "51fc4219860ddd6696568983fb99f35eb6ac4197",
+      "live_deployment_probed": false
+    },
+    {
+      "pr": 51,
+      "head": "0bbbc02c151a7aca995d85ebbd6bd984ade722cf",
+      "merge": "93caade6d845e040ee66141f8344ffe1682c677b",
+      "kind": "PHP8 explicit offline Composer metadata comparator",
+      "result": "PASS",
+      "synthetic_test_cases": 15,
+      "proof_blob": "51f75c44fff04adc4ddc390e937b27342bf03800",
+      "real_samples_provided": 0
+    }
+  ],
+  "epics": [
+    {
+      "id": "E-PU-V2-001",
+      "status": "WAITING_EXTERNAL",
+      "issue": 38,
+      "issue_state": "open"
+    },
+    {
+      "id": "E-PU-V2-002",
+      "status": "WAITING_EXTERNAL",
+      "issue": 39,
+      "issue_state": "open"
+    },
+    {
+      "id": "E-PU-V2-003",
+      "status": "DONE",
+      "issue": 40,
+      "issue_state": "closed"
+    }
+  ],
+  "parents_done": 10,
+  "parents_total": 12,
+  "subtasks_done": 11,
+  "subtasks_total": 12,
+  "remaining_tasks": [
+    {
+      "id": "E-PU-V2-001-S2-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [],
+      "resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage."
+    },
+    {
+      "id": "E-PU-V2-002-S1-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [
+        "E-PU-V2-002-S1-T1"
+      ],
+      "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed."
+    }
+  ],
+  "ready_tasks": [],
+  "branches": [
+    "coordination",
+    "main"
+  ],
+  "open_prs": 0,
+  "production_http_probes": 0,
+  "owner_supplied_composer_datasets": 0,
+  "production_deploy": false,
+  "global_vendor_consolidation": false,
+  "vendor_mutated": false,
+  "next_resume_conditions": [
+    "Exact authorized deployed URL, installed release and permitted anonymous source-export endpoints for E001 S06",
+    "At least two explicit authorized sanitized source-attributed Composer metadata datasets for E002 S1-T2"
+  ],
+  "authorization_scope": "Repository additions/modifications/deletions were authorized; target-specific consent, real URLs and data remain missing."
+}
