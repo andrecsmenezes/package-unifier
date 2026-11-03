@@ -4,7 +4,7 @@
   "task_id": "PU-V2-HISTORICAL-EPIC-PROPOSALS-20261103",
   "attempt_id": "pu-v2-epic-plan-20261103-g1",
   "generation": 1,
-  "status": "ACTIVE",
+  "status": "DONE",
   "claimed_at": "2026-11-03T20:16:17.440Z",
   "expires_at": "2026-11-03T21:01:17.440Z",
   "authorization": "User requested generation of epics from historical records on 2026-11-03 (proposal issue creation only; not implementation approval)",
@@ -32,5 +32,22 @@
       "number": 40,
       "url": "https://github.com/andrecsmenezes/package-unifier/issues/40"
     }
-  ]
+  ],
+  "task_state": "DONE",
+  "proposal_state": "PROPOSED",
+  "completed_at": "2026-11-03T20:18:59.150Z",
+  "readback": {
+    "verified": true,
+    "issue_numbers": [
+      38,
+      39,
+      40
+    ],
+    "all_proposed": true,
+    "canonical_requirements_unchanged": true,
+    "implementation_approved": false,
+    "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+    "source_main_sha": "432415888f08384c3174315c2beb337e3fce8455"
+  },
+  "next_gate": "Explicit user review and approval of exact proposed scope digest before any implementation dispatch or normative OpenSpec change"
 }
