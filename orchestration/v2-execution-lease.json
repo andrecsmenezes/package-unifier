@@ -1,29 +1,29 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 7,
-  "attempt_id": "pu-v2-e002-s2-decision-20261103-a7",
-  "task_id": "E-PU-V2-002-S2-T2",
-  "status": "RELEASED",
+  "generation": 8,
+  "attempt_id": "pu-v2-e003-s2-lock-repro-20261103-a8",
+  "task_id": "E-PU-V2-003-S2-T1",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
-  "expected_main_sha": "39e03294282a75a382908526721f5090b27122f8",
+  "expected_main_sha": "f415de1a948795737b5e5f6f9b4b49bc2a8c9bdd",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-002-S2-T2-ST1",
-    "E-PU-V2-002-S2-T2"
+    "E-PU-V2-003-S2-T1-ST1",
+    "E-PU-V2-003-S2-T1"
   ],
-  "current_stage": "CONSERVATIVE_NO_GO_DECISION",
+  "current_stage": "ISOLATED_LOCK_ARTIFACT_REPRODUCTION",
   "claimed_at": "2026-11-03",
-  "writer_attestation": "No open PR; main and coordination branches only.",
+  "writer_attestation": "No open PR; only main and permanent coordination refs.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "task_id": "E-PU-V2-002-S2-T2",
@@ -35,8 +35,8 @@
     "external_pending": "E-PU-V2-002-S1-T2 owner-supplied metadata",
     "next_independent": "E-PU-V2-003-S2-T1"
   },
-  "recovery_of": "pu-v2-e002-s2-architecture-20261103-a6",
-  "approved_scope": "Record source-backed explicit no-go for global runtime coalescing absent measured demand; retain local Composer. No production operation or claim of named owner approval.",
+  "recovery_of": "pu-v2-e002-s2-decision-20261103-a7",
+  "approved_scope": "Reproduce exact composer.lock installation, isolated artifact inventory and WordPress-local autoload fixture. No production install, vendor removal, runtime mutations or release.",
   "resume_evidence": {
     "pr_number": 42,
     "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
