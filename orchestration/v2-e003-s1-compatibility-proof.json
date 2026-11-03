@@ -1,0 +1,124 @@
+{
+  "schema": "universal-orchestrator-v2-wordpress-compatibility-evidence",
+  "repository": "andrecsmenezes/package-unifier",
+  "recorded_date": "2026-11-03",
+  "epic_id": "E-PU-V2-003",
+  "story_id": "E-PU-V2-003-S1",
+  "task_id": "E-PU-V2-003-S1-T2",
+  "subtask_id": "E-PU-V2-003-S1-T2-ST1",
+  "approved_plan_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "head_sha": "e6dbb74a7a639fecd7bdf14d4e43f584737fb422",
+  "merged_main_sha": "65a4f87b23cf67a45c5d522985c629595fcbc981",
+  "pull_request": 49,
+  "github_actions_workflow_run": 41731124503,
+  "wordpress_core": "6.7.1",
+  "wordpress_source": "https://wordpress.org/wordpress-6.7.1.zip",
+  "wordpress_environment": "@wordpress/env@11.17.0 Docker; disposable GitHub Actions runners",
+  "php_tests": [
+    {
+      "php": "8.0",
+      "wordpress": "6.7.1",
+      "job_id": 126248444783,
+      "conclusion": "success",
+      "verified_steps": [
+        {
+          "name": "Start version-pinned disposable WordPress and database",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify exact WordPress core and server-side PHP versions",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate real WordPress plugin lifecycle and autoload recovery",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "php": "8.2",
+      "wordpress": "6.7.1",
+      "job_id": 126248444308,
+      "conclusion": "success",
+      "verified_steps": [
+        {
+          "name": "Start version-pinned disposable WordPress and database",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify exact WordPress core and server-side PHP versions",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate real WordPress plugin lifecycle and autoload recovery",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "php": "8.3",
+      "wordpress": "6.7.1",
+      "job_id": 126248443763,
+      "conclusion": "success",
+      "verified_steps": [
+        {
+          "name": "Start version-pinned disposable WordPress and database",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify exact WordPress core and server-side PHP versions",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate real WordPress plugin lifecycle and autoload recovery",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "openspec",
+      "run_id": 41731124548,
+      "conclusion": "success"
+    },
+    {
+      "name": "runtime-safety",
+      "run_id": 41731124467,
+      "conclusion": "success"
+    },
+    {
+      "name": "Dependency security (parallel)",
+      "run_id": 41731124606,
+      "conclusion": "success"
+    },
+    {
+      "name": "WordPress integration",
+      "run_id": 41731124503,
+      "conclusion": "success"
+    }
+  ],
+  "tested_behaviors": [
+    "WordPress installed core exact 6.7.1",
+    "Server-side PHP exact major/minor",
+    "Plugin activation and active status",
+    "WordPress-owned hook registration",
+    "Negative closure-hook detection",
+    "Local Composer bootstrap",
+    "Missing local vendor does not cause public fatal",
+    "Admin/CLI and public HTTP still respond",
+    "Restore local vendor and verify activation"
+  ],
+  "release_decision": "NONPRODUCTION_MATRIX_PASS; NO PRODUCTION_DEPLOYMENT; UNSUPPORTED PHP 8.0 EOL remains a separate maintenance concern.",
+  "installed_target_version": "UNKNOWN",
+  "production_release_id": null,
+  "temporary_branch_deleted": true,
+  "files_changed": [
+    ".wp-env.json",
+    ".github/workflows/wordpress-integration.yml",
+    "orchestration/branch-deletion-register.json"
+  ],
+  "runtime_php_changed": false,
+  "composer_lock_changed": false,
+  "vendor_changed": false
+}
