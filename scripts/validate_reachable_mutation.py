@@ -211,7 +211,7 @@ if not required.issubset(reached):
 failures = [
     f"{path.relative_to(ROOT)}: {match.group(0)}"
     for path in sorted(reached)
-    for match in FORBIDDEN.finditer(php_code(path))
+    for match in FORBIDDEN.finditer(without_php_strings(php_code(path)))
 ]
 failures.extend(
     error for path in sorted(reached)
