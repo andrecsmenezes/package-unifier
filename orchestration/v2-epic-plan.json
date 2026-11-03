@@ -315,7 +315,7 @@
               "title": "Verify deployed PHP, WordPress and Composer versions (D03)",
               "description": "",
               "acceptance": "Record authorized deployed version evidence or clearly report unknowns; compare with declared composer.json and official support matrix.",
-              "status": "BLOCKED",
+              "status": "DONE",
               "source_ids": [
                 "D03"
               ],
@@ -328,14 +328,15 @@
                   "status": "DONE",
                   "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/47"
                 }
-              ]
+              ],
+              "checkpoint_ref": "orchestration/v2-e003-s1-version-inventory-acceptance.json"
             },
             {
               "id": "E-PU-V2-003-S1-T2",
               "title": "Run isolated compatibility regression matrix (D03)",
               "description": "",
               "acceptance": "Relevant PHP 8+ and WordPress test combinations pass or have documented failures; release decision is grounded in exact results.",
-              "status": "WAITING_EXTERNAL",
+              "status": "READY",
               "depends_on": [
                 "E-PU-V2-003-S1-T1"
               ],
@@ -350,13 +351,7 @@
                   "acceptance": "Results and safe failure handling are linked to exact commits and versions.",
                   "status": "BLOCKED"
                 }
-              ],
-              "external_wait": {
-                "category": "DEPENDENCY_ON_DEPLOYED_VERSION_EVIDENCE",
-                "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e003-s1-version-support-matrix.md",
-                "resume_condition": "E-PU-V2-003-S1-T1 must have verified authorized target PHP/WordPress/Composer versions before exact integration test targets are selected.",
-                "checked_at": "2026-11-03T21:45:54.292Z"
-              }
+              ]
             }
           ]
         },
