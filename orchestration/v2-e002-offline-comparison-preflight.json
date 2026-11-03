@@ -1,0 +1,48 @@
+{
+  "schema": "universal-orchestrator-v2-offline-metadata-preparation",
+  "repository": "andrecsmenezes/package-unifier",
+  "generation": 15,
+  "recorded_at": "2026-11-03T23:00:04.896Z",
+  "task_id": "E-PU-V2-002-S1-T2",
+  "status": "PREPARATION_COMPLETE_REAL_DATA_WAITING_EXTERNAL",
+  "approved_scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "pr_number": 51,
+  "head_sha": "0bbbc02c151a7aca995d85ebbd6bd984ade722cf",
+  "merge_sha": "93caade6d845e040ee66141f8344ffe1682c677b",
+  "source_blobs": {
+    "cli": "af93dafedd1feb5ca59a90b1d030f1d20c09379f",
+    "test": "32e7be405733d50e790d589adb0129f7271d501b",
+    "evidence_contract": "372f889f29968f9803cd77e05148d5c22b169a2b",
+    "documentation": "b6d33d92b30871464cc4cb2d54bd6556a363a6b3"
+  },
+  "exact_head_ci": [
+    {
+      "name": "openspec",
+      "id": 41735240296,
+      "conclusion": "success"
+    },
+    {
+      "name": "runtime-safety",
+      "id": 41735240503,
+      "conclusion": "success"
+    },
+    {
+      "name": "Dependency security (parallel)",
+      "id": 41735240497,
+      "conclusion": "success"
+    }
+  ],
+  "php_runtime": "8.0",
+  "synthetic_test_cases": 15,
+  "synthetic_test_result": "PASS",
+  "entrypoint": "php scripts/compare_composer_metadata.php --input /path/to/owner-authorized-metadata.json",
+  "no_installed_plugin_scan": true,
+  "no_wordpress_runtime_mutation": true,
+  "no_composer_execution": true,
+  "no_vendor_mutation": true,
+  "real_plugin_samples_received": 0,
+  "cross_plugin_conflict_verified": false,
+  "semver_intersection_evaluated": false,
+  "temporary_branch_deleted": true,
+  "required_to_resume": "At least two distinct owner-provided, explicitly authorized sanitized Composer metadata records with plugin slug, full source SHA, dependency constraints and locked version/null; separately validate real inputs and document results. Maintain local autoload and NO-GO until separate runtime evidence."
+}
