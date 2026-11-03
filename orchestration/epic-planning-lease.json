@@ -19,7 +19,13 @@
   "created_issues": [
     {
       "id": "E-PU-V2-001",
+      "number": 38,
       "url": "https://github.com/andrecsmenezes/package-unifier/issues/38"
+    },
+    {
+      "id": "E-PU-V2-002",
+      "number": 39,
+      "url": "https://github.com/andrecsmenezes/package-unifier/issues/39"
     }
   ]
 }
