@@ -1,0 +1,119 @@
+{
+  "schema": "universal-orchestrator-v2-execution-checkpoint",
+  "repository": "andrecsmenezes/package-unifier",
+  "checkpoint_generation": 11,
+  "observation_date": "2026-11-03",
+  "state": "WAITING_EXTERNAL",
+  "approved_scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "plan_ref": "orchestration/v2-epic-plan.json",
+  "plan_sha": "6be280ce77879574a4fa1e6995f3ec7495e3bc54",
+  "main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
+  "merged_pr": {
+    "number": 48,
+    "head_sha": "ecaf93eb111a5638dd6f7a43a56fe20f22bbd4a9",
+    "merge_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
+    "url": "https://github.com/andrecsmenezes/package-unifier/pull/48",
+    "checks": [
+      "openspec",
+      "runtime-safety",
+      "Dependency security (parallel)"
+    ],
+    "checks_result": "PASS",
+    "branch_deleted": true
+  },
+  "decision": "RETAIN_TRACKED_VENDOR",
+  "vendor_autoload_sha": "dae321bbebaba6f019fdf6b7b60f41741fb5ed1a",
+  "parent_tasks_done": 8,
+  "parent_tasks_total": 12,
+  "subtasks_done": 10,
+  "subtasks_total": 12,
+  "epics": [
+    {
+      "id": "E-PU-V2-001",
+      "status": "BLOCKED",
+      "stories": [
+        {
+          "id": "E-PU-V2-001-S1",
+          "status": "DONE"
+        },
+        {
+          "id": "E-PU-V2-001-S2",
+          "status": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "id": "E-PU-V2-002",
+      "status": "WAITING_EXTERNAL",
+      "stories": [
+        {
+          "id": "E-PU-V2-002-S1",
+          "status": "WAITING_EXTERNAL"
+        },
+        {
+          "id": "E-PU-V2-002-S2",
+          "status": "DONE"
+        }
+      ]
+    },
+    {
+      "id": "E-PU-V2-003",
+      "status": "BLOCKED",
+      "stories": [
+        {
+          "id": "E-PU-V2-003-S1",
+          "status": "BLOCKED"
+        },
+        {
+          "id": "E-PU-V2-003-S2",
+          "status": "DONE"
+        }
+      ]
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": "E-PU-V2-001-S2-T2",
+      "status": "BLOCKED",
+      "depends_on": []
+    },
+    {
+      "id": "E-PU-V2-002-S1-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [
+        "E-PU-V2-002-S1-T1"
+      ]
+    },
+    {
+      "id": "E-PU-V2-003-S1-T1",
+      "status": "BLOCKED",
+      "depends_on": []
+    },
+    {
+      "id": "E-PU-V2-003-S1-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [
+        "E-PU-V2-003-S1-T1"
+      ]
+    }
+  ],
+  "remaining_external_conditions": [
+    "Authorized installed PHP/WordPress/Composer versions",
+    "Exact authorized deployed source-export HTTP targets",
+    "At least two owner-supplied sanitized Composer metadata sets"
+  ],
+  "current_ready_tasks": [],
+  "repository_mutations": {
+    "app_code": false,
+    "composer": false,
+    "vendor": false,
+    "production": false,
+    "workflow": true,
+    "documentation": true
+  },
+  "retained_branches": [
+    "coordination",
+    "main"
+  ],
+  "open_prs": 0
+}
