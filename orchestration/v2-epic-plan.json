@@ -193,7 +193,13 @@
                   "title": "Check supplied metadata for semver incompatibilities in an isolated read-only test fixture.",
                   "description": "",
                   "acceptance": "The resulting table records actual constraints, versions, provenance and unknowns.",
-                  "status": "WAITING_EXTERNAL"
+                  "status": "WAITING_EXTERNAL",
+                  "external_wait": {
+                    "category": "AUTHORIZED_COMPOSER_METADATA",
+                    "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e002-manifest-intake.schema.json",
+                    "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed.",
+                    "checked_at": "2026-11-03T21:55:49.430Z"
+                  }
                 }
               ],
               "external_wait": {
@@ -317,7 +323,7 @@
               "title": "Run isolated compatibility regression matrix (D03)",
               "description": "",
               "acceptance": "Relevant PHP 8+ and WordPress test combinations pass or have documented failures; release decision is grounded in exact results.",
-              "status": "BLOCKED",
+              "status": "WAITING_EXTERNAL",
               "depends_on": [
                 "E-PU-V2-003-S1-T1"
               ],
