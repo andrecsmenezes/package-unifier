@@ -4,7 +4,7 @@
   "generation": 8,
   "attempt_id": "pu-v2-e003-s2-lock-repro-20261103-a8",
   "task_id": "E-PU-V2-003-S2-T1",
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
@@ -23,17 +23,62 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "ACTIVE",
+  "task_state": "DONE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
-    "task_id": "E-PU-V2-002-S2-T2",
-    "pr": 45,
-    "merge_sha": "f415de1a948795737b5e5f6f9b4b49bc2a8c9bdd",
-    "exact_head_ci": "PASS",
-    "temporary_ref_deleted": true,
-    "plan_sha": "04509e90ec1dadc6a398f8d22b3fd8a564da7272",
-    "external_pending": "E-PU-V2-002-S1-T2 owner-supplied metadata",
-    "next_independent": "E-PU-V2-003-S2-T1"
+    "task_id": "E-PU-V2-003-S2-T1",
+    "pr_number": 46,
+    "merge_sha": "a99e46e3da4d8c8d8e36b8292b914cd7ebe39903",
+    "exact_head_checks": [
+      {
+        "name": "openspec",
+        "result": "PASS"
+      },
+      {
+        "name": "runtime-safety_php8_strict_composer",
+        "result": "PASS"
+      },
+      {
+        "name": "dependency_security",
+        "result": "PASS"
+      },
+      {
+        "name": "wordpress_integration",
+        "result": "PASS"
+      }
+    ],
+    "temporary_branch_deleted": true,
+    "approved_plan_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+    "plan_blob_sha": "0d803dd74193c6b51a69f6ff5201312ecc370c68",
+    "execution_checkpoint_path": "orchestration/v2-execution-checkpoint-20261103.json",
+    "execution_checkpoint_blob_sha": "30f7feb6b7387647389549fc1e32334c24d93092",
+    "completed_tasks": 7,
+    "total_tasks": 12,
+    "remaining_tasks": [
+      {
+        "id": "E-PU-V2-001-S2-T2",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "E-PU-V2-002-S1-T2",
+        "status": "WAITING_EXTERNAL"
+      },
+      {
+        "id": "E-PU-V2-003-S1-T1",
+        "status": "BLOCKED"
+      },
+      {
+        "id": "E-PU-V2-003-S1-T2",
+        "status": "READY"
+      },
+      {
+        "id": "E-PU-V2-003-S2-T2",
+        "status": "BLOCKED"
+      }
+    ],
+    "next_ready_task": null,
+    "resume_condition": "User provides independently verifiable deployment/version evidence, owner-supplied sanitized manifests, or new separate authorization; reconcile current plan and re-claim generation 9 before mutations.",
+    "production_deploy": false
   },
   "recovery_of": "pu-v2-e002-s2-decision-20261103-a7",
   "approved_scope": "Reproduce exact composer.lock installation, isolated artifact inventory and WordPress-local autoload fixture. No production install, vendor removal, runtime mutations or release.",
@@ -64,5 +109,7 @@
     ],
     "staged_independent_branch": "docs/v2-e002-demand-evidence-20261103"
   },
-  "staged_branch": "docs/v2-e002-demand-evidence-20261103"
+  "staged_branch": "docs/v2-e002-demand-evidence-20261103",
+  "overall_plan_state": "WAITING_EXTERNAL",
+  "released_at": "2026-11-03T21:20:09.527Z"
 }
