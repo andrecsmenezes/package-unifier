@@ -2,9 +2,9 @@
   "schema": "orchestrator-v2-migration-lease",
   "repository": "andrecsmenezes/package-unifier",
   "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
-  "attempt_id": "migration-pkg-unifier-20261103-02",
-  "generation": 2,
-  "status": "RELEASED",
+  "attempt_id": "migration-pkg-unifier-20261103-03",
+  "generation": 3,
+  "status": "ACTIVE",
   "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
   "claimed_at": "2026-11-03T19:30:00Z",
   "expires_at": "2026-11-03T20:15:00Z",
@@ -33,13 +33,12 @@
     "adoption_pr_created": false,
     "next_action": "Reclaim with incremented generation after preflight proof; reconcile external CI effects before further migration writes"
   },
-  "recovery_of": "migration-pkg-unifier-20261103-01",
-  "current_stage": "PREFLIGHT_EVIDENCE",
+  "recovery_of": "migration-pkg-unifier-20261103-02",
+  "current_stage": "ARCHIVE_INTEGRITY_ATTESTATION",
   "reconciliation": {
-    "previous_attempt_released": true,
-    "staging_sha": "506a3c63c8546ce3605f668a581bc7e11ffefb5a",
     "main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
-    "changed_runtime_files": 0,
+    "original_archival_staging_commits": 11,
+    "changed_application_files": [],
     "open_prs": 0,
     "open_issues": 0
   },
@@ -50,5 +49,11 @@
     "evidence": "Staging branch contains .github/workflows/adoption-proof-readback-v2.yml at 598827f3d700c4aacc0f2770caa49f5a13dee9c1; orchestration/preflight-proof.json not yet present on readback",
     "observed_at": "2026-11-03T19:33:00Z",
     "resume_condition": "Read orchestration/preflight-proof.json from staging branch and independently verify linked GitHub Actions run success, CLI version, canonical spec digest, candidate source hash and unchanged current OpenSpec inputs"
-  }
+  },
+  "external_wait_reconciled": {
+    "preflight_proof_found": false,
+    "prefight_still_waiting": true
+  },
+  "previous_lease_status": "RELEASED",
+  "approved_scope": "Additional read-only archive verification and safe audit evidence commit; no PR or merge without official OpenSpec CLI PASS"
 }
