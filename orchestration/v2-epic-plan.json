@@ -11,7 +11,7 @@
       "title": "Canonical V2 and residual WordPress runtime safety",
       "description": "",
       "acceptance": "Canonical OpenSpec, executable safety regression coverage and explicit external deployment blocker are verified; every merged change follows exact-SHA CI and guarded branch cleanup.",
-      "status": "BLOCKED",
+      "status": "WAITING_EXTERNAL",
       "priority": "P0",
       "source_ids": [
         "O04",
@@ -82,7 +82,7 @@
           "title": "Bound runtime security claims and deployment verification",
           "description": "",
           "acceptance": "Known residual C08 detection gaps are identified and tested within a bounded source scope; external legacy-deployment verification stays blocked without deployment evidence.",
-          "status": "BLOCKED",
+          "status": "WAITING_EXTERNAL",
           "tasks": [
             {
               "id": "E-PU-V2-001-S2-T1",
@@ -110,7 +110,7 @@
               "title": "Verify legacy deployment does not expose source exporter (S06)",
               "description": "",
               "acceptance": "Only after an authorized deployment target and current release are supplied, independently verify exporter and source-report endpoints cannot be read anonymously; otherwise remain blocked.",
-              "status": "BLOCKED",
+              "status": "WAITING_EXTERNAL",
               "source_ids": [
                 "S06"
               ],
@@ -123,16 +123,34 @@
                   "status": "DONE",
                   "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/47"
                 }
-              ]
+              ],
+              "external_wait": {
+                "category": "AUTHORIZED_DEPLOYMENT_REFERENCE",
+                "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/coordination/orchestration/v2-e001-s06-isolated-exposure-proof.json",
+                "resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage.",
+                "checked_at": "2026-11-03T22:49:26.242Z"
+              }
             }
-          ]
+          ],
+          "external_wait": {
+            "category": "AUTHORIZED_DEPLOYMENT_REFERENCE",
+            "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/coordination/orchestration/v2-e001-s06-isolated-exposure-proof.json",
+            "resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage.",
+            "checked_at": "2026-11-03T22:49:26.242Z"
+          }
         }
       ],
       "constraints": [
         "No live WordPress plugin scans",
         "No Composer or vendor mutation at runtime",
         "No automatic deployment"
-      ]
+      ],
+      "external_wait": {
+        "category": "AUTHORIZED_DEPLOYMENT_REFERENCE",
+        "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/coordination/orchestration/v2-e001-s06-isolated-exposure-proof.json",
+        "resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage.",
+        "checked_at": "2026-11-03T22:49:26.242Z"
+      }
     },
     {
       "id": "E-PU-V2-002",
