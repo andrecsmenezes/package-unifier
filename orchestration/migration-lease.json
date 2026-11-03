@@ -4,7 +4,7 @@
   "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
   "attempt_id": "migration-pkg-unifier-20261103-01",
   "generation": 1,
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
   "claimed_at": "2026-11-03T19:15:00Z",
   "expires_at": "2026-11-03T20:00:00Z",
@@ -16,5 +16,17 @@
     "open_prs_observed": 0,
     "unmerged_prs_observed": 0
   },
-  "note": "Exclusive initial claim staged atomically on permanent coordination ref; release required after staging."
+  "note": "Exclusive initial claim staged atomically on permanent coordination ref; release required after staging.",
+  "release_checkpoint": {
+    "timestamp": "2026-11-03",
+    "source_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+    "staging_branch": "chore/adopt-orchestrator-v2-20261103",
+    "staging_head_sha": "506a3c63c8546ce3605f668a581bc7e11ffefb5a",
+    "archive_prs": 35,
+    "verified_blob_copies": 2,
+    "preflight_status": "NOT_VERIFIED",
+    "adoption_status": "TRANSITION_BLOCKED",
+    "required_next_step": "Official CLI PASS and proof digest before any adoption PR",
+    "no_deletion_or_merge": true
+  }
 }
