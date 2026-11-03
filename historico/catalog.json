@@ -1,0 +1,90 @@
+{
+  "schema": "package-unifier-v2-historical-catalog",
+  "generation": "v2",
+  "archive_status": "STAGED_PENDING_OFFICIAL_PREFLIGHT",
+  "archive_date": "2026-11-03",
+  "repository": "andrecsmenezes/package-unifier",
+  "source_baseline": {
+    "ref": "main",
+    "commit_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+    "commit_url": "https://github.com/andrecsmenezes/package-unifier/commit/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+    "current_runtime_preserved": true
+  },
+  "inventory": {
+    "pull_requests_total": 35,
+    "pull_requests_merged": 35,
+    "pull_requests_closed_unmerged": 0,
+    "standalone_issues_in_number_range_1_35": 0,
+    "original_temporary_branches_remaining_at_inventory": 0,
+    "original_branch_names": [
+      "main"
+    ],
+    "no_active_legacy_writer_observed_in_github": true
+  },
+  "archival_objects": {
+    "pull_requests": "historico/legacy-pull-requests.json",
+    "legacy_backlog": "historico/legacy-openspec-backlog.md",
+    "legacy_branch_registry": "historico/legacy-branch-deletion-register.json",
+    "source_hashes": "historico/catalog.json#original_files"
+  },
+  "original_files": [
+    {
+      "path": "README.md",
+      "blob_sha": "20bd71f13e5cba7bca1dc946d161b529b67b501e",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/README.md"
+    },
+    {
+      "path": "openspec/BACKLOG.md",
+      "blob_sha": "2f7604f85145c0b01685cfd53a47862374cae363",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/openspec/BACKLOG.md"
+    },
+    {
+      "path": "orchestration/branch-deletion-register.json",
+      "blob_sha": "e06a5ef1049c0bf202d2948f611dd242acd9babf",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/orchestration/branch-deletion-register.json"
+    },
+    {
+      "path": "openspec/config.yaml",
+      "blob_sha": "23f525d535e665b26bdf6628aff6f84aaca85618",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/openspec/config.yaml"
+    },
+    {
+      "path": "package-unifier.php",
+      "blob_sha": "7d42ce059e4f61c826e6f004400d5e80cf98d70b",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/package-unifier.php"
+    },
+    {
+      "path": "composer.json",
+      "blob_sha": "24165ac581ad6d36e233d3b141f3e1c531fe76f4",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/composer.json"
+    },
+    {
+      "path": "composer.lock",
+      "blob_sha": "776c65726702d278120e3627fc4c24bdb8ec4b1a",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/composer.lock"
+    },
+    {
+      "path": "src/Infrastructure/WordPress/Hooks.php",
+      "blob_sha": "5bc683c17e05279c2e9a4d363e4c1e82f96a9acc",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/src/Infrastructure/WordPress/Hooks.php"
+    },
+    {
+      "path": "src/Infrastructure/WordPress/PluginActivator.php",
+      "blob_sha": "74747f85b21d4853be2dbabb61991a3eae5b76f5",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/src/Infrastructure/WordPress/PluginActivator.php"
+    },
+    {
+      "path": "src/Shared/Config.php",
+      "blob_sha": "feb157154d6e4c42d6ed6e9b6c25906af64f4830",
+      "source_url": "https://github.com/andrecsmenezes/package-unifier/blob/1c30c5fb9b0e1c9abefdeb09f1b33291717dada7/src/Shared/Config.php"
+    }
+  ],
+  "preservation_notes": [
+    "All 35 historic pull request metadata and original bodies are copied into the inert archive; GitHub PR links remain accessible.",
+    "Historic pull requests #1 through #35 were all reported as merged, so no unmerged PR head requires separate branch-tree rescue.",
+    "No standalone Issue number was identified in 1..35, because each number corresponds to a pull request.",
+    "Current application source remains in main at the pinned commit. This staging branch must not mutate PHP runtime code.",
+    "Legacy OpenSpec changes and agent contracts not removed here remain recoverable at the pinned source commit.",
+    "Do not delete any refs or mark migration accepted until official OpenSpec preflight and exact-head CI success."
+  ]
+}
