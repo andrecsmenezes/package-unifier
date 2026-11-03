@@ -1,31 +1,29 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 1,
-  "attempt_id": "pu-v2-e001-s1-20261103-a1",
-  "task_id": "E-PU-V2-001-S1",
-  "status": "RELEASED",
+  "generation": 2,
+  "attempt_id": "pu-v2-e001-s2-c08-20261103-a2",
+  "task_id": "E-PU-V2-001-S2-T1",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
-  "expected_main_sha": "432415888f08384c3174315c2beb337e3fce8455",
+  "expected_main_sha": "9116d997157c91c4d0b9746faf8beaa6fc243247",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-001-S1-T1-ST1",
-    "E-PU-V2-001-S1-T1",
-    "E-PU-V2-001-S1-T2-ST1",
-    "E-PU-V2-001-S1-T2"
+    "E-PU-V2-001-S2-T1-ST1",
+    "E-PU-V2-001-S2-T1"
   ],
-  "current_stage": "READ_ONLY_EVIDENCE_FIRST",
+  "current_stage": "C08_SOURCE_MAPPING",
   "claimed_at": "2026-11-03",
-  "writer_attestation": "No open PRs and only main plus coordination branches observed at claim",
+  "writer_attestation": "No open PRs; only main and coordination branches. S1 merged and cleanup verified.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "pr": 41,
@@ -35,6 +33,7 @@
     "remaining_epic_task": "E-PU-V2-001-S2-T1",
     "external_blocker": "E-PU-V2-001-S2-T2: authorized deployment evidence unavailable",
     "plan_blob": "0c4255ac29ae91daad25504e43afd4eff520a72e",
-    "next_lease_generation": 2
-  }
+    "next_lease_generation": 3
+  },
+  "recovery_of": "pu-v2-e001-s1-20261103-a1"
 }
