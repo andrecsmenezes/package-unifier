@@ -120,7 +120,8 @@
                   "title": "Request an authorized deployment/release reference and run a bounded unauthenticated exposure check without secrets.",
                   "description": "",
                   "acceptance": "Timestamped external evidence or an explicit no-deployment blocker is recorded.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/47"
                 }
               ]
             }
@@ -192,7 +193,8 @@
                   "title": "Check supplied metadata for semver incompatibilities in an isolated read-only test fixture.",
                   "description": "",
                   "acceptance": "The resulting table records actual constraints, versions, provenance and unknowns.",
-                  "status": "READY"
+                  "status": "WAITING_EXTERNAL",
+                  "blocked_reason": "Two separately authorized sanitized Composer metadata inputs have not been supplied."
                 }
               ],
               "external_wait": {
@@ -306,7 +308,8 @@
                   "title": "Collect a source-backed version matrix without requiring production credentials in the repository.",
                   "description": "",
                   "acceptance": "Version evidence includes source, observation date, runtime/manifest distinction and unsupported cases.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/47"
                 }
               ]
             },
@@ -315,7 +318,7 @@
               "title": "Run isolated compatibility regression matrix (D03)",
               "description": "",
               "acceptance": "Relevant PHP 8+ and WordPress test combinations pass or have documented failures; release decision is grounded in exact results.",
-              "status": "READY",
+              "status": "BLOCKED",
               "depends_on": [
                 "E-PU-V2-003-S1-T1"
               ],
@@ -328,9 +331,16 @@
                   "title": "Execute the supported plugin bootstrap/activation integration tests on isolated known-version environments.",
                   "description": "",
                   "acceptance": "Results and safe failure handling are linked to exact commits and versions.",
-                  "status": "READY"
+                  "status": "BLOCKED",
+                  "blocked_reason": "Parent S1-T2 depends on blocked deployed-version evidence task S1-T1."
                 }
-              ]
+              ],
+              "external_wait": {
+                "category": "DEPENDENCY_ON_DEPLOYED_VERSION_EVIDENCE",
+                "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e003-s1-version-support-matrix.md",
+                "resume_condition": "E-PU-V2-003-S1-T1 must have verified authorized target PHP/WordPress/Composer versions before exact integration test targets are selected.",
+                "checked_at": "2026-11-03T21:45:54.292Z"
+              }
             }
           ]
         },
@@ -380,7 +390,8 @@
                   "title": "Document keep-vs-remove tradeoffs using test results and a separate owner approval gate.",
                   "description": "",
                   "acceptance": "No vendor removal occurs in this epic without a new approved OpenSpec change and release plan.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/47"
                 }
               ]
             }
