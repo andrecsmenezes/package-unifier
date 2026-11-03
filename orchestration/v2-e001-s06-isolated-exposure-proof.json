@@ -1,0 +1,69 @@
+{
+  "schema": "universal-orchestrator-v2-isolated-exposure-check",
+  "repository": "andrecsmenezes/package-unifier",
+  "generation": 14,
+  "recorded_at": "2026-11-03T22:48:55.712Z",
+  "approved_scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "task_id": "E-PU-V2-001-S2-T2",
+  "source_main_sha": "74054c5aff45cc30501892d063f117b4072d2338",
+  "pr_number": 50,
+  "head_sha": "0136784f91cb524280fb5cb3419f8c4a1e051380",
+  "run_id": 41733524038,
+  "required_ci": [
+    {
+      "name": "openspec",
+      "run_id": 41733524237,
+      "conclusion": "success"
+    },
+    {
+      "name": "runtime-safety",
+      "run_id": 41733524037,
+      "conclusion": "success"
+    },
+    {
+      "name": "Dependency security (parallel)",
+      "run_id": 41733524146,
+      "conclusion": "success"
+    },
+    {
+      "name": "WordPress integration",
+      "run_id": 41733524038,
+      "conclusion": "success"
+    }
+  ],
+  "isolated_wp_matrix": [
+    {
+      "name": "WordPress 6.7.1 / PHP 8.0",
+      "job_id": 126256688925,
+      "conclusion": "success"
+    },
+    {
+      "name": "WordPress 6.7.1 / PHP 8.2",
+      "job_id": 126256688325,
+      "conclusion": "success"
+    },
+    {
+      "name": "WordPress 6.7.1 / PHP 8.3",
+      "job_id": 126256688864,
+      "conclusion": "success"
+    }
+  ],
+  "negative_http_paths": [
+    "/wp-content/plugins/package-unifier/export.php",
+    "/wp-content/plugins/package-unifier/php_files_report.txt"
+  ],
+  "http_target": "http://127.0.0.1:8888",
+  "expected_response_codes": [
+    403,
+    404
+  ],
+  "test_script": "scripts/test_source_export_http.sh",
+  "test_script_blob_sha": "6acac5293562cb8938ad44f824e86881af173730",
+  "temporary_branch_deleted": true,
+  "external_deployment_target": null,
+  "external_release": null,
+  "external_http_probe_performed": false,
+  "task_status": "WAITING_EXTERNAL",
+  "conclusion": "ISOLATED_SOURCE_EXPORT_PROBE_PASS_ONLY",
+  "resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage."
+}
