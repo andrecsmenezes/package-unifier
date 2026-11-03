@@ -4,7 +4,7 @@
   "generation": 4,
   "attempt_id": "pu-v2-e001-s2-c08-20261103-a4",
   "task_id": "E-PU-V2-001-S2-T1",
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
@@ -23,20 +23,20 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "ACTIVE",
+  "task_state": "DONE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
-    "work_unit_id": "E-PU-V2-002-S1-T1",
+    "task_id": "E-PU-V2-001-S2-T1",
+    "pr": 42,
+    "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
+    "merge_sha": "29235e9bd71d384dcf6d457de240628f00f31310",
+    "four_required_checks": "PASS",
+    "temporary_ref_deleted": true,
+    "blocking_next": "E-PU-V2-001-S2-T2 requires authorized deployment evidence",
+    "next_independent": "E-PU-V2-002-S1-T1",
     "staged_branch": "docs/v2-e002-demand-evidence-20261103",
-    "staged_files": [
-      "docs/evidence/v2-e002-manifest-intake.schema.json",
-      "docs/evidence/v2-e002-s1-demand-assessment.md"
-    ],
-    "source_main_sha": "9116d997157c91c4d0b9746faf8beaa6fc243247",
-    "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
-    "commit_status": "NOT_MERGED",
-    "next": "Resume C08 PR #42 exact-head successful CI and guarded merge",
-    "next_lease_generation": 4
+    "plan_sha": "4b36f6bcd1d17b48f773d71380484a8aed955c6c",
+    "next_generation": 5
   },
   "recovery_of": "pu-v2-e002-s1-evidence-20261103-a3",
   "approved_scope": "Publish privacy-safe offline manifest/lock evidence template; explicitly record demand UNVERIFIED with provenance. No live plugin scan or production mutations.",
