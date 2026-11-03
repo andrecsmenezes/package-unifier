@@ -86,6 +86,6 @@
       "chore/v2-migration-cleanup-20261103"
     ],
     "permanent_ref": "coordination",
-    "pending_cleanup_readback": true
+    "verification_rule": "Confirm both registered temporary branch refs absent after merged PR#37 GitHub cleanup; no active PRs and coordination branch retained."
   }
 }
