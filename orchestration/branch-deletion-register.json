@@ -242,6 +242,13 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Cleanup after exact-PR-head official OpenSpec, PHP runtime-safety and independent dependency-security PASS, guarded verified merge, unchanged ref SHA and remote absence readback.",
       "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "test/v2-e003-s1-wp671-php-matrix-20261103",
+      "work_unit_id": "PU-V2-E003-S1-PINNED-MATRIX-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Only after exact-PR-head official OpenSpec, runtime-safety, independent dependency-security and real WordPress 6.7.1/PHP compatibility matrix all PASS, verified main merge and remote ref absence.",
+      "registered_date": "2026-11-03"
     }
   ]
 }
