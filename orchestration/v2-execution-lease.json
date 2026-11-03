@@ -1,29 +1,29 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 5,
-  "attempt_id": "pu-v2-e002-s1-demand-20261103-a5",
-  "task_id": "E-PU-V2-002-S1-T1",
-  "status": "RELEASED",
+  "generation": 6,
+  "attempt_id": "pu-v2-e002-s2-architecture-20261103-a6",
+  "task_id": "E-PU-V2-002-S2-T1",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
-  "expected_main_sha": "29235e9bd71d384dcf6d457de240628f00f31310",
+  "expected_main_sha": "839fa7413e565e33cedc2819a8017c195fd2c2d7",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-002-S1-T1-ST1",
-    "E-PU-V2-002-S1-T1"
+    "E-PU-V2-002-S2-T1-ST1",
+    "E-PU-V2-002-S2-T1"
   ],
-  "current_stage": "STAGED_EVIDENCE_RECONCILIATION",
+  "current_stage": "D02_C02_THREAT_ROLLBACK_MATRIX",
   "claimed_at": "2026-11-03",
-  "writer_attestation": "No active PRs; only main, permanent coordination and own E002 evidence branch; previous C08 source integrated and temporary ref removed.",
+  "writer_attestation": "No open PR; only main and permanent coordination branches observed.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "task_id": "E-PU-V2-002-S1-T1",
@@ -34,8 +34,8 @@
     "next_independent": "E-PU-V2-002-S2-T1",
     "plan_sha": "c9388969bf04fa187ecbc353e51e8f8db8ae0cae"
   },
-  "recovery_of": "pu-v2-e001-s2-c08-20261103-a4",
-  "approved_scope": "Integrate private-safe intake schema and source-grounded UNVERIFIED demand evidence. No scans or runtime changes.",
+  "recovery_of": "pu-v2-e002-s1-demand-20261103-a5",
+  "approved_scope": "Document A/B/C decision architecture, compatibility isolation, atomicity, concurrency, backup, rollback, evidence limitations. No vendor mutation or unverified conflict claim.",
   "resume_evidence": {
     "pr_number": 42,
     "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
