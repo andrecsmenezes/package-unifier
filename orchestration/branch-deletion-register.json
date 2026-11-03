@@ -172,6 +172,20 @@
       "registered_date": "2026-10-28",
       "state": "INTENT_REGISTERED",
       "preaction_decision": "DEC-PKG-D03-SUPPORT-20261028-R6M8-002"
+    },
+    {
+      "branch": "chore/adopt-orchestrator-v2-20261103",
+      "work_unit_id": "PU-V2-ADOPTION-PR36-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Migration PR #36 merged at reviewed SHA 90764c8501580c9ae1dda70e134ab27d4b9f71a6; archived historical sources already integrated into main. Require no open PR, exact current ref SHA, and remote absence readback.",
+      "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "chore/v2-migration-cleanup-20261103",
+      "work_unit_id": "PU-V2-MIGRATION-CLEANUP-PR37-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Final migration ref-cleanup PR may delete its own temporary head only after exact reviewed SHA CI, verified main merge, zero open PRs and remote absence readback. Permanent coordination branch is excluded.",
+      "registered_date": "2026-11-03"
     }
   ]
 }
