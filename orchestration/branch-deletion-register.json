@@ -214,6 +214,13 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Delete only after exact-head official OpenSpec, runtime-safety, independent dependency-security checks, verified main merge, current remote ref SHA and absence readback.",
       "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "docs/v2-e002-no-go-decision-20261103",
+      "work_unit_id": "PU-V2-E002-S2-NOGO-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete only after exact-head official OpenSpec, runtime-safety and independent dependency security PASS, verified main merge, unchanged current ref SHA, no open PR and remote branch absence readback.",
+      "registered_date": "2026-11-03"
     }
   ]
 }
