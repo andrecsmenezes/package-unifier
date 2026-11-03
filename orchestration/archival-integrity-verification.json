@@ -1,0 +1,72 @@
+{
+  "schema": "package-unifier-v2-archival-integrity",
+  "repository": "andrecsmenezes/package-unifier",
+  "generation": "v2",
+  "baseline_commit": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+  "staging_branch": "chore/adopt-orchestrator-v2-20261103",
+  "source_catalog_blob_sha": "e8db3b5817578c1956dc79b0e39ff2fef8573c6c",
+  "archive_prs_blob_sha": "2f8eea47f82d8781b99377e82ac2a53d612e1631",
+  "archival_verification": {
+    "archived_pr_records": 35,
+    "verified_against_live_pr_metadata": 35,
+    "archived_records_mismatched": 0,
+    "all_archived_prs_merged": true,
+    "original_files_in_catalog": 10,
+    "original_files_with_exact_blob_sha_readback_at_prior_check": 10,
+    "source_hashes": [
+      {
+        "path": "README.md",
+        "sha": "20bd71f13e5cba7bca1dc946d161b529b67b501e"
+      },
+      {
+        "path": "openspec/BACKLOG.md",
+        "sha": "2f7604f85145c0b01685cfd53a47862374cae363"
+      },
+      {
+        "path": "orchestration/branch-deletion-register.json",
+        "sha": "e06a5ef1049c0bf202d2948f611dd242acd9babf"
+      },
+      {
+        "path": "openspec/config.yaml",
+        "sha": "23f525d535e665b26bdf6628aff6f84aaca85618"
+      },
+      {
+        "path": "package-unifier.php",
+        "sha": "7d42ce059e4f61c826e6f004400d5e80cf98d70b"
+      },
+      {
+        "path": "composer.json",
+        "sha": "24165ac581ad6d36e233d3b141f3e1c531fe76f4"
+      },
+      {
+        "path": "composer.lock",
+        "sha": "776c65726702d278120e3627fc4c24bdb8ec4b1a"
+      },
+      {
+        "path": "src/Infrastructure/WordPress/Hooks.php",
+        "sha": "5bc683c17e05279c2e9a4d363e4c1e82f96a9acc"
+      },
+      {
+        "path": "src/Infrastructure/WordPress/PluginActivator.php",
+        "sha": "74747f85b21d4853be2dbabb61991a3eae5b76f5"
+      },
+      {
+        "path": "src/Shared/Config.php",
+        "sha": "feb157154d6e4c42d6ed6e9b6c25906af64f4830"
+      }
+    ],
+    "legacy_backlog_archived_blob_sha": "2f7604f85145c0b01685cfd53a47862374cae363",
+    "legacy_branch_registry_archived_blob_sha": "e06a5ef1049c0bf202d2948f611dd242acd9babf",
+    "open_prs": 0,
+    "open_standalone_issues": 0,
+    "runtime_files_modified_in_staging": 0
+  },
+  "scope_limits": [
+    "Does not prove official OpenSpec CLI pass",
+    "Does not prove GitHub Actions successful execution",
+    "Does not grant deletion or merging approval",
+    "Does not attest files outside catalog"
+  ],
+  "status": "ARCHIVE_EVIDENCE_VERIFIED_FOR_LISTED_SOURCES",
+  "record_date": "2026-11-03"
+}

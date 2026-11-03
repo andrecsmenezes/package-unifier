@@ -1,0 +1,60 @@
+{
+  "schema": "orchestrator-repository-adoption-v2",
+  "generation": "v2",
+  "repo": "andrecsmenezes/package-unifier",
+  "status": "MIGRATED_VERIFIED",
+  "accepted": true,
+  "source_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+  "migration_branch": "chore/adopt-orchestrator-v2-20261103",
+  "authorization": "User authorized V2 migration and cleanup after verified historical consolidation, 2026-11-03",
+  "history": {
+    "catalog": "historico/catalog.json",
+    "pull_request_records": "historico/legacy-pull-requests.json",
+    "legacy_backlog": "historico/legacy-openspec-backlog.md",
+    "legacy_branch_registry": "historico/legacy-branch-deletion-register.json",
+    "prs_archived": 35,
+    "prs_merged": 35,
+    "open_prs_observed": 0,
+    "unmerged_prs_observed": 0,
+    "archived_legacy_openspec_changes": 3,
+    "archived_legacy_change_files": 13,
+    "change_archive_prefix": "historico/legacy-openspec-changes/",
+    "verified_source_file_hashes": 10,
+    "original_legacy_temporary_branches_remaining": 0
+  },
+  "preflight": {
+    "status": "PASS",
+    "cli_version": "1.14.3",
+    "spec_count": 1,
+    "spec_digest": "886a2a1fc4d17d6a99560d4bd607327205d41d60f1e145c6622a59a02d7f7c0e",
+    "command": "openspec validate --all --strict",
+    "candidate_source_sha": "b28ca51e3d90af2185054e5e66457417db436ad0",
+    "proof": "orchestration/preflight-proof.json",
+    "execution_proof": {
+      "execution": "isolated Vercel Sandbox",
+      "session_id": "sbx_M6Emb00RhM6WUOG5w0mB7G4LoveQ",
+      "command_id": "cmd_8d12903d7691491fb1b1644ffefd",
+      "exit_code": 0,
+      "invocation": "OPENSPEC_TELEMETRY=0 python3 scripts/adoption_preflight.py --root . --cli openspec"
+    }
+  },
+  "app_code_changes_allowed": false,
+  "app_code_unchanged_proof": "VERIFIED_NO_RUNTIME_CODE_DIFF",
+  "next_gate": "Create adoption PR after official preflight PASS; require exact-head CI, guarded merge and main receipt readback",
+  "branch_inventory_at_preflight": {
+    "permanent_coordination": "coordination",
+    "migration_temp_branch": "chore/adopt-orchestrator-v2-20261103",
+    "open_legacy_prs": 0,
+    "open_legacy_standalone_issues": 0
+  },
+  "verification": {
+    "original_runtime_code_unchanged": "VERIFIED_CURRENT_DIFF_NO_PHP_RUNTIME_FILES",
+    "archive_record_sha": "orchestration/archival-integrity-verification.json",
+    "historical_pr_records_readback": "35_OF_35",
+    "archived_changes_byte_identical": "13_GIT_BLOBS_MOVED",
+    "main_readback_verified": false,
+    "pr_exact_head_checks": "REQUIRED_BEFORE_MERGE"
+  },
+  "activation": "This receipt becomes effective ONLY if present on current main after the migration PR passes mandatory exact-head checks, merges with verified SHA, and historical temporary branch is deleted safely. Presence in the staging branch is NOT an accepted adoption.",
+  "state_note": "Candidate accepted record only. Repository remains in transition until guarded merge, CI/security checks, source/receipt readback on main, and safe cleanup of temporary refs."
+}
