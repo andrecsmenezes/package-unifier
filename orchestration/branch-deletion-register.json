@@ -256,6 +256,13 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Only after exact-PR-head official OpenSpec, PHP runtime-safety, independent dependency security, three WordPress 6.7.1 PHP matrix jobs pass; verified main merge, exact ref SHA and absence readback.",
       "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "feat/v2-e002-offline-composer-metadata-20261103",
+      "work_unit_id": "PU-V2-E002-S1-OFFLINE-COMPARE-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Exact-head official OpenSpec, PHP 8.0 runtime safety including synthetic offline comparator fixtures, independent dependency security PASS, guarded merge, same remote ref and confirmed absence. No real metadata or production scan claims.",
+      "registered_date": "2026-11-03"
     }
   ]
 }
