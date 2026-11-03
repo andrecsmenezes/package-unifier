@@ -89,7 +89,7 @@
               "title": "Bounded dynamic-execution regression analysis (C08)",
               "description": "",
               "acceptance": "Bootstrap-reachable first-party paths are enumerated; regression fixtures and real WordPress checks cover the documented cases without claiming full PHP-parser security.",
-              "status": "READY",
+              "status": "WAITING_EXTERNAL",
               "source_ids": [
                 "C08"
               ],
@@ -101,7 +101,13 @@
                   "acceptance": "A traceable negative/benign fixture matrix covers verified paths and records unproven cases.",
                   "status": "READY"
                 }
-              ]
+              ],
+              "external_wait": {
+                "category": "GITHUB_ACTIONS_WORDPRESS_INTEGRATION",
+                "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/actions/runs/41715075446",
+                "resume_condition": "Exact PR #42 head 3689463b583026649a1f692758a1b419f6aea60d has completed-success WordPress integration and all other mandatory CI checks; only then merge with expected head SHA.",
+                "checked_at": "2026-11-03T20:45:14.200Z"
+              }
             },
             {
               "id": "E-PU-V2-001-S2-T2",
