@@ -4,7 +4,7 @@
   "generation": 12,
   "attempt_id": "pu-v2-e003-s1-version-unknown-20261103-g12",
   "task_id": "E-PU-V2-003-S1-T1",
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
@@ -22,56 +22,22 @@
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "ACTIVE",
+  "task_state": "DONE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
-    "generation": 11,
-    "pr": 48,
-    "merge_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
-    "head_sha": "ecaf93eb111a5638dd6f7a43a56fe20f22bbd4a9",
-    "exact_head_ci": "PASS",
-    "temporary_branch_absent": true,
-    "task_id": "E-PU-V2-003-S2-T2",
+    "generation": 12,
+    "task_id": "E-PU-V2-003-S1-T1",
     "task_done": true,
-    "decision": "KEEP_TRACKED_VENDOR",
-    "checkpoint_path": "orchestration/v2-execution-checkpoint-g11-20261103.json",
-    "checkpoint_blob": "1ca68b9bc227ff22def008639fd1a15ca818bc7a",
-    "plan_blob": "6be280ce77879574a4fa1e6995f3ec7495e3bc54",
-    "parent_tasks_done": 8,
-    "parent_tasks_total": 12,
-    "subtasks_done": 10,
-    "subtasks_total": 12,
-    "remaining_tasks": [
-      {
-        "id": "E-PU-V2-001-S2-T2",
-        "status": "BLOCKED",
-        "depends_on": []
-      },
-      {
-        "id": "E-PU-V2-002-S1-T2",
-        "status": "WAITING_EXTERNAL",
-        "depends_on": [
-          "E-PU-V2-002-S1-T1"
-        ]
-      },
-      {
-        "id": "E-PU-V2-003-S1-T1",
-        "status": "BLOCKED",
-        "depends_on": []
-      },
-      {
-        "id": "E-PU-V2-003-S1-T2",
-        "status": "WAITING_EXTERNAL",
-        "depends_on": [
-          "E-PU-V2-003-S1-T1"
-        ]
-      }
-    ],
-    "next_ready_task": null,
-    "next_generation": 12,
-    "resume_condition": "Authorized deployed-version/site evidence, or explicitly approved nonproduction compatibility research that does not mark blocked parent accepted.",
+    "evidence_ref": "orchestration/v2-e003-s1-version-inventory-acceptance.json",
+    "exact_criteria": "or clearly report unknowns",
+    "deployed_versions": "UNKNOWN",
+    "plan_blob": "10147a972362ce7238f878588357d112f765149a",
+    "main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
+    "next_task": "E-PU-V2-003-S1-T2",
+    "next_generation": 13,
+    "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
     "production_deployment": false,
-    "vendor_deleted": false
+    "live_compatibility_claim": false
   },
   "recovery_of": "pu-v2-e003-s2-vendor-retain-decision-20261103-g11",
   "approved_scope": "E003-S1-T1 already permits explicit UNKNOWN deployed versions and official source comparison; document this alternative precisely without inventing deployed site/version or changing PHP/WordPress minimum.",
