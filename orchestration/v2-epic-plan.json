@@ -179,7 +179,7 @@
               "title": "Run bounded offline read-only comparison (D01)",
               "description": "",
               "acceptance": "Only explicitly supplied manifests/lockfiles are compared offline, with an explained version/conflict matrix; no production plugin scan occurs.",
-              "status": "BLOCKED",
+              "status": "WAITING_EXTERNAL",
               "depends_on": [
                 "E-PU-V2-002-S1-T1"
               ],
@@ -194,7 +194,13 @@
                   "acceptance": "The resulting table records actual constraints, versions, provenance and unknowns.",
                   "status": "READY"
                 }
-              ]
+              ],
+              "external_wait": {
+                "category": "AUTHORIZED_COMPOSER_METADATA",
+                "evidence_ref": "https://github.com/andrecsmenezes/package-unifier/blob/main/docs/evidence/v2-e002-manifest-intake.schema.json",
+                "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed.",
+                "checked_at": "2026-11-03T21:05:08.693Z"
+              }
             }
           ]
         },
@@ -203,7 +209,7 @@
           "title": "Design safe alternatives and owner decision",
           "description": "",
           "acceptance": "A/B/C options are reviewed against isolation, semver, load order, rollback, authorization and concurrency; no global runtime consolidation is authorized.",
-          "status": "READY",
+          "status": "DONE",
           "tasks": [
             {
               "id": "E-PU-V2-002-S2-T1",
@@ -235,7 +241,7 @@
               "title": "Record go/no-go decision (D01/D02)",
               "description": "",
               "acceptance": "Document the selected option and explicit named-owner authorization, or retain local vendor as a measured no-go; implementation is not automatically approved.",
-              "status": "READY",
+              "status": "DONE",
               "depends_on": [
                 "E-PU-V2-002-S2-T1"
               ],
@@ -249,11 +255,14 @@
                   "title": "Present source-backed alternatives and capture the decision boundary.",
                   "description": "",
                   "acceptance": "Decision states permitted scope and requires a separate approved OpenSpec change before application code changes.",
-                  "status": "READY"
+                  "status": "DONE",
+                  "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/45"
                 }
-              ]
+              ],
+              "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/45"
             }
-          ]
+          ],
+          "checkpoint_ref": "https://github.com/andrecsmenezes/package-unifier/pull/45"
         }
       ],
       "constraints": [
