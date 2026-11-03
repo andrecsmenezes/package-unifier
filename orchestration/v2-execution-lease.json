@@ -1,28 +1,29 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 14,
-  "attempt_id": "pu-e001-s06-isolated-http-negative-proof-20261103-g14",
-  "task_id": "E-PU-V2-001-S2-T2",
-  "status": "RELEASED",
+  "generation": 15,
+  "attempt_id": "pu-e002-s1-offline-metadata-compare-20261103-g15",
+  "task_id": "E-PU-V2-002-S1-T2",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
-  "expected_main_sha": "65a4f87b23cf67a45c5d522985c629595fcbc981",
+  "expected_main_sha": "74054c5aff45cc30501892d063f117b4072d2338",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-001-S2-T2"
+    "E-PU-V2-002-S1-T2-ST1",
+    "E-PU-V2-002-S1-T2"
   ],
-  "current_stage": "ISOLATED_HTTP_NEGATIVE_PRECHECK_NOT_DEPLOYMENT_VERIFICATION",
+  "current_stage": "READ_ONLY_CLI_COMPARISON_PREPARATION_ONLY",
   "claimed_at": "2026-11-03T21:54:40.164Z",
-  "writer_attestation": "No open PR; only main and coordination branches. No other agent/person per owner.",
+  "writer_attestation": "Only main and coordination, no PR open. User sole writer.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "WAITING_EXTERNAL",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "generation": 14,
@@ -83,7 +84,7 @@
     "next_resume_condition": "The operator must provide exact authorized deployed site URL, installed plugin release, permitted path scope and owner authorization for anonymous GET; execute only bounded read-only probes on that target before claiming deployed coverage."
   },
   "recovery_of": "pu-v2-e003-s1-compatibility-20261103-g13",
-  "approved_scope": "Add narrowly scoped anonymous HTTP negative probes against only disposable wp-env at 127.0.0.1:8888 for export.php and php_files_report.txt. Do not probe external targets, do not assume deployed site, do not mark parent DONE.",
+  "approved_scope": "Build PHP 8.0 standalone offline metadata comparison using only an explicitly provided sanitized JSON file conforming to the existing schema; reject unknown fields, conflicts remain UNKNOWN until Composer-semver proof; use synthetic test fixtures; do not scan installed plugins, run Composer or mutate vendor. Keep E002 S1-T2 WAITING_EXTERNAL until real input provided.",
   "resume_evidence": {
     "pr_number": 42,
     "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
@@ -120,7 +121,7 @@
     "source_main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
     "source_acceptance": "Record authorized deployed version evidence or clearly report unknowns; compare with declared composer.json and official support matrix."
   },
-  "authorization": "User expressly authorized all necessary additions/changes/deletions and sole writer; prior approved immutable E001 S06 scope remains in force.",
+  "authorization": "User authorized all additions/modifications/deletions and confirmed sole project writer; task scope/digest unchanged.",
   "claim_date": "2026-11-03",
   "observed_date": "2026-11-03"
 }
