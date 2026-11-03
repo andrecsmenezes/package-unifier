@@ -1,0 +1,109 @@
+{
+  "schema": "universal-orchestrator-v2-execution-checkpoint",
+  "repository": "andrecsmenezes/package-unifier",
+  "checkpoint_generation": 13,
+  "recorded_at": "2026-11-03T22:34:27.760Z",
+  "plan_ref": "orchestration/v2-epic-plan.json",
+  "plan_blob_sha": "5fe4dafaf257eb9403a1d96d429166d56ca65d1e",
+  "approved_scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "current_main_sha": "65a4f87b23cf67a45c5d522985c629595fcbc981",
+  "merged_pr": {
+    "number": 49,
+    "head_sha": "e6dbb74a7a639fecd7bdf14d4e43f584737fb422",
+    "merge_sha": "65a4f87b23cf67a45c5d522985c629595fcbc981",
+    "workflow_run_id": 41731124503,
+    "required_checks": [
+      {
+        "name": "Dependency security (parallel)",
+        "run_id": 41731124606,
+        "conclusion": "success"
+      },
+      {
+        "name": "openspec",
+        "run_id": 41731124548,
+        "conclusion": "success"
+      },
+      {
+        "name": "runtime-safety",
+        "run_id": 41731124467,
+        "conclusion": "success"
+      },
+      {
+        "name": "WordPress integration",
+        "run_id": 41731124503,
+        "conclusion": "success"
+      }
+    ],
+    "php_matrix": [
+      {
+        "name": "WordPress 6.7.1 / PHP 8.3",
+        "id": 126248443763,
+        "conclusion": "success"
+      },
+      {
+        "name": "WordPress 6.7.1 / PHP 8.2",
+        "id": 126248444308,
+        "conclusion": "success"
+      },
+      {
+        "name": "WordPress 6.7.1 / PHP 8.0",
+        "id": 126248444783,
+        "conclusion": "success"
+      }
+    ],
+    "temporary_ref_deleted": true
+  },
+  "epics": [
+    {
+      "id": "E-PU-V2-001",
+      "status": "BLOCKED",
+      "issue_number": 38
+    },
+    {
+      "id": "E-PU-V2-002",
+      "status": "WAITING_EXTERNAL",
+      "issue_number": 39
+    },
+    {
+      "id": "E-PU-V2-003",
+      "status": "DONE",
+      "issue_number": 40
+    }
+  ],
+  "progress": {
+    "parents_done": 10,
+    "parents_total": 12,
+    "subtasks_done": 11,
+    "subtasks_total": 12
+  },
+  "remaining_tasks": [
+    {
+      "id": "E-PU-V2-001-S2-T2",
+      "status": "BLOCKED",
+      "depends_on": [],
+      "resume_condition": "Explicit authorized deployed target and release required"
+    },
+    {
+      "id": "E-PU-V2-002-S1-T2",
+      "status": "WAITING_EXTERNAL",
+      "depends_on": [
+        "E-PU-V2-002-S1-T1"
+      ],
+      "resume_condition": "At least two distinct owner-authorized, sanitized, provenance-attributed Composer metadata inputs (plugin slug, source SHA, constraints, lock versions) are supplied and independently validated; neither live plugin scan nor automatic mutation is allowed."
+    }
+  ],
+  "ready_approved_tasks": [],
+  "external_blockers": {
+    "E001_S06": "No authorized live deployment URL, release or exact endpoint target exists in supplied evidence; isolated WordPress tests do not prove live endpoint accessibility.",
+    "E002_D01": "No two owner-supplied sanitized Composer metadata sets; decision remains NO-GO for runtime consolidation."
+  },
+  "production_deployment": false,
+  "actual_deployed_versions": "UNKNOWN",
+  "vendor_deleted": false,
+  "global_consolidation_enabled": false,
+  "refs": [
+    "main",
+    "coordination"
+  ],
+  "open_prs": 0
+}
