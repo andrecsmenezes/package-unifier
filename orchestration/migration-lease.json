@@ -4,7 +4,7 @@
   "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
   "attempt_id": "migration-pkg-unifier-20261103-02",
   "generation": 2,
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
   "claimed_at": "2026-11-03T19:30:00Z",
   "expires_at": "2026-11-03T20:15:00Z",
@@ -18,16 +18,20 @@
   },
   "note": "Exclusive initial claim staged atomically on permanent coordination ref; release required after staging.",
   "release_checkpoint": {
-    "timestamp": "2026-11-03",
-    "source_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+    "phase": "OPENSPEC_PREFLIGHT",
+    "generation": 2,
+    "main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
     "staging_branch": "chore/adopt-orchestrator-v2-20261103",
-    "staging_head_sha": "506a3c63c8546ce3605f668a581bc7e11ffefb5a",
-    "archive_prs": 35,
-    "verified_blob_copies": 2,
-    "preflight_status": "NOT_VERIFIED",
-    "adoption_status": "TRANSITION_BLOCKED",
-    "required_next_step": "Official CLI PASS and proof digest before any adoption PR",
-    "no_deletion_or_merge": true
+    "candidate_sha": "598827f3d700c4aacc0f2770caa49f5a13dee9c1",
+    "archived_pr_count": 35,
+    "archival_verified_source_blobs": 2,
+    "legacy_open_prs": 0,
+    "legacy_open_issues": 0,
+    "runtime_files_changed": 0,
+    "migration_receipt_accepted": false,
+    "preflight_verified": false,
+    "adoption_pr_created": false,
+    "next_action": "Reclaim with incremented generation after preflight proof; reconcile external CI effects before further migration writes"
   },
   "recovery_of": "migration-pkg-unifier-20261103-01",
   "current_stage": "PREFLIGHT_EVIDENCE",
@@ -38,5 +42,13 @@
     "changed_runtime_files": 0,
     "open_prs": 0,
     "open_issues": 0
+  },
+  "released_at": "2026-11-03T19:33:00Z",
+  "task_state": "WAITING_EXTERNAL",
+  "wait": {
+    "category": "GITHUB_ACTIONS_OFFICIAL_OPENSPEC_PREFLIGHT",
+    "evidence": "Staging branch contains .github/workflows/adoption-proof-readback-v2.yml at 598827f3d700c4aacc0f2770caa49f5a13dee9c1; orchestration/preflight-proof.json not yet present on readback",
+    "observed_at": "2026-11-03T19:33:00Z",
+    "resume_condition": "Read orchestration/preflight-proof.json from staging branch and independently verify linked GitHub Actions run success, CLI version, canonical spec digest, candidate source hash and unchanged current OpenSpec inputs"
   }
 }
