@@ -4,7 +4,7 @@
   "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
   "attempt_id": "migration-pkg-unifier-20261103-03",
   "generation": 3,
-  "status": "ACTIVE",
+  "status": "RELEASED",
   "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
   "claimed_at": "2026-11-03T19:30:00Z",
   "expires_at": "2026-11-03T20:15:00Z",
@@ -18,23 +18,22 @@
   },
   "note": "Exclusive initial claim staged atomically on permanent coordination ref; release required after staging.",
   "release_checkpoint": {
-    "phase": "OPENSPEC_PREFLIGHT",
-    "generation": 2,
-    "main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
+    "generation": 3,
+    "source_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
     "staging_branch": "chore/adopt-orchestrator-v2-20261103",
-    "candidate_sha": "598827f3d700c4aacc0f2770caa49f5a13dee9c1",
-    "archived_pr_count": 35,
-    "archival_verified_source_blobs": 2,
-    "legacy_open_prs": 0,
-    "legacy_open_issues": 0,
-    "runtime_files_changed": 0,
-    "migration_receipt_accepted": false,
-    "preflight_verified": false,
+    "archive_integrity_path": "orchestration/archival-integrity-verification.json",
+    "archive_integrity_blob_sha": "c5e9bc4329ec36f35ea78cd42961dfd08363c34b",
+    "archived_prs_verified": 35,
+    "verified_source_hashes": 10,
+    "application_runtime_files_changed": 0,
+    "preflight_proof_present": false,
+    "official_preflight_pass": false,
+    "adoption_receipt_accepted": false,
     "adoption_pr_created": false,
-    "next_action": "Reclaim with incremented generation after preflight proof; reconcile external CI effects before further migration writes"
+    "required_next_step": "Obtain official OpenSpec validate --all --strict pre-PR proof of exact candidate; independently verify run, version, digest before any PR"
   },
   "recovery_of": "migration-pkg-unifier-20261103-02",
-  "current_stage": "ARCHIVE_INTEGRITY_ATTESTATION",
+  "current_stage": "OPENSPEC_PREFLIGHT",
   "reconciliation": {
     "main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
     "original_archival_staging_commits": 11,
@@ -46,9 +45,9 @@
   "task_state": "WAITING_EXTERNAL",
   "wait": {
     "category": "GITHUB_ACTIONS_OFFICIAL_OPENSPEC_PREFLIGHT",
-    "evidence": "Staging branch contains .github/workflows/adoption-proof-readback-v2.yml at 598827f3d700c4aacc0f2770caa49f5a13dee9c1; orchestration/preflight-proof.json not yet present on readback",
-    "observed_at": "2026-11-03T19:33:00Z",
-    "resume_condition": "Read orchestration/preflight-proof.json from staging branch and independently verify linked GitHub Actions run success, CLI version, canonical spec digest, candidate source hash and unchanged current OpenSpec inputs"
+    "evidence": "No orchestration/preflight-proof.json readback on staging branch after workflows were committed; local git/npm cannot reach external registries",
+    "observation_date": "2026-11-03",
+    "resume_condition": "Read verified official OpenSpec proof from GitHub workflow and compare spec digest to current staged specs; if absent or failed, remain TRANSITION_BLOCKED"
   },
   "external_wait_reconciled": {
     "preflight_proof_found": false,
