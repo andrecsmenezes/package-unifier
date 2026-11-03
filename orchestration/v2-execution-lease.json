@@ -1,29 +1,28 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 13,
-  "attempt_id": "pu-v2-e003-s1-compatibility-20261103-g13",
-  "task_id": "E-PU-V2-003-S1-T2",
-  "status": "RELEASED",
+  "generation": 14,
+  "attempt_id": "pu-e001-s06-isolated-http-negative-proof-20261103-g14",
+  "task_id": "E-PU-V2-001-S2-T2",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
-  "expected_main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
+  "expected_main_sha": "65a4f87b23cf67a45c5d522985c629595fcbc981",
   "epic_issue": 38,
   "work_unit_ids": [
-    "E-PU-V2-003-S1-T2-ST1",
-    "E-PU-V2-003-S1-T2"
+    "E-PU-V2-001-S2-T2"
   ],
-  "current_stage": "PINNED_NONPRODUCTION_WORDPRESS_PHP_MATRIX",
+  "current_stage": "ISOLATED_HTTP_NEGATIVE_PRECHECK_NOT_DEPLOYMENT_VERIFICATION",
   "claimed_at": "2026-11-03T21:54:40.164Z",
-  "writer_attestation": "main/coordination only; zero open PRs; user states no other agent or person works in repository.",
+  "writer_attestation": "No open PR; only main and coordination branches. No other agent/person per owner.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "generation": 13,
@@ -74,8 +73,8 @@
     "production_deployment": false,
     "vendor_removed": false
   },
-  "recovery_of": "pu-v2-e003-s1-version-unknown-20261103-g12",
-  "approved_scope": "Run and report exact WordPress/PHP compatibility tests, bootstrap/activation/fail-closed recovery, with version-pinned CI and runtime proof. No production claims or minimum version bump.",
+  "recovery_of": "pu-v2-e003-s1-compatibility-20261103-g13",
+  "approved_scope": "Add narrowly scoped anonymous HTTP negative probes against only disposable wp-env at 127.0.0.1:8888 for export.php and php_files_report.txt. Do not probe external targets, do not assume deployed site, do not mark parent DONE.",
   "resume_evidence": {
     "pr_number": 42,
     "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
@@ -112,6 +111,7 @@
     "source_main_sha": "a6ec49c1751bf5476b4d9367e094fad30c5e58c4",
     "source_acceptance": "Record authorized deployed version evidence or clearly report unknowns; compare with declared composer.json and official support matrix."
   },
-  "authorization": "User 2026-11-03 authorized all repo changes; user is sole writer. Test isolated WordPress 6.7.1 and PHP 8.0/8.2/8.3, without production deploy.",
-  "claim_date": "2026-11-03"
+  "authorization": "User expressly authorized all necessary additions/changes/deletions and sole writer; prior approved immutable E001 S06 scope remains in force.",
+  "claim_date": "2026-11-03",
+  "observed_date": "2026-11-03"
 }
