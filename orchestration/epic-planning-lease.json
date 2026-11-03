@@ -1,0 +1,20 @@
+{
+  "schema": "universal-orchestrator-v2-epic-planning-lease",
+  "repository": "andrecsmenezes/package-unifier",
+  "task_id": "PU-V2-HISTORICAL-EPIC-PROPOSALS-20261103",
+  "attempt_id": "pu-v2-epic-plan-20261103-g1",
+  "generation": 1,
+  "status": "ACTIVE",
+  "claimed_at": "2026-11-03T20:16:17.440Z",
+  "expires_at": "2026-11-03T21:01:17.440Z",
+  "authorization": "User requested generation of epics from historical records on 2026-11-03 (proposal issue creation only; not implementation approval)",
+  "source_main_sha": "432415888f08384c3174315c2beb337e3fce8455",
+  "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
+  "approved_action": "Create exactly three non-executable GitHub issues marked PROPOSED. No application code, OpenSpec or implementation mutations.",
+  "proposed_ids": [
+    "E-PU-V2-001",
+    "E-PU-V2-002",
+    "E-PU-V2-003"
+  ],
+  "created_issues": []
+}
