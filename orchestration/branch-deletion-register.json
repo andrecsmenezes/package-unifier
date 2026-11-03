@@ -193,6 +193,13 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Delete only after exact-head official OpenSpec, PHP runtime-safety, independent dependency-security PASS; verified protected merge and unchanged remote ref SHA; no open PRs.",
       "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "feat/v2-e001-s2-c08-regressions-20261103",
+      "work_unit_id": "PU-V2-E001-S2-C08-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete only after exact-head official OpenSpec, PHP/runtime-safety, real WordPress integration and independent dependency security pass; verified merge; unchanged ref; remote absence readback.",
+      "registered_date": "2026-11-03"
     }
   ]
 }

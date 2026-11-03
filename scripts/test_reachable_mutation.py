@@ -335,5 +335,52 @@ class ReachableMutationGuardTest(unittest.TestCase):
         self.assert_gate(True)
 
 
+    def test_non_hook_callback_helpers_are_rejected(self) -> None:
+        expressions = (
+            "call_user_func_array($callback, [])",
+            "forward_static_call($callback)",
+            "forward_static_call_array($callback, [])",
+        )
+        for expression in expressions:
+            with self.subTest(expression=expression):
+                self.hooks.write_text(
+                    f"<?php class Hooks {{ function f() {{ {expression}; }} }}",
+                    encoding="utf-8",
+                )
+                self.assert_gate(False)
+
+    def test_reflection_get_closure_is_rejected(self) -> None:
+        self.hooks.write_text(
+            '<?php class Hooks { function f() { $method->getClosure($target); } }',
+            encoding="utf-8",
+        )
+        self.assert_gate(False)
+
+    def test_non_hook_helper_reachable_through_hooks_is_rejected(self) -> None:
+        (self.root / "src/Infrastructure/WordPress/Helper.php").write_text(
+            '<?php class Helper { public static function run() { exec("id"); } }',
+            encoding="utf-8",
+        )
+        self.hooks.write_text(
+            "<?php class Hooks { public static function register() { Helper::run(); } }",
+            encoding="utf-8",
+        )
+        self.assert_gate(False)
+
+    def test_benign_forbidden_function_names_in_quoted_text_are_permitted(self) -> None:
+        self.hooks.write_text(
+            """<?php class Hooks { function f() { echo 'call_user_func($callback)'; echo "exec('id')"; } }""",
+            encoding="utf-8",
+        )
+        self.assert_gate(True)
+
+    def test_actual_callback_after_benign_quoted_text_is_rejected(self) -> None:
+        self.hooks.write_text(
+            """<?php class Hooks { function f() { echo "call_user_func($callback)"; forward_static_call($callback); } }""",
+            encoding="utf-8",
+        )
+        self.assert_gate(False)
+
+
 if __name__ == "__main__":
     unittest.main()

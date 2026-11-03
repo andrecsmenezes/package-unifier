@@ -9,6 +9,8 @@ on:
       - 'vendor/**'
       - 'composer.json'
       - 'scripts/test_wordpress_integration.sh'
+      - 'scripts/validate_reachable_mutation.py'
+      - 'scripts/test_reachable_mutation.py'
       - '.github/workflows/wordpress-integration.yml'
   push:
     branches: [main]
@@ -18,6 +20,8 @@ on:
       - 'vendor/**'
       - 'composer.json'
       - 'scripts/test_wordpress_integration.sh'
+      - 'scripts/validate_reachable_mutation.py'
+      - 'scripts/test_reachable_mutation.py'
       - '.github/workflows/wordpress-integration.yml'
 
 permissions:
