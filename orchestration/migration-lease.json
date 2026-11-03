@@ -4,7 +4,7 @@
   "task_id": "MIGRATION-PACKAGE-UNIFIER-V2-20261103",
   "attempt_id": "migration-pkg-unifier-20261103-04",
   "generation": 4,
-  "status": "ACTIVE",
+  "status": "DONE",
   "expected_main_sha": "1c30c5fb9b0e1c9abefdeb09f1b33291717dada7",
   "claimed_at": "2026-11-03T19:30:00Z",
   "expires_at": "2026-11-03T20:15:00Z",
@@ -33,7 +33,7 @@
     "required_next_step": "Obtain official OpenSpec validate --all --strict pre-PR proof of exact candidate; independently verify run, version, digest before any PR"
   },
   "recovery_of": "migration-pkg-unifier-20261103-03",
-  "current_stage": "REPAIR_LEGACY_OPENSPEC_PREFLIGHT",
+  "current_stage": "MIGRATED_VERIFIED",
   "reconciliation": {
     "previous_status": "RELEASED",
     "preflight_failed_on_active_legacy_changes": 3,
@@ -43,17 +43,45 @@
     "staging_files": 12
   },
   "released_at": "2026-11-03T19:33:00Z",
-  "task_state": "WAITING_EXTERNAL",
-  "wait": {
-    "category": "GITHUB_ACTIONS_OFFICIAL_OPENSPEC_PREFLIGHT",
-    "evidence": "No orchestration/preflight-proof.json readback on staging branch after workflows were committed; local git/npm cannot reach external registries",
-    "observation_date": "2026-11-03",
-    "resume_condition": "Read verified official OpenSpec proof from GitHub workflow and compare spec digest to current staged specs; if absent or failed, remain TRANSITION_BLOCKED"
-  },
+  "task_state": "DONE",
   "external_wait_reconciled": {
     "preflight_proof_found": false,
     "prefight_still_waiting": true
   },
   "previous_lease_status": "RELEASED",
-  "approved_scope": "Byte-exact relocation of 13 legacy OpenSpec files into historico/, official CLI validation, no plugin code changes"
+  "approved_scope": "Byte-exact relocation of 13 legacy OpenSpec files into historico/, official CLI validation, no plugin code changes",
+  "migration_phase": "MIGRATED_VERIFIED",
+  "accepted": true,
+  "completed_date": "2026-11-03",
+  "closeout_path": "orchestration/migration-closeout.json",
+  "final_checkpoint": {
+    "generation": 4,
+    "accepted": true,
+    "receipt_on_main": true,
+    "main_sha": "432415888f08384c3174315c2beb337e3fce8455",
+    "proof_blob": "e80ba02d30d3c5f0b18092c27078d374fcd88c86",
+    "merged_prs": [
+      36,
+      37
+    ],
+    "all_required_pr_ci": "PASS",
+    "main_ci": "PASS",
+    "cleanup_workflow_run_id": 41709142412,
+    "cleanup_job_id": 126172308375,
+    "cleanup_conclusion": "success",
+    "legacy_history_preserved": true,
+    "temporary_refs_absent": true,
+    "retained_refs": [
+      "main",
+      "coordination"
+    ],
+    "new_epic_requires_separate_approval": true,
+    "production_deploy": false
+  },
+  "historical_wait": {
+    "category": "GITHUB_ACTIONS_OFFICIAL_OPENSPEC_PREFLIGHT",
+    "evidence": "No orchestration/preflight-proof.json readback on staging branch after workflows were committed; local git/npm cannot reach external registries",
+    "observation_date": "2026-11-03",
+    "resume_condition": "Read verified official OpenSpec proof from GitHub workflow and compare spec digest to current staged specs; if absent or failed, remain TRANSITION_BLOCKED"
+  }
 }
