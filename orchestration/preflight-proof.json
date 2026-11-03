@@ -1,0 +1,19 @@
+{
+  "schema": "package-unifier-official-openspec-adoption-preflight-v2",
+  "repo": "andrecsmenezes/package-unifier",
+  "source_candidate_sha": "b28ca51e3d90af2185054e5e66457417db436ad0",
+  "status": "PASS",
+  "cli_version": "1.14.3",
+  "command": "openspec validate --all --strict",
+  "spec_count": 1,
+  "spec_digest": "886a2a1fc4d17d6a99560d4bd607327205d41d60f1e145c6622a59a02d7f7c0e",
+  "run": {
+    "execution": "isolated Vercel Sandbox",
+    "session_id": "sbx_M6Emb00RhM6WUOG5w0mB7G4LoveQ",
+    "command_id": "cmd_8d12903d7691491fb1b1644ffefd",
+    "exit_code": 0,
+    "invocation": "OPENSPEC_TELEMETRY=0 python3 scripts/adoption_preflight.py --root . --cli openspec"
+  },
+  "content_modification_after_preflight": "Only metadata and archival evidence files; canonical openspec/specs contents unchanged",
+  "source_note": "Pre-PR official CLI proof. Passing preflight does not waive exact-head GitHub CI or authorize main merge by itself."
+}
