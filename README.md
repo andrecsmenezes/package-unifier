@@ -34,7 +34,7 @@ agent_contracts=openspec/project/agents/*
 
 ## Official OpenSpec
 
-cli=@fission-ai/openspec@1.13.1;init=openspec init --tools codex;validate=openspec validate --all --strict --no-interactive
+cli=@fission-ai/openspec@1.14.3;init=openspec init --tools codex;validate=openspec validate --all --strict --no-interactive
 generated_tool_integrations=CLI_owned;refresh=openspec update;never_handcraft_generated_skills
 sync_and_archive_only_after_objective_validation=true
 

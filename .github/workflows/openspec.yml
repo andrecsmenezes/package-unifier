@@ -21,11 +21,14 @@ jobs:
         with:
           node-version: '22'
       - name: Install official OpenSpec CLI
-        run: npm install --global @fission-ai/openspec@1.13.1 --no-audit --no-fund
+        run: npm install --global @fission-ai/openspec@1.14.3 --no-audit --no-fund
       - name: Initialize official Codex integration
         run: openspec init --tools codex
       - name: Verify generated agent integration
-        run: test -f .agents/skills/openspec-apply-change/SKILL.md
+        run: |
+          test -f .agents/skills/openspec-apply-change/SKILL.md
+          openspec update
+          git diff --exit-code -- .agents/skills/
       - name: Verify mandatory adversarial agent contracts
         shell: bash
         run: |

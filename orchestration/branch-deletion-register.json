@@ -186,6 +186,13 @@
       "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
       "reason": "Final migration ref-cleanup PR may delete its own temporary head only after exact reviewed SHA CI, verified main merge, zero open PRs and remote absence readback. Permanent coordination branch is excluded.",
       "registered_date": "2026-11-03"
+    },
+    {
+      "branch": "feat/v2-e001-s1-canonical-openspec-20261103",
+      "work_unit_id": "PU-V2-E001-S1-20261103",
+      "disposition": "DELETE_AFTER_VERIFIED_MAIN_MERGE",
+      "reason": "Delete only after exact-head official OpenSpec, PHP runtime-safety, independent dependency-security PASS; verified protected merge and unchanged remote ref SHA; no open PRs.",
+      "registered_date": "2026-11-03"
     }
   ]
 }
