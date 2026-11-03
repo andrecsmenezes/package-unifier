@@ -1,28 +1,28 @@
 {
   "schema": "orchestrator-v2-lease",
   "repository": "andrecsmenezes/package-unifier",
-  "generation": 10,
-  "attempt_id": "pu-v2-plan-scope-integrity-repair-20261103-g10",
-  "task_id": "PU-V2-APPROVED-SCOPE-INTEGRITY",
-  "status": "RELEASED",
+  "generation": 11,
+  "attempt_id": "pu-v2-e003-s2-vendor-retain-decision-20261103-g11",
+  "task_id": "E-PU-V2-003-S2-T2",
+  "status": "ACTIVE",
   "scope_digest": "23662884e2286b7e2e46bdec6e0ade4a29b7c0c450d0d582211ae22272ab908f",
   "approval_ref": "user:2026-11-03-proceed-with-next-tasks-and-epics-as-proposed",
   "plan_ref": "orchestration/v2-epic-plan.json",
   "expected_main_sha": "f45be4adfa6a37b64771c583125226dcb2f4cf85",
   "epic_issue": 38,
   "work_unit_ids": [
-    "PU-V2-PLAN-SCOPE-DIGEST-RESTORE"
+    "E-PU-V2-003-S2-T2"
   ],
-  "current_stage": "RESTORE_IMMUTABLE_APPROVED_SCOPE_DIGEST",
+  "current_stage": "APPROVED_VENDOR_RETAIN_OPTION",
   "claimed_at": "2026-11-03T21:54:40.164Z",
-  "writer_attestation": "main and coordination only, no open PRs, receipt MIGRATED_VERIFIED, preclaim approved plan digest matches.",
+  "writer_attestation": "No open PRs; only permanent main and coordination refs; migration receipt accepted.",
   "next_validation": "Exact-head official OpenSpec, runtime-safety, dependency security, branch cleanup",
   "not_authorized": [
     "Production deploy",
     "runtime Composer mutations",
     "Cross-plugin scan"
   ],
-  "task_state": "DONE",
+  "task_state": "ACTIVE",
   "last_completed": "E-PU-V2-001-S1",
   "release_checkpoint": {
     "generation": 10,
@@ -84,8 +84,8 @@
     "no_php_runtime_changes": true,
     "production_deployment": false
   },
-  "recovery_of": "pu-v2-remaining-subtasks-evidence-20261103-a9",
-  "approved_scope": "Source-backed deployed-version unknown matrix, keep-vs-remove-vendor gate, explicit no-authorized-deployment blocker. No scans, deploys, runtime changes, package removal, or release authorization.",
+  "recovery_of": "pu-v2-plan-scope-integrity-repair-20261103-g10",
+  "approved_scope": "E003 S2 T2 finite gate: document decision to retain tracked vendor until deployment/recovery proof. Do not remove tracked vendor or change runtime/autoload; no release.",
   "resume_evidence": {
     "pr_number": 42,
     "head_sha": "3689463b583026649a1f692758a1b419f6aea60d",
@@ -128,5 +128,7 @@
     ],
     "open_prs": 0,
     "main_sha": "f45be4adfa6a37b64771c583125226dcb2f4cf85"
-  }
+  },
+  "authorization": "User 2026-11-03 explicitly authorized requested modifications/deletions/additions and ordered aggressive continuation. This lease chooses the non-destructive KEEP branch; no production deployment, vendor removal or global consolidation without independent safety proof.",
+  "claim_date": "2026-11-03"
 }
